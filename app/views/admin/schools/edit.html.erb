@@ -1,2 +1,117 @@
-<h1>Admin::Schools#edit</h1>
-<p>Find me in app/views/admin/schools/edit.html.erb</p>
+<div class="container">
+
+  <div class="row">
+    <h3>日本語学校編集</h3>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @school, url: admin_school_path(@school), method: :patch do |f| %>
+
+      <div class="field">
+        <%= f.label :日本語学校名 %><br />
+        <%= f.text_field :school_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :日本語学校名 %>(かな)<br />
+        <%= f.text_field :school_name_kana %>
+      </div>
+
+      <div class="field">
+        <%= f.label :日本語学校名 %>(英語)<br />
+        <%= f.text_field :school_name_en %>
+      </div>
+
+      <div class="field">
+        <%= f.label :学校情報 %><br />
+        <%= f.text_area :summary %>
+      </div>
+
+      <div class="field">
+        <%= f.label :最寄駅 %><br />
+        <%= f.text_field :station %>
+      </div>
+
+      <div class="field">
+        <%= f.label :都道府県 %><br />
+        <%= f.select :prefecture, School.prefectures.keys, {} %>
+      </div>
+
+      <div class="field">
+        <%= f.label :住所 %><br />
+        <%= f.text_area :address %>
+      </div>
+
+      <div class="field">
+        <%= f.label :HPリンク %><br />
+        <%= f.text_area :hp %>
+      </div>
+
+      <div class="field">
+        <%= f.label :Facebookリンク %><br />
+        <%= f.text_area :facebook %>
+      </div>
+
+      <div class="field">
+        <%= f.label :Twitterリンク %><br />
+        <%= f.text_area :twitter %>
+      </div>
+
+      <div class="field">
+        <%= f.label :Instagramリンク %><br />
+        <%= f.text_area :instagram %>
+      </div>
+
+      <div class="field">
+        <%= f.label :TikTokリンク %><br />
+        <%= f.text_area :tiktok %>
+      </div>
+
+      <div class="field">
+        <%= f.label :YouTubeリンク %><br />
+        <%= f.text_area :youtube %>
+      </div>
+
+      <div class="field">
+        <%= f.label :入学要件 %><br />
+        <%= f.text_area :condition %>
+      </div>
+
+      <div class="field">
+        <%= f.label :学費 %>(年間)<br />
+        <%= f.text_field :anual_fee %>
+      </div>
+
+      <div class="field">
+        <%= f.label :寮の有無 %><br />
+        <%= f.radio_button :have_dormitory, :true %>
+        <%= f.label :have_dormitory, "あり" %>
+        <%= f.radio_button :have_dormitory, :false, checked: true %>
+        <%= f.label :have_dormitory, "なし" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :寮の家賃 %>(月額)<br />
+        <%= f.text_field :dormitory_fee %>
+      </div>
+
+      <div class="field">
+        <%= f.label :学生の国籍 %>(タグは半角スペースで区切ってください)<br />
+        <%= f.text_field :nationality %>
+      </div>
+
+      <div class="field">
+        <%= f.label :公開状況 %><br />
+        <%= f.radio_button :is_open, :true, checked: true %>
+        <%= f.label :is_open, "公開" %>
+        <%= f.radio_button :is_open, :false %>
+        <%= f.label :is_open, "非公開" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "更新", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

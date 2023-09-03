@@ -18,9 +18,15 @@ class Admin::SchoolsController < ApplicationController
   end
 
   def edit
+    @school = School.find(params[:id])
   end
 
   def update
+    school = School.find(params[:id])
+    school.update(school_params)
+    input_tags = tag_params[:nationality].split(' ')
+    school.update_tags(input_tags)
+    redirect_to admin_school_path(school.id)
   end
 
   def index
@@ -28,6 +34,7 @@ class Admin::SchoolsController < ApplicationController
   end
 
   def show
+    @school = School.find(params[:id])
   end
 
   def destroy
@@ -39,7 +46,7 @@ class Admin::SchoolsController < ApplicationController
   private
 
     def school_params
-      params.require(:school).permit(:school_name, :school_name_kana, :school_name_en, :summary, :station, :address, :hp, :facebook, :twitter, :instagram, :tiktok, :youtube, :condition, :anual_fee, :have_dormitory, :is_open, :prefecture)
+      params.require(:school).permit(:school_name, :school_name_kana, :school_name_en, :summary, :station, :address, :hp, :facebook, :twitter, :instagram, :tiktok, :youtube, :condition, :anual_fee, :have_dormitory, :dormitory_fee, :is_open, :prefecture)
     end
 
     def tag_params

@@ -18,11 +18,28 @@ class School < ApplicationRecord
      沖縄県:47
    }
 
-   def create_tags(input_tags)
+  def create_tags(input_tags)
      input_tags.each do |tag|
        new_tag = StudentNationalityTag.find_or_create_by(nationality: tag)
        student_nationality_tags << new_tag
      end
-   end
+  end
+
+  def update_tags(input_tags)
+    registered_tags = student_nationality_tags.pluck(:nationality)
+    new_tags = input_tags - registered_tags
+    destroy_tags = registered_tags - input_tags
+
+    new_tags.each do |tag|
+      new_tag = StudentNationalityTag.find_or_create_by(nationality: tag)
+      student_nationality_tags << new_tag
+    end
+
+    destroy_tags.each do |tag|
+      tag_id = StudentNationalityTag.find_by(nationality: tag)
+      destroy_tagging = StudentNationalityTagging.find_by(student_nationality_tag_id: tag_id, school_id: id)
+      destroy_tagging.destroy
+    end
+  end
 
 end
