@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_03_022921) do
+ActiveRecord::Schema.define(version: 2023_09_03_062015) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -122,10 +122,10 @@ ActiveRecord::Schema.define(version: 2023_09_03_022921) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
     t.string "name_kana"
-    t.string "nationality", null: false
     t.string "job"
     t.integer "graduated_at"
     t.integer "school_id", null: false
+    t.string "country_code", default: "JP"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["school_id"], name: "index_users_on_school_id"

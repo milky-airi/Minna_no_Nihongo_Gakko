@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   belongs_to :school
 
+  def country
+    Carmen::Country.coded(country_code)
+  end
+
 end

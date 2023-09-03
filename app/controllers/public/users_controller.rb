@@ -13,4 +13,10 @@ class Public::UsersController < ApplicationController
 
   def quit
   end
+
+  private
+
+    def user_params
+      params.require(:user).permit(:email, :password, :name, :name_kana, :job, :graduated_at, :school_id, :country_code)
+    end
 end
