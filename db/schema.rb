@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_03_062015) do
+ActiveRecord::Schema.define(version: 2023_09_03_075759) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 2023_09_03_062015) do
     t.string "school_name_en", null: false
     t.text "summary", null: false
     t.string "station", null: false
-    t.string "prefecture", null: false
     t.text "address", null: false
     t.text "hp"
     t.text "facebook"
@@ -104,10 +103,25 @@ ActiveRecord::Schema.define(version: 2023_09_03_062015) do
     t.text "youtube"
     t.text "condition"
     t.integer "anual_fee"
-    t.text "student_nationality"
     t.boolean "have_dormitory", default: false
     t.integer "dormitory_fee"
     t.boolean "is_open", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "prefecture", default: 13, null: false
+  end
+
+  create_table "student_nationality_taggings", force: :cascade do |t|
+    t.integer "school_id", null: false
+    t.integer "student_nationality_tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["school_id"], name: "index_student_nationality_taggings_on_school_id"
+    t.index ["student_nationality_tag_id"], name: "index_student_nationality_taggings_on_student_nationality_tag_id"
+  end
+
+  create_table "student_nationality_tags", force: :cascade do |t|
+    t.string "nationality"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -139,5 +153,7 @@ ActiveRecord::Schema.define(version: 2023_09_03_062015) do
   add_foreign_key "favorites", "users"
   add_foreign_key "reviews", "schools"
   add_foreign_key "reviews", "users"
+  add_foreign_key "student_nationality_taggings", "schools"
+  add_foreign_key "student_nationality_taggings", "student_nationality_tags"
   add_foreign_key "users", "schools"
 end

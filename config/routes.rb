@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :alerts, only: [:index, :show]
     patch '/alerts/:id/done' => 'alerts#done', as: "alerts_done"
+    resources :reviews, only: [:index]
     get   '/reviews/:member_id' => 'reviews#individual', as: "individual_reviews"
     patch '/reviews/:id/close' => 'reviews#close', as: "review_close"
     resources :cources
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
     resources :searches, only: [:search]
     resources :schools
     patch '/schools/:id/close' => 'schools#close', as: "school_close"
+    resources :comments, only: [:index]
     patch '/comments/:id/close' => 'comments#close', as: "comment_close"
   end
 
