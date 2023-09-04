@@ -1,2 +1,18 @@
-<h1>Public::Users#confirm_quit</h1>
-<p>Find me in app/views/public/users/confirm_quit.html.erb</p>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-9">
+      <h3>退会手続き</h3>
+      <p>退会すると、アカウントの復旧はできません。本当に退会しますか？</p>
+
+      <%= link_to "退会しない", user_path(current_user.id), class: "btn btn-info" %>
+      <%= link_to "退会する", quit_path, class: "btn btn-danger", method: :patch %>
+
+    </div>
+
+    <div class="col-md-3">
+      <%= render "public/users/sidebar.html.erb", user: current_user %>
+    </div>
+
+  </div>
+</div>

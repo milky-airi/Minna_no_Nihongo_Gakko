@@ -43,8 +43,8 @@ Rails.application.routes.draw do
     resources :schools, only: [:index, :show]
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
-    get '/users/confirm_quit' => 'users#confirm_quit'
     patch '/users/quit' => 'users#quit', as: "quit"
+    get '/users/confirm_quit' => 'users#confirm_quit'
     resources :users, only: [:show, :edit, :update]
     resources :comments, only: [:create, :update, :destroy]
     resources :went_schools, only: [:new, :create, :edit, :update, :destroy]
