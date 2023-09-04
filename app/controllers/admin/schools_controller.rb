@@ -14,7 +14,7 @@ class Admin::SchoolsController < ApplicationController
     input_tags = tag_params[:nationality].split(' ')
     school.create_tags(input_tags)
     school.save
-    redirect_to schools_path
+    redirect_to admin_schools_path
   end
 
   def edit
@@ -35,18 +35,22 @@ class Admin::SchoolsController < ApplicationController
 
   def show
     @school = School.find(params[:id])
+    @courses = @school.courses
   end
 
   def destroy
+    school = School.find(params[:id])
+    school.destroy
+    redirect_to admin_schools_path
   end
 
-  def close
-  end
+  # def close
+  # end
 
   private
 
     def school_params
-      params.require(:school).permit(:school_name, :school_name_kana, :school_name_en, :summary, :station, :address, :hp, :facebook, :twitter, :instagram, :tiktok, :youtube, :condition, :anual_fee, :have_dormitory, :dormitory_fee, :is_open, :prefecture)
+      params.require(:school).permit(:name, :name_kana, :name_en, :summary, :station, :address, :hp, :facebook, :twitter, :instagram, :tiktok, :youtube, :condition, :anual_fee, :have_dormitory, :dormitory_fee, :is_open, :prefecture)
     end
 
     def tag_params

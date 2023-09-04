@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_03_075759) do
+ActiveRecord::Schema.define(version: 2023_09_04_011325) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2023_09_03_075759) do
     t.text "condition"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name", null: false
     t.index ["school_id"], name: "index_courses_on_school_id"
   end
 
@@ -89,9 +90,9 @@ ActiveRecord::Schema.define(version: 2023_09_03_075759) do
   end
 
   create_table "schools", force: :cascade do |t|
-    t.string "school_name", null: false
-    t.string "school_name_kana", null: false
-    t.string "school_name_en", null: false
+    t.string "name", null: false
+    t.string "name_kana", null: false
+    t.string "name_en", null: false
     t.text "summary", null: false
     t.string "station", null: false
     t.text "address", null: false

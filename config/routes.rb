@@ -18,12 +18,12 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index]
     get   '/reviews/:member_id' => 'reviews#individual', as: "individual_reviews"
     patch '/reviews/:id/close' => 'reviews#close', as: "review_close"
-    resources :cources
+    resources :courses
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
     resources :searches, only: [:search]
     resources :schools
-    patch '/schools/:id/close' => 'schools#close', as: "school_close"
+    # patch '/schools/:id/close' => 'schools#close', as: "school_close"
     resources :comments, only: [:index]
     patch '/comments/:id/close' => 'comments#close', as: "comment_close"
   end

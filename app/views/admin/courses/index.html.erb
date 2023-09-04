@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="row">
+    <h3>コース一覧</h3>
+    <%= link_to "コース追加", new_admin_course_path %>
+  </div>
+
+  <div class="row">
+  <table class="table">
+    <tr>
+      <td>No.</td>
+      <td>日本語学校名</td>
+      <td>コース名</td>
+      <td>入学時期</td>
+      <td>在学期間</td>
+      <td>定員</td>
+      <td>コースの入学要件</td>
+    </tr>
+      <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.id %></td>
+        <td><%= link_to course.school.name, admin_course_path(course.id) %></td>
+        <td><%= course.name %></td>
+        <td><%= course.admission_month %></td>
+        <td><%= course.duration %></td>
+        <td><%= course.capacity %></td>
+        <td><%= course.condition %></td>
+      </tr>
+      <% end %>
+  </table>
+  </div>
+</div>

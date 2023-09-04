@@ -14,6 +14,7 @@
                   <li><%= link_to "コメント一覧", admin_comments_path, class: "btn btn-outline-secondary mr-3" %></li>
                   <li><%= link_to "レビュー一覧", admin_reviews_path, class: "btn btn-outline-secondary mr-3" %></li>
                   <li><%= link_to "会員一覧", admin_users_path, class: "btn btn-outline-secondary mr-3" %></li>
+                  <li><%= link_to "コース一覧", admin_courses_path, class: "btn btn-outline-secondary mr-3" %></li>
                   <li><%= link_to "学校一覧", admin_schools_path, class: "btn btn-outline-secondary mr-3" %></li>
                   <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %></li>
                 <% elsif user_signed_in? %>

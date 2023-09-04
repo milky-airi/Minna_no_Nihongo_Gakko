@@ -18,7 +18,7 @@
       <% @schools.each do |school| %>
       <tr>
         <td><%= school.id %></td>
-        <td><%= link_to school.school_name, admin_school_path(school.id) %></td>
+        <td><%= link_to school.name, admin_school_path(school.id) %></td>
         <td><%= school.reviews.count %></td>
         <td><%#= school.reviews.star_integer %></td>
         <td><%= school.is_open %></td>

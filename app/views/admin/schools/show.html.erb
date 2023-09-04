@@ -1,19 +1,19 @@
 <div class="container">
 
-  <h3><%= @school.school_name %>の詳細情報</h3>
+  <h3><%= @school.name %>の詳細情報</h3>
 
   <table class="table">
     <tr>
       <td>日本語学校名</td>
-      <td><%= @school.school_name %></td>
+      <td><%= @school.name %></td>
     </tr>
     <tr>
       <td>日本語学校名（かな）</td>
-      <td><%= @school.school_name_kana %></td>
+      <td><%= @school.name_kana %></td>
     </tr>
     <tr>
       <td>日本語学校名（英語）</td>
-      <td><%= @school.school_name_en %></td>
+      <td><%= @school.name_en %></td>
     </tr>
     <tr>
       <td>学校情報</td>
@@ -90,6 +90,29 @@
 
   </table>
 
-  <%= link_to "編集", edit_admin_school_path, class: "btn btn-success" %>
+  <h3><%= @school.name %>のコース情報</h3>
 
+  <table class="table">
+    <tr>
+      <td>コース名</td>
+      <td>入学時期</td>
+      <td>在学期間</td>
+      <td>定員</td>
+      <td>コース入学要件</td>
+    </tr>
+    <% @courses.each do |course| %>
+    <tr>
+      <td><%= link_to course.name, admin_course_path(course.id) %></td>
+      <td><%= course.admission_month %></td>
+      <td><%= course.duration %></td>
+      <td><%= course.capacity %></td>
+      <td><%= course.condition %></td>
+    </tr>
+    <% end %>
+
+  </table>
+
+  <%= link_to "編集", edit_admin_school_path, class: "btn btn-success" %>
+  <%= link_to "コース追加", new_admin_course_path, class: "btn btn-info" %>
+  <%= link_to "削除", admin_school_path(@school.id), method: :delete, data: { confirm: "日本語学校情報を削除してもよろしいですか？" } , class: "btn btn-danger" %>
 </div>
