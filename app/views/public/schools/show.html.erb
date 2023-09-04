@@ -1,2 +1,111 @@
-<h1>Public::Schools#show</h1>
-<p>Find me in app/views/public/schools/show.html.erb</p>
+<div class="container">
+
+  <h3><%= @school.name %>の詳細情報</h3>
+
+  <%= link_to "レビューを投稿する", new_review_path %>
+
+  <table class="table">
+    <tr>
+      <td>日本語学校名</td>
+      <td><%= @school.name %></td>
+    </tr>
+    <tr>
+      <td>日本語学校名（かな）</td>
+      <td><%= @school.name_kana %></td>
+    </tr>
+    <tr>
+      <td>日本語学校名（英語）</td>
+      <td><%= @school.name_en %></td>
+    </tr>
+    <tr>
+      <td>学校情報</td>
+      <td><%= @school.summary %></td>
+    </tr>
+    <tr>
+      <td>最寄駅</td>
+      <td><%= @school.station %></td>
+    </tr>
+    <tr>
+      <td>都道府県</td>
+      <td><%= @school.prefecture %></td>
+    </tr>
+    <tr>
+      <td>都道府県以降の住所</td>
+      <td><%= @school.address %></td>
+    </tr>
+    <tr>
+      <td>HPリンク</td>
+      <td><%= @school.hp %></td>
+    </tr>
+    <tr>
+      <td>Facebookリンク</td>
+      <td><%= @school.facebook %></td>
+    </tr>
+    <tr>
+      <td>Twitterリンク</td>
+      <td><%= @school.twitter %></td>
+    </tr>
+    <tr>
+      <td>Instagramリンク</td>
+      <td><%= @school.instagram %></td>
+    </tr>
+    <tr>
+      <td>TikTokリンク</td>
+      <td><%= @school.tiktok %></td>
+    </tr>
+    <tr>
+      <td>YouTubeリンク</td>
+      <td><%= @school.youtube %></td>
+    </tr>
+    <tr>
+      <td>入学要件</td>
+      <td><%= @school.condition %></td>
+    </tr>
+    <tr>
+      <td>学費（年間）</td>
+      <td><%= @school.anual_fee.to_s(:delimited) %>円</td>
+    </tr>
+    <tr>
+      <td>学生の国籍</td>
+      <td>
+        <% @school.student_nationality_tags.each do |tag| %>
+          <li><%= tag.nationality %></li>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>寮の有無</td>
+      <td><%= @school.have_dormitory %></td>
+    </tr>
+    <tr>
+      <td>寮の家賃（月額）</td>
+      <td>
+        <% if @school.dormitory_fee.present? %>
+          <%= @school.dormitory_fee.to_s(:delimited) %>円</td>
+        <% end %>
+    </tr>
+
+  </table>
+
+  <h3><%= @school.name %>のコース情報</h3>
+
+  <table class="table">
+    <tr>
+      <td>コース名</td>
+      <td>入学時期</td>
+      <td>在学期間</td>
+      <td>定員</td>
+      <td>コース入学要件</td>
+    </tr>
+    <% @courses.each do |course| %>
+    <tr>
+      <td><%= course.name %></td>
+      <td><%= course.admission_month %></td>
+      <td><%= course.duration %></td>
+      <td><%= course.capacity %></td>
+      <td><%= course.condition %></td>
+    </tr>
+    <% end %>
+  </table>
+
+</div>
