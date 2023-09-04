@@ -2,7 +2,7 @@
   <ul class="navbar-nav">
     <li class="mt-1"><%= link_to "▶︎ マイページトップ", user_path(user.id), class: "text-dark" %></li>
     <li class="mt-1"><%= link_to "▶︎プロフィール編集", edit_user_path(user), class: "text-dark" %></li>
-    <% if user.went_schools.present? %>
+    <% if user.went_school.present? %>
       <li class="mt-1"><%= link_to "▶︎出身校編集",edit_went_school_path, class: "text-dark" %></li>
     <% else %>
       <li class="mt-1"><%= link_to "▶︎出身校登録", new_went_school_path, class: "text-dark" %></li>

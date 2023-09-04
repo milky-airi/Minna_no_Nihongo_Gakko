@@ -11,8 +11,13 @@
         </div>
 
         <div class="field">
-          <%= f.label :卒業年月 %><br />
-          <%= f.text_field :graduate_at, placeholder: "202303" %>
+          <%= f.label :卒業年 %><br />
+          <%= f.text_field :graduate_year, placeholder: "2023" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :卒業月 %><br />
+          <%= f.select :graduate_month,  1..12 %>
         </div>
 
         <div class="actions">
