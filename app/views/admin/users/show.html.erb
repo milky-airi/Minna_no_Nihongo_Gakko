@@ -1,2 +1,45 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+
+  <h3><%= @user.name %>様の詳細情報</h3>
+
+  <table class="table">
+    <tr>
+      <td>氏名</td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <td>氏名（かな）</td>
+      <td><%= @user.name_kana %></td>
+    </tr>
+    <tr>
+      <td>国籍</td>
+      <td><%= @user.country %></td>
+    </tr>
+    <tr>
+      <td>職業</td>
+      <td><%= @user.job %></td>
+    </tr>
+    <tr>
+      <td>登録日</td>
+      <td><%= @user.created_at.strftime('%Y/%m/%d') %></td>
+    </tr>
+    <tr>
+      <td>退会ステータス</td>
+      <td>
+        <% if @user.is_deleted == true %>
+          退会済み
+        <% else %>
+          有効
+        <% end %>
+        </td>
+    </tr>
+  </table>
+  <%= link_to "編集", edit_admin_user_path, class: "btn btn-success" %>
+
+  <p>
+    <%= link_to admin_individual_reviews_path(@user.id), class: "text-dark" do %>
+      ▶︎ <%= @user.name %>様の投稿したレビュー一覧
+    <% end %>
+  </p>
+
+</div>

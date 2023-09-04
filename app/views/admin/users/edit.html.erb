@@ -1,1 +1,22 @@
-users#edit
+<div class="container">
+
+  <h3><%= @user.name %>様の詳細情報</h3>
+
+  <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
+
+
+        <div class="field">
+          <%= f.label :退会ステータス %><br />
+          <%= f.radio_button :is_deleted, :true %>
+          <%= f.label :is_deleted, "退会済み" %>
+          <%= f.radio_button :is_deleted, :false %>
+          <%= f.label :is_deleted, "有効" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "更新", class: "btn btn-success" %>
+        </div>
+
+  <% end %>
+
+</div>
