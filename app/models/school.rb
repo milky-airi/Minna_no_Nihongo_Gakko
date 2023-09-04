@@ -1,10 +1,10 @@
 class School < ApplicationRecord
-  has_many :users, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :courses, dependent: :destroy
   has_many :student_nationality_taggings, dependent: :destroy
   has_many :student_nationality_tags, through: :student_nationality_taggings
+  has_many :went_schools, dependent: :destroy
 
   enum prefecture:{
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,

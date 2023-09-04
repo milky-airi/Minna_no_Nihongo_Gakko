@@ -2,6 +2,16 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+    def configure_permitted_parameters
+      added_attrs = [:email, :name, :name_kana, :country_code, :job, :is_deleted ]
+      devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+      # devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+      # devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
+    end
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -41,14 +51,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # protected
 
-    protected
 
-      def configure_permitted_parameters
-        added_attrs = [ :email, :password, :password_confirmation, :school_id, :name, :name_kana, :nationality, :job, :graduated_at ]
-        devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
-        devise_parameter_sanitizer.permit :account_update, keys: added_attrs
-        devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
-      end
 
 
   # If you have extra params to permit, append them to the sanitizer.

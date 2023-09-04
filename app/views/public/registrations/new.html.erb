@@ -1,11 +1,11 @@
 <div class="continaer">
-
   <div class="row mx-auto">
     <div class="col-md-12">
+
       <h3>新規登録</h3>
 
       <%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= form_with model: User.new, url: user_registration_path, method: :put do |f|  %>
+      <%= form_with model: User.new, url: user_registration_path, method: :post do |f|  %>
         <%= render "public/shared/error_messages", resource: resource %>
 
         <div class="field">
@@ -31,12 +31,7 @@
 
         <div class="field">
           <%= f.label :お仕事 %><br />
-          <%= f.text_field :job, placeholder: "job" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :卒業時期 %>(予定)<br />
-          <%= f.text_field :graduated_at, placeholder: "202303" %>
+          <%= f.text_field :job, placeholder: "会社員" %>
         </div>
 
         <div class="field">

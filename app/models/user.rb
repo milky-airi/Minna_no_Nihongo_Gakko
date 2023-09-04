@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  belongs_to :school
+  has_many :went_schools, dependent: :destroy
+
 
   def country
     Carmen::Country.coded(country_code)
