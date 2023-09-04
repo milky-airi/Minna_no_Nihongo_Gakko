@@ -1,2 +1,45 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-9">
+      <h3><%= @user.name %>様のプロフィール</h3>
+
+      <table class="table">
+        <tr>
+          <td>お名前</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>お名前（かな）</td>
+          <td><%= @user.name_kana %></td>
+        </tr>
+        <tr>
+          <td>国籍</td>
+          <td><%= @user.country %></td>
+        </tr>
+        <tr>
+          <td>職業</td>
+          <td><%= @user.job %></td>
+        </tr>
+        <tr>
+          <td>出身校</td>
+          <td>
+            <% if @user.went_schools.present? %>
+              <% @user.went_schools.each do |went_school| %>
+                <%= went_school.school.name %>
+              <% end %>
+              <%#= @user.went_schools.school.name %>
+            <% else %>
+              <%= link_to "登録する",new_went_school_path %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-md-3">
+      <%= render "public/users/sidebar.html.erb", user: current_user %>
+    </div>
+
+  </div>
+</div>

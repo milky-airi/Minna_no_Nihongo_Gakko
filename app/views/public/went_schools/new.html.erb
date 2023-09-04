@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-9">
+      <h3><%= current_user.name %>様の出身校登録</h3>
+      <%= form_with model: WentSchool.new, url: went_schools_path, method: :post do |f| %>
+
+        <div class="field">
+          <%= f.label :日本語学校 %><br />
+          <%= f.collection_select :school_id, School.all, :id, :name %>
+        </div>
+
+        <div class="field">
+          <%= f.label :卒業年月 %><br />
+          <%= f.text_field :graduate_at, placeholder: "202303" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "出身校登録", class: "btn btn-success" %>
+        </div>
+
+      <% end %>
+    </div>
+
+    <div class="col-md-3">
+      <%= render "public/users/sidebar.html.erb", user: current_user %>
+    </div>
+
+  </div>
+</div>

@@ -1,2 +1,44 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-9">
+        <h3><%= @user.name %>様のプロフィール編集</h3>
+        <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
+
+          <div class="field">
+            <%= f.label :お名前 %><br />
+            <%= f.text_field :name %>
+          </div>
+
+          <div class="field">
+            <%= f.label :おなまえ %>(ひらがな)<br />
+            <%= f.text_field :name_kana %>
+          </div>
+
+          <div class="field">
+            <%= f.label :メールアドレス %><br />
+            <%= f.email_field :email %>
+          </div>
+
+          <div class="field">
+            <%= f.label :お国 %><br />
+            <%= f.country_select :country_code %>
+          </div>
+
+          <div class="field">
+            <%= f.label :お仕事 %><br />
+            <%= f.text_field :job, placeholder: "会社員" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "更新", class: "btn btn-success" %>
+          </div>
+        <% end %>
+    </div>
+
+    <div class="col-md-3">
+      <%= render "public/users/sidebar.html.erb", user: current_user %>
+    </div>
+
+  </div>
+</div>

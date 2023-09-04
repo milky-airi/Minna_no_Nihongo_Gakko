@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'went_schools/new'
+    get 'went_schools/edit'
+  end
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -16,7 +20,7 @@ Rails.application.routes.draw do
     resources :alerts, only: [:index, :show]
     patch '/alerts/:id/done' => 'alerts#done', as: "alerts_done"
     resources :reviews, only: [:index]
-    get   '/reviews/:member_id' => 'reviews#individual', as: "individual_reviews"
+    get   '/reviews/:user_id' => 'reviews#individual', as: "individual_reviews"
     patch '/reviews/:id/close' => 'reviews#close', as: "review_close"
     resources :courses
     get '/search' => 'searches#search'
@@ -35,13 +39,15 @@ Rails.application.routes.draw do
     resources :alerts, only: [:new, :create]
     get '/alerts/thanks' => 'alerts#thanks'
     resources :reviews
+    get   '/reviews/:user_id' => 'reviews#individual', as: "individual_reviews"
     resources :schools, only: [:index, :show]
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
     resources :users, only: [:show, :edit, :update]
-    get '/users/confirm_quit' => 'users#confirm_quit', as: "confirm_quit"
+    get '/users/confirm_quit' => 'users#confirm_quit'
     patch '/users/quit' => 'users#quit', as: "quit"
     resources :comments, only: [:create, :update, :destroy]
+    resources :went_schools, only: [:new, :create, :edit, :update, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

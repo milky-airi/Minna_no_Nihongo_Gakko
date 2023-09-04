@@ -1,0 +1,15 @@
+<nav class="mt-5">
+  <ul class="navbar-nav">
+    <li class="mt-1"><%= link_to "▶︎ マイページトップ", user_path(user.id), class: "text-dark" %></li>
+    <li class="mt-1"><%= link_to "▶︎プロフィール編集", edit_user_path(user), class: "text-dark" %></li>
+    <% if user.went_schools.present? %>
+      <li class="mt-1"><%= link_to "▶︎出身校編集",edit_went_school_path, class: "text-dark" %></li>
+    <% else %>
+      <li class="mt-1"><%= link_to "▶︎出身校登録", new_went_school_path, class: "text-dark" %></li>
+    <% end %>
+    <li class="mt-1"><%= link_to "▶︎退会手続き",users_confirm_quit_path, class: "text-dark" %></li>
+    <li class="mt-1"><%= link_to "▶︎投稿レビュー一覧", reviews_path, class: "text-dark" %></li>
+    <li class="mt-1"><%= link_to "▶︎お気に入り一覧", favorites_path, class: "text-dark" %></li>
+    <li class="mt-1"><%= link_to "▶︎お問い合わせ", "#", class: "text-dark" %></li>
+  </ul>
+</nav>
