@@ -11,7 +11,7 @@
       <td>日本語学校名</td>
       <td>投稿者</td>
       <td>星評価</td>
-      <td>全体コメント</td>
+      <td>コメント件数</td>
       <td>通報件数</td>
       <td>公開状況</td>
       <td>作成日</td>
@@ -19,11 +19,11 @@
     </tr>
       <% @reviews.each do |review| %>
       <tr>
-        <td><%= review.id %></td>
+        <td><%= link_to review.id, admin_review_path(review.id) %></td>
         <td><%= review.school.name %></td>
         <td><%= review.user.name %></td>
         <td><%= render "public/reviews/static_rate", review: review %></td>
-        <td><%= review.comment_integer %></td>
+        <td><%= review.comments.count %></td>
         <td><%= review.alerts.count %></td>
         <td>
             <% if review.is_open == true %>

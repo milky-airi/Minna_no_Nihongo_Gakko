@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="row">
+
+    <h3>
+      <%= link_to school_path(@review.school) do %>
+        <%= @review.school.name %>のレビュー
+      <% end %>
+    </h3>
+    <p>投稿者<%= @review.user.name %></p>
+
+    <table class="table">
+      <tr>
+        <td>星評価（全体）</td>
+        <td><%= render "public/reviews/static_rate", review: @review %></td>
+      </tr>
+      <tr>
+        <td>コメント（全体）</td>
+        <td><%= @review.comment_integer %></td>
+      </tr>
+      <tr>
+        <td>コメント（授業）</td>
+        <td><%= @review.comment_class %></td>
+      </tr>
+      <tr>
+        <td>5段階評価（授業）</td>
+        <td><%= @review.evaluation_class %></td>
+      </tr>
+      <tr>
+        <td>コメント（進路）</td>
+        <td><%= @review.comment_integer %></td>
+      </tr>
+      <tr>
+        <td>5段階評価（授業）</td>
+        <td><%= @review.evaluation_class %></td>
+      </tr>
+      <tr>
+        <td>コメント（立地）</td>
+        <td><%= @review.comment_place %></td>
+      </tr>
+      <tr>
+        <td>5段階評価（立地）</td>
+        <td><%= @review.evaluation_place %></td>
+      </tr>
+      <tr>
+        <td>コメント（施設・設備）</td>
+        <td><%= @review.comment_facility %></td>
+      </tr>
+      <tr>
+        <td>5段階評価（施設・設備）</td>
+        <td><%= @review.evaluation_facility %></td>
+      </tr>
+      <tr>
+        <td>コメント（学生）</td>
+        <td><%= @review.comment_student %></td>
+      </tr>
+      <tr>
+        <td>5段階評価（学生）</td>
+        <td><%= @review.evaluation_student %></td>
+      </tr>
+      <tr>
+        <td>コメント（教師）</td>
+        <td><%= @review.comment_teacher %></td>
+      </tr>
+      <tr>
+        <td>5段階評価（教師）</td>
+        <td><%= @review.evaluation_teacher %></td>
+      </tr>
+      <tr>
+        <td>コメント（学校生活）</td>
+        <td><%= @review.comment_life %></td>
+      </tr>
+      <tr>
+        <td>5段階評価（学校生活）</td>
+        <td><%= @review.evaluation_life %></td>
+      </tr>
+      <tr>
+        <td>投稿日</td>
+        <td><%= @review.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+    </table>
+
+    <% if @review.user == current_user %>
+      <p><%= link_to "編集", edit_review_path(@review), class: "btn btn-success" %>
+      <%= link_to "削除", review_path(@review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></p>
+    <% else %>
+      <p>
+
+
+        <%= form_with url: new_alert_path, method: :get do |f| %>
+          <%= hidden_field_tag :review_id, @review.id %>
+          <%= f.submit "このレビューを通報する", class: "btn btn-outline-danger" %>
+        <% end %>
+      </p>
+    <% end %>
+
+  </div>
+
+  <% @comments.each do |comment| %>
+    <%= comment.comment %>
+    <%= comment.user.name %>
+  <% end %>
+
+</div>

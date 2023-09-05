@@ -19,18 +19,16 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :alerts, only: [:index, :show, :edit, :update]
 
-    resources :reviews, only: [:index, :edit, :update] do
+    resources :reviews, only: [:show, :index, :edit, :update] do
       collection do
         get '/individual/:user_id', action: :individual, as: 'indivisual'
       end
     end
-
     resources :courses
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
     resources :searches, only: [:search]
     resources :schools
-    resources :comments, only: [:index, :edit, :update]
   end
 
   # ユーザー側
