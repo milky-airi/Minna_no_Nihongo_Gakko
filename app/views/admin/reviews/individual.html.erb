@@ -1,2 +1,39 @@
-<h1>Admin::Reviews#individual</h1>
-<p>Find me in app/views/admin/reviews/individual.html.erb</p>
+<div class="container">
+
+  <div class="row">
+    <h3><%= @user.name %>様の投稿したレビュー一覧</h3>
+  </div>
+
+  <div class="row">
+  <table class="table">
+    <tr>
+      <td>No.</td>
+      <td>日本語学校名</td>
+      <td>星評価</td>
+      <td>全体コメント</td>
+      <td>通報件数</td>
+      <td>公開状況</td>
+      <td>作成日</td>
+      <td></td>
+    </tr>
+      <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.id %></td>
+        <td><%= review.school.name %></td>
+        <td><%= render "public/reviews/static_rate", review: review %></td>
+        <td><%= review.comment_integer %></td>
+        <td><%= review.alerts.count %></td>
+        <td>
+            <% if review.is_open == true %>
+                公開
+            <% else %>
+                非公開
+            <% end %>
+        </td>
+        <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= link_to "編集", edit_admin_review_path(review.id), class: "btn btn-success" %></td>
+      </tr>
+      <% end %>
+  </table>
+  </div>
+</div>
