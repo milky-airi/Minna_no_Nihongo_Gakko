@@ -1,2 +1,32 @@
-<h1>Public::DetailSearches#detail_search</h1>
-<p>Find me in app/views/public/detail_searches/detail_search.html.erb</p>
+<div class="container">
+  <div class="row">
+
+
+    <% if @schools.present? %>
+      <h3>検索結果(<%= @schools.count %>件)</h3>
+
+    <table class="table">
+      <tr>
+        <td>日本語学校名</td>
+        <td>日本語学校名（かな）</td>
+        <td>日本語学校名（英語）</td>
+        <td>日本語学校情報</td>
+        <td>住所</td>
+      </tr>
+      <% @schools.each do |school| %>
+      <tr>
+        <td><%= link_to school.name, school_path(school.id) %></td>
+        <td><%= school.name_kana %></td>
+        <td><%= school.name_en %></td>
+        <td><%= school.summary %></td>
+        <td><%= school.address %></td>
+      </tr>
+      <% end %>
+    </table>
+
+    <% else %>
+      <h3>条件に合致する日本語学校はありませんでした。他の条件で検索してください。</h3>
+    <% end %>
+
+  </div>
+</div>

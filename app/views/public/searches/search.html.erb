@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
 
+    <% if @schools.present? %>
     <h3>「<%= @word %>」の検索結果(<%= @schools.count %>件)</h3>
 
     <table class="table">
@@ -21,6 +22,10 @@
       </tr>
       <% end %>
     </table>
+
+    <% else %>
+      <h3>キーワードに合致する日本語学校はありませんでした。他のキーワードで検索してください。</h3>
+    <% end %>
 
   </div>
 </div>

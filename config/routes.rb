@@ -41,7 +41,6 @@ Rails.application.routes.draw do
     end
     resources :reviews do
       collection do
-        # get 'individual'
         get '/individual/:user_id', action: :individual, as: 'individual'
       end
     end

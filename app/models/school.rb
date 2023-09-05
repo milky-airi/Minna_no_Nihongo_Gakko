@@ -54,4 +54,27 @@ class School < ApplicationRecord
     @schools = School.where("name LIKE ?", "%#{word}%") + School.where("name_kana LIKE ?", "%#{word}%") + School.where("name_en LIKE ?", "%#{word}%")
   end
 
+  def self.look_detail_for(prefecture, nationalities, anual_fee_greater_than_or_equal, anual_fee_less_than, word)
+    schools = School.all
+    if prefecture.present?
+      schools = schools.where(prefecture: prefecture)
+    end
+
+    if nationalities.present?
+      schools = schools.joins(:student_nationality_tags).where(student_nationality_tags: { nationality: nationalities }).distinct
+    end
+
+    if anual_fee_greater_than_or_equal.present?
+      schools = schools.where("anual_fee >= ?", anual_fee_greater_than_or_equal)
+    end
+
+    if anual_fee_less_than.present?
+      schools = schools.where("anual_fee < ?", anual_fee_less_than)
+    end
+
+    if word.present?
+      schools = schools.where("name LIKE ?", "%#{word}%")
+    end
+  end
+
 end
