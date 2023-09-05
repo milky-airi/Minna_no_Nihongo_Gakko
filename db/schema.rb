@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_05_031834) do
+ActiveRecord::Schema.define(version: 2023_09_05_043032) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -71,20 +71,20 @@ ActiveRecord::Schema.define(version: 2023_09_05_031834) do
     t.integer "school_id", null: false
     t.float "star_integer", null: false
     t.text "comment_integer"
-    t.integer "evaluation_class", null: false
+    t.integer "evaluation_class", default: 3, null: false
     t.text "comment_class"
-    t.integer "evaluation_after_graduation", null: false
+    t.integer "evaluation_after_graduation", default: 3, null: false
     t.text "comment_after_graduation"
-    t.integer "evaluation_place", null: false
+    t.integer "evaluation_place", default: 3, null: false
     t.text "comment_place"
-    t.integer "evaluation_facility", null: false
+    t.integer "evaluation_facility", default: 3, null: false
     t.text "comment_facility"
-    t.integer "evaluation_student", null: false
+    t.integer "evaluation_student", default: 3, null: false
     t.text "comment_student"
-    t.integer "evaluation_teacher", null: false
+    t.integer "evaluation_teacher", default: 3, null: false
     t.text "comment_teacher"
     t.integer "evaluation_life", null: false
-    t.text "comment_life"
+    t.text "comment_life", default: "3"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_open", default: true, null: false
