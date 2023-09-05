@@ -80,10 +80,33 @@
     </table>
 
     <% if @review.user == current_user %>
-      <%= link_to "編集", edit_review_path(@review), class: "btn btn-success" %>
-      <%= link_to "削除", review_path(@review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %>
+      <p><%= link_to "編集", edit_review_path(@review), class: "btn btn-success" %>
+      <%= link_to "削除", review_path(@review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></p>
     <% else %>
     <% end %>
 
   </div>
+
+  <% @comments.each do |comment| %>
+    <%= comment.comment %>
+    <%= comment.user.name %>
+      <% if comment.user_id == current_user.id %>
+        <%= link_to "削除", comment_path(comment.id), method: :delete, data: { confirm: "コメントを削除してもよろしいですか？" }, class: "btn btn-danger" %>
+      <% end %>
+  <% end %>
+
+  <%= form_with model: Comment.new, url: comments_path, method: :post do |f| %>
+
+    <div class="field">
+      <%= f.text_area :comment %>
+    </div>
+
+    <%= f.hidden_field :review_id, :value => @review.id %>
+
+    <div class="form-group">
+      <%= f.submit "コメント送信", class: 'btn btn-success' %>
+    </div>
+
+  <% end %>
+
 </div>
