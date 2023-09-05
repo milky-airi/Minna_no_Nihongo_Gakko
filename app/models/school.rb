@@ -73,8 +73,10 @@ class School < ApplicationRecord
     end
 
     if word.present?
-      schools = schools.where("name LIKE ?", "%#{word}%")
+      # schools = School.where("name LIKE ?", "%#{word}%") + School.where("name_kana LIKE ?", "%#{word}%") + School.where("name_en LIKE ?", "%#{word}%")
+      schools = schools.where("name LIKE ?", "%#{word}%").or(schools.where("name_kana LIKE ?", "%#{word}%")).or(schools.where("name_en LIKE ?", "%#{word}%"))
     end
+    return schools
   end
 
 end
