@@ -1,2 +1,112 @@
-<h1>Public::Reviews#edit</h1>
-<p>Find me in app/views/public/reviews/edit.html.erb</p>
+<div class="container">
+
+  <%= form_with model:  @review, url: review_path(@review), method: :patch do |f| %>
+
+    <div class="field">
+      <%= f.label :日本語学校 %><br />
+      <%= f.collection_select :school_id, School.all, :id, :name %>
+    </div>
+
+    <div class="form-group" id="star_integer">
+      <%= f.label :star_integer %>
+      <%= f.hidden_field :star_integer, id: :review_star, class: "form-control" %>
+      <div id="star_integer"></div>
+    </div>
+    <script>
+      $(document).on('turbolinks:load', function() {
+        let elem = document.querySelector('#star_integer');
+        if(elem == null) return;
+
+        elem.innerHTML = ""
+        let opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'review[star_integer]',
+        };
+        raty(elem, opt);
+      });
+    </script>
+
+    <div class="field">
+      <%= f.label :学校全体に対するコメント %><br />
+      <%= f.text_area :comment_integer %>
+    </div>
+
+    <div class="field">
+      <%= f.label :授業評価 %>（5:大変良い, 1:とても不満）<br />
+      <%=  f.select :evaluation_class, 1..5%>
+    </div>
+
+    <div class="field">
+      <%= f.label :授業評価の理由 %><br />
+      <%= f.text_area :comment_class %>
+    </div>
+
+    <div class="field">
+      <%= f.label :進路評価 %>（5:大変良い, 1:とても不満）<br />
+      <%=  f.select :evaluation_after_graduation, 1..5%>
+    </div>
+
+    <div class="field">
+      <%= f.label :進路評価の理由 %><br />
+      <%= f.text_area :comment_after_graduation %>
+    </div>
+
+    <div class="field">
+      <%= f.label :立地評価 %>（5:大変良い, 1:とても不満）<br />
+      <%=  f.select :evaluation_place, 1..5%>
+    </div>
+
+    <div class="field">
+      <%= f.label :立地評価の理由 %><br />
+      <%= f.text_area :comment_place %>
+    </div>
+
+    <div class="field">
+      <%= f.label :施設・設備評価 %>（5:大変良い, 1:とても不満）<br />
+      <%=  f.select :evaluation_facility, 1..5%>
+    </div>
+
+    <div class="field">
+      <%= f.label :施設・設備評価の理由 %><br />
+      <%= f.text_area :comment_facility %>
+    </div>
+
+    <div class="field">
+      <%= f.label :学生評価 %>（5:大変良い, 1:とても不満）<br />
+      <%=  f.select :evaluation_student, 1..5%>
+    </div>
+
+    <div class="field">
+      <%= f.label :学生評価の理由 %><br />
+      <%= f.text_area :comment_student %>
+    </div>
+
+    <div class="field">
+      <%= f.label :教師評価 %>（5:大変良い, 1:とても不満）<br />
+      <%=  f.select :evaluation_teacher, 1..5%>
+    </div>
+
+    <div class="field">
+      <%= f.label :教師評価の理由 %><br />
+      <%= f.text_area :comment_teacher %>
+    </div>
+
+    <div class="field">
+      <%= f.label :学校生活評価 %>（5:大変良い, 1:とても不満）<br />
+      <%=  f.select :evaluation_life, 1..5%>
+    </div>
+
+    <div class="field">
+      <%= f.label :学校生活評価の理由 %><br />
+      <%= f.text_area :comment_life %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "レビューを更新", class: 'btn btn-success' %>
+    </div>
+
+  <% end %>
+
+</div>

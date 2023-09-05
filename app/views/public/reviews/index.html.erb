@@ -1,12 +1,24 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-9">
-    </div>
-
-    <div class="col-md-3">
-      <%= render "public/users/sidebar.html.erb", user: current_user %>
-    </div>
+  <h3>レビュー一覧</h3>
+  <table class="table">
+    <tr>
+      <td>No.</td>
+      <td>日本語学校名</td>
+      <td>投稿者名</td>
+      <td>星評価（全体）</td>
+      <td>コメント（全体）</td>
+    </tr>
+    <tr>
+      <% @reviews.each do |review| %>
+      <td><%= link_to review.id, review_path(review.id) %></td>
+      <td><%= review.user.name %></td>
+      <td><%= render "public/reviews/static_rate", review: review %></td>
+      <td><%= review.comment_integer %></td>
+    </tr>
+      <% end %>
+  </table>
 
   </div>
 </div>

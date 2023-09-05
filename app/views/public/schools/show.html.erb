@@ -108,4 +108,23 @@
     <% end %>
   </table>
 
+  <h3><%= @school.name %>のレビュー一覧</h3>
+
+  <table class="table">
+    <tr>
+      <td>No.</td>
+      <td>投稿者名</td>
+      <td>星評価（全体）</td>
+      <td>コメント（全体）</td>
+    </tr>
+    <tr>
+      <% @school.reviews.each do |review| %>
+      <td><%= link_to review.id, review_path(review.id) %></td>
+      <td><%= review.user.name %></td>
+      <td><%= render "public/reviews/static_rate", review: review %></td>
+      <td><%= review.comment_integer %></td>
+    </tr>
+      <% end %>
+  </table>
+
 </div>

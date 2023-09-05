@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_04_035227) do
+ActiveRecord::Schema.define(version: 2023_09_05_005345) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2023_09_04_035227) do
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_open", default: true, null: false
     t.index ["review_id"], name: "index_comments_on_review_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -67,7 +68,7 @@ ActiveRecord::Schema.define(version: 2023_09_04_035227) do
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "school_id", null: false
-    t.string "star_integer", null: false
+    t.float "star_integer", null: false
     t.text "comment_integer"
     t.integer "evaluation_class", null: false
     t.text "comment_class"
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 2023_09_04_035227) do
     t.text "comment_life"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_open", default: true, null: false
     t.index ["school_id"], name: "index_reviews_on_school_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
