@@ -36,6 +36,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def individual
+    @reviews = current_user.reviews
   end
 
   private

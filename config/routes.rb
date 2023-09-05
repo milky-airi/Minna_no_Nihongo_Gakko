@@ -39,8 +39,9 @@ Rails.application.routes.draw do
     resources :alerts, only: [:new, :create]
     get '/alerts/thanks' => 'alerts#thanks'
 
+    get   '/reviews/indivisual' => 'reviews#individual', as: "individual_reviews"
     resources :reviews
-    get   '/reviews/:user_id' => 'reviews#individual', as: "individual_reviews"
+
 
     resources :comments, only: [:create, :update, :destroy]
     resources :schools, only: [:index, :show] do

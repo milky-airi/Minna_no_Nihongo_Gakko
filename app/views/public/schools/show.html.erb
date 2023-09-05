@@ -2,7 +2,9 @@
 
   <h3><%= @school.name %>の詳細情報</h3>
 
-  <p><%= link_to "レビューを投稿する", new_review_path %></p>
+  <% unless @school.reviewed_by?(current_user)  %>
+    <p><%= link_to "レビューを投稿する", new_review_path %></p>
+  <% end %>
 
   <% if @school.favorited_by?(current_user) %>
     <%= link_to school_favorites_path(@school.id), method: :delete do %>

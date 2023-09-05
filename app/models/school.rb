@@ -46,4 +46,8 @@ class School < ApplicationRecord
 	  favorites.exists?(user_id: user.id)
   end
 
+  def reviewed_by?(user)
+    reviews.exists?(user_id: user.id)
+  end
+
 end

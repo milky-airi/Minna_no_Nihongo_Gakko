@@ -13,6 +13,7 @@
     <tr>
       <% @reviews.each do |review| %>
       <td><%= link_to review.id, review_path(review.id) %></td>
+      <td><%= review.school.name %></td>
       <td><%= review.user.name %></td>
       <td><%= render "public/reviews/static_rate", review: review %></td>
       <td><%= review.comment_integer %></td>
