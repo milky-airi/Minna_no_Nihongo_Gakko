@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 2023_09_05_043032) do
     t.text "comment_student"
     t.integer "evaluation_teacher", default: 3, null: false
     t.text "comment_teacher"
-    t.integer "evaluation_life", null: false
-    t.text "comment_life", default: "3"
+    t.integer "evaluation_life", default: 3, null: false
+    t.text "comment_life"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_open", default: true, null: false
