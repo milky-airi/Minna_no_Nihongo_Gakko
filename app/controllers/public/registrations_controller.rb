@@ -2,6 +2,7 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :ensure_normal_user, only: [:destroy, :update]
 
   protected
 
@@ -10,6 +11,13 @@ class Public::RegistrationsController < Devise::RegistrationsController
       devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
       # devise_parameter_sanitizer.permit :account_update, keys: added_attrs
       # devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
+    end
+
+    def ensure_normal_user
+      if resource.email == 'guest@example.com'
+        flash.now[:notice] = "ゲストユーザーの削除はできません。"
+        redirect_to root_path
+      end
     end
 
   # before_action :configure_sign_up_params, only: [:create]
