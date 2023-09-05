@@ -1,1 +1,35 @@
-alerts#edit
+<div class="container">
+
+  <div class="row">
+    <h3>通報情報編集</h3>
+
+    <table class="table">
+      <tr>
+        <td>レビューNo.</td>
+        <td>通報者</td>
+        <td>通報理由</td>
+        <td>対応状況</td>
+      </tr>
+      <tr>
+        <td><%= link_to @alert.review.id, admin_review_path(@alert.review.id) %></td>
+        <td><%= @alert.user.name %></td>
+        <td><%= @alert.reason %></td>
+        <td>
+          <%= form_with model: @alert, url: admin_alert_path(@alert.id), method: :patch do |f| %>
+
+          <div class="field">
+            <%= f.radio_button :is_done, :true %>
+            <%= f.label :is_done, "対応済み" %>
+            <%= f.radio_button :is_done, :false %>
+            <%= f.label :is_done, "未対応" %>
+            <%= f.submit "更新", class: "btn btn-success" %>
+          </div>
+
+          <% end %>
+        </td>
+      </tr>
+    </table>
+
+
+  </div>
+</div>
