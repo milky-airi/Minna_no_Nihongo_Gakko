@@ -20,6 +20,10 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def favorited
+    @favorites = current_user.favorites
+  end
+
   private
 
     def user_params

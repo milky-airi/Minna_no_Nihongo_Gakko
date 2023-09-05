@@ -39,18 +39,20 @@ Rails.application.routes.draw do
     resources :alerts, only: [:new, :create]
     get '/alerts/thanks' => 'alerts#thanks'
 
-    get   '/reviews/:user_id' => 'reviews#individual', as: "individual_reviews"
     resources :reviews
+    get   '/reviews/:user_id' => 'reviews#individual', as: "individual_reviews"
 
     resources :comments, only: [:create, :update, :destroy]
     resources :schools, only: [:index, :show] do
-      resource :favorites, only: [:create, :index, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
     patch '/users/quit' => 'users#quit', as: "quit"
     get '/users/confirm_quit' => 'users#confirm_quit'
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update] do
+      get :favorited, on: :collection
+    end
     resources :went_schools, only: [:new, :create, :edit, :update, :destroy]
   end
 

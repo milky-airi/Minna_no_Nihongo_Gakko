@@ -6,4 +6,7 @@ class Public::SchoolsController < ApplicationController
     @school = School.find(params[:id])
     @courses = @school.courses
   end
+
+
+
 end

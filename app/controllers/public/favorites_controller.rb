@@ -7,9 +7,6 @@ class Public::FavoritesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def index
-  end
-
   def destroy
     school = School.find(params[:school_id])
     favorite = Favorite.find_by(school_id: school.id)

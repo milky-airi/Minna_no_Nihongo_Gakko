@@ -1,0 +1,21 @@
+<div class="container">
+
+  <div class="row">
+    <h3>お気に入り一覧</h3>
+  </div>
+
+  <div class="row">
+  <table class="table">
+    <tr>
+      <td>No.</td>
+      <td>日本語学校名</td>
+    </tr>
+      <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= favorite.school.id %></td>
+        <td><%= link_to favorite.school.name, school_path(favorite.school.id) %></td>
+      </tr>
+      <% end %>
+  </table>
+  </div>
+</div>
