@@ -7,6 +7,10 @@ class Admin::AlertsController < ApplicationController
   def show
   end
 
-  def done
+  def edit
   end
+
+  def update
+  end
+
 end

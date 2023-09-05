@@ -17,44 +17,47 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update]
-    resources :alerts, only: [:index, :show]
-    patch '/alerts/:id/done' => 'alerts#done', as: "alerts_done"
-    resources :reviews, only: [:index]
-    get   '/reviews/:user_id' => 'reviews#individual', as: "individual_reviews"
-    patch '/reviews/:id/close' => 'reviews#close', as: "review_close"
+    resources :alerts, only: [:index, :show, :edit, :update]
+
+    resources :reviews, only: [:index, :edit, :update] do
+      collection do
+        get '/individual/:user_id', action: :individual, as: 'indivisual'
+      end
+    end
+
     resources :courses
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
     resources :searches, only: [:search]
     resources :schools
-    # patch '/schools/:id/close' => 'schools#close', as: "school_close"
-    resources :comments, only: [:index]
-    patch '/comments/:id/close' => 'comments#close', as: "comment_close"
+    resources :comments, only: [:index, :edit, :update]
   end
 
   # ユーザー側
   scope module: :public do
     root to: 'homes#top'
-    resources :alerts, only: [:new, :create]
-    get '/alerts/thanks' => 'alerts#thanks'
-
-    # get   '/reviews/indivisual' => 'reviews#individual', as: "individual_reviews"
+    resources :alerts, only: [:new, :create] do
+      collection do
+        get 'thanks'
+      end
+    end
     resources :reviews do
       collection do
         get 'indivisual'
       end
     end
-
     resources :comments, only: [:create, :update, :destroy]
     resources :schools, only: [:index, :show] do
       resource :favorites, only: [:create, :destroy]
     end
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
-    patch '/users/quit' => 'users#quit', as: "quit"
-    get '/users/confirm_quit' => 'users#confirm_quit'
     resources :users, only: [:show, :edit, :update] do
       get :favorited, on: :collection
+      collection do
+        patch 'quit'
+        get 'confirm_quit'
+      end
     end
     resources :went_schools, only: [:new, :create, :edit, :update, :destroy]
   end

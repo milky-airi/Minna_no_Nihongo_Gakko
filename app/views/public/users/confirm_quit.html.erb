@@ -6,7 +6,7 @@
       <p>退会すると、アカウントの復旧はできません。本当に退会しますか？</p>
 
       <%= link_to "退会しない", user_path(current_user.id), class: "btn btn-info" %>
-      <%= link_to "退会する", quit_path, class: "btn btn-danger", method: :patch %>
+      <%= link_to "退会する", quit_users_path, class: "btn btn-danger", method: :patch %>
 
     </div>
 

@@ -1,5 +1,11 @@
 class Admin::CommentsController < ApplicationController
 
-  def close
+  def index
+  end
+
+  def edit
+  end
+
+  def update
   end
 end

@@ -9,7 +9,7 @@ class Public::AlertsController < ApplicationController
     alert.user_id = current_user.id
     alert.review_id = params[:review_id]
     alert.save
-    redirect_to alerts_thanks_path
+    redirect_to thanks_alerts_path
   end
 
   def thanks
