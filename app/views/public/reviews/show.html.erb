@@ -83,6 +83,7 @@
       <p><%= link_to "編集", edit_review_path(@review), class: "btn btn-success" %>
       <%= link_to "削除", review_path(@review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></p>
     <% else %>
+      <p><%= link_to "このレビューを通報する", new_alert_path, class: "btn btn-outline-danger" %></p>
     <% end %>
 
   </div>
