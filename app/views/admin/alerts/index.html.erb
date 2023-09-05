@@ -9,15 +9,17 @@
     <tr>
       <td>No.</td>
       <td>通報者</td>
-      <td>通報されたレビューNo.</td>
+      <td>レビューNo.</td>
+      <td>通報理由</td>
       <td>対応状況</td>
       <td>通報日時</td>
     </tr>
       <% @alerts.each do |alert| %>
       <tr>
         <td><%= alert.id %></td>
-        <td><%= alert.user %></td>
-        <td><%= alert.review.id %></td>
+        <td><%= alert.user.name %></td>
+        <td><%= link_to alert.review.id, admin_review_path(alert.review) %></td>
+        <td><%= alert.reason %></td>
         <td>
           <% if alert.is_done == true %>
             対応済み

@@ -18,10 +18,9 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update]
     resources :alerts, only: [:index, :show, :edit, :update]
-
     resources :reviews, only: [:show, :index, :edit, :update] do
       collection do
-        get '/individual/:user_id', action: :individual, as: 'indivisual'
+        get '/individual/:user_id', action: :individual, as: 'individual'
       end
     end
     resources :courses
@@ -41,7 +40,8 @@ Rails.application.routes.draw do
     end
     resources :reviews do
       collection do
-        get 'indivisual'
+        # get 'individual'
+        get '/individual/:user_id', action: :individual, as: 'individual'
       end
     end
     resources :comments, only: [:create, :update, :destroy]

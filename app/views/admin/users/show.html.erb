@@ -37,7 +37,7 @@
   <%= link_to "編集", edit_admin_user_path, class: "btn btn-success" %>
 
   <p>
-    <%= link_to indivisual_admin_reviews_path(@user.id), class: "text-dark" do %>
+    <%= link_to individual_admin_reviews_path(@user.id), class: "text-dark" do %>
       ▶︎ <%= @user.name %>様の投稿したレビュー一覧
     <% end %>
   </p>

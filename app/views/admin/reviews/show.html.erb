@@ -2,7 +2,7 @@
   <div class="row">
 
     <h3>
-      <%= link_to school_path(@review.school) do %>
+      <%= link_to admin_school_path(@review.school) do %>
         <%= @review.school.name %>のレビュー
       <% end %>
     </h3>
@@ -79,19 +79,7 @@
       </tr>
     </table>
 
-    <% if @review.user == current_user %>
-      <p><%= link_to "編集", edit_review_path(@review), class: "btn btn-success" %>
-      <%= link_to "削除", review_path(@review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></p>
-    <% else %>
-      <p>
-
-
-        <%= form_with url: new_alert_path, method: :get do |f| %>
-          <%= hidden_field_tag :review_id, @review.id %>
-          <%= f.submit "このレビューを通報する", class: "btn btn-outline-danger" %>
-        <% end %>
-      </p>
-    <% end %>
+      <%= link_to "編集", edit_admin_review_path(@review), class: "btn btn-success" %>
 
   </div>
 
