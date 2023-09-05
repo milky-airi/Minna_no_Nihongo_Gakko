@@ -1,2 +1,33 @@
-<h1>Admin::Alerts#index</h1>
-<p>Find me in app/views/admin/alerts/index.html.erb</p>
+<div class="container">
+
+  <div class="row">
+    <h3>通報一覧</h3>
+  </div>
+
+  <div class="row">
+  <table class="table">
+    <tr>
+      <td>No.</td>
+      <td>通報者</td>
+      <td>通報されたレビューNo.</td>
+      <td>対応状況</td>
+      <td>通報日時</td>
+    </tr>
+      <% @alerts.each do |alert| %>
+      <tr>
+        <td><%= alert.id %></td>
+        <td><%= alert.user %></td>
+        <td><%= alert.review.id %></td>
+        <td>
+          <% if alert.is_done == true %>
+            対応済み
+          <% else %>
+            未対応
+          <% end %>
+        </td>
+        <td><%= alert.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+      <% end %>
+  </table>
+  </div>
+</div>

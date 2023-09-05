@@ -2,10 +2,11 @@
 
   <%= form_with model: Review.new, url: reviews_path, method: :post do |f| %>
 
-    <div class="field">
-      <%= f.label :日本語学校 %><br />
-      <%= f.collection_select :school_id, School.all, :id, :name %>
-    </div>
+    <!--<div class="field">-->
+      <%#= f.label :日本語学校 %>
+      <%#= f.collection_select :school_id, School.all, :id, :name %>
+    <!--</div>-->
+    <%= hidden_field_tag :school_id, @school.id %>
 
     <div class="form-group" id="star_integer">
       <%= f.label :star_integer %>

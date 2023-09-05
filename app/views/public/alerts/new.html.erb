@@ -8,6 +8,9 @@
       <%= f.text_area :reason %>
     </div>
 
+    <%#= hidden_field :review_id, params[:review_id] %>
+    <%= hidden_field_tag :review_id, @review.id %>
+
     <div class="form-group">
       <%= f.submit "通報する", class: 'btn btn-outline-danger' %>
     </div>

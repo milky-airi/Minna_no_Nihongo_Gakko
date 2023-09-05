@@ -1,13 +1,18 @@
 class Public::ReviewsController < ApplicationController
 
   def new
+    @school = School.find(params[:school_id])
   end
 
   def create
     review = Review.new(review_params)
     review.user_id = current_user.id
-    review.save
-    redirect_to review_path(review.id)
+    review.school_id = params[:school_id]
+    if review.save
+      redirect_to review_path(review.id)
+    else
+      render :new
+    end
   end
 
   def edit

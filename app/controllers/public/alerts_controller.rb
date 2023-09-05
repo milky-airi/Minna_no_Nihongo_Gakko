@@ -1,11 +1,13 @@
 class Public::AlertsController < ApplicationController
 
   def new
+    @review = Review.find(params[:review_id])
   end
 
   def create
     alert = Alert.new(alert_params)
     alert.user_id = current_user.id
+    alert.review_id = params[:review_id]
     alert.save
     redirect_to alerts_thanks_path
   end

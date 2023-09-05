@@ -35,13 +35,15 @@ Rails.application.routes.draw do
   # ユーザー側
   scope module: :public do
     root to: 'homes#top'
-
     resources :alerts, only: [:new, :create]
     get '/alerts/thanks' => 'alerts#thanks'
 
-    get   '/reviews/indivisual' => 'reviews#individual', as: "individual_reviews"
-    resources :reviews
-
+    # get   '/reviews/indivisual' => 'reviews#individual', as: "individual_reviews"
+    resources :reviews do
+      collection do
+        get 'indivisual'
+      end
+    end
 
     resources :comments, only: [:create, :update, :destroy]
     resources :schools, only: [:index, :show] do
