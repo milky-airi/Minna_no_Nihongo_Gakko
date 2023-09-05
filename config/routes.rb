@@ -35,18 +35,22 @@ Rails.application.routes.draw do
   # ユーザー側
   scope module: :public do
     root to: 'homes#top'
-    resources :favorites, only: [:create, :index, :destroy]
+
     resources :alerts, only: [:new, :create]
     get '/alerts/thanks' => 'alerts#thanks'
-    resources :reviews
+
     get   '/reviews/:user_id' => 'reviews#individual', as: "individual_reviews"
-    resources :schools, only: [:index, :show]
+    resources :reviews
+
+    resources :comments, only: [:create, :update, :destroy]
+    resources :schools, only: [:index, :show] do
+      resource :favorites, only: [:create, :index, :destroy]
+    end
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
     patch '/users/quit' => 'users#quit', as: "quit"
     get '/users/confirm_quit' => 'users#confirm_quit'
     resources :users, only: [:show, :edit, :update]
-    resources :comments, only: [:create, :update, :destroy]
     resources :went_schools, only: [:new, :create, :edit, :update, :destroy]
   end
 
