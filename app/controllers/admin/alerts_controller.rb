@@ -4,9 +4,6 @@ class Admin::AlertsController < ApplicationController
     @alerts = Alert.all
   end
 
-  def show
-  end
-
   def edit
     @alert = Alert.find(params[:id])
   end
