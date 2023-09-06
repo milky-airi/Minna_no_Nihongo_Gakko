@@ -10,6 +10,17 @@ class User < ApplicationRecord
   has_one :went_school
   has_many :reviews, dependent: :destroy
 
+  # ひらがな・カタカナの正規表現
+  KANA_REGEX = /\A[\p{katakana}\p{hiragana}\u{30fc}]+\z/
+  validates :name_kana, format: { with: KANA_REGEX, message: 'はひらがなかカタカナで入力してください' }
+  validate :validate_country_code
+
+  def validate_country_code
+    unless Carmen::Country.coded(country_code)
+      errors.add(:country_code, 'は有効な国コードではありません')
+    end
+  end
+
   has_one_attached :profile_image
 
   def country
