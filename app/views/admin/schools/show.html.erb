@@ -2,6 +2,15 @@
 
   <h3><%= @school.name %>の詳細情報</h3>
 
+  <% if @school.image_from.present? %>
+    <%= link_to @school.image_from do %>
+      <%= image_tag @school.get_image(300,225),class: "object-fit-cover" %>
+    <% end %>
+    <p>引用：<%= link_to "リンク", @school.image_from %></p>
+  <% else %>
+    <%= image_tag @school.get_image(300,225),class: "object-fit-cover" %>
+  <% end %>
+
   <table class="table">
     <tr>
       <td>日本語学校名</td>

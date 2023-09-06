@@ -1,8 +1,17 @@
 <div class="container">
 
   <div class="row">
+
     <div class="col-md-4 text-center">
-      <%= image_tag @school.get_image(300,225) %>
+      <%#= image_tag @school.get_image(300,225) %>
+      <% if @school.image_from.present? %>
+        <%= link_to @school.image_from do %>
+          <%= image_tag @school.get_image(300,225), class: "object-fit-cover" %>
+        <% end %>
+        <p>引用：<%= link_to "リンク", @school.image_from %></p>
+      <% else %>
+        <%= image_tag @school.get_image(300,225), class: "object-fit-cover" %>
+      <% end %>
     </div>
 
     <div class="col-md-8">
@@ -36,7 +45,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-3">
     <div class="col-md-12">
 
       <div>
@@ -54,79 +63,62 @@
         <p><%= link_to @school.hp, @school.hp %></p>
       </div>
 
-      <div>
+      <div class="mb-2">
         <h6>SNS</h6>
-        <% if @school.facebook.present? %>
-          <%= link_to @school.facebook, @school.facebook %>
-        <% end %>
-        <% if @school.twitter.present? %>
-          <%= link_to @school.twitter, @school.twitter %>
-        <% end %>
-        <% if @school.instagram.present? %>
-          <%= link_to @school.instagram, @school.instagram %>
-        <% end %>
-        <% if @school.tiktok.present? %>
-          <%= link_to @school.tiktok, @school.tiktok %>
-        <% end %>
-        <% if @school.youtube.present? %>
-          <%= link_to @school.youtube, @school.youtube %>
-        <% end %>
+          <% if @school.facebook.present? %>
+            <%= link_to @school.facebook do %>
+              <i class="fa-brands fa-facebook fa-xl text-dark mr-1"></i>
+            <% end %>
+          <% end %>
+          <% if @school.twitter.present? %>
+            <%= link_to @school.twitter do %>
+              <i class="fa-brands fa-square-x-twitter fa-xl text-dark mr-1"></i>
+            <% end %>
+          <% end %>
+          <% if @school.instagram.present? %>
+            <%= link_to @school.instagram do %>
+              <i class="fa-brands fa-instagram fa-xl text-dark mr-1"></i>
+            <% end %>
+          <% end %>
+          <% if @school.tiktok.present? %>
+            <%= link_to @school.tiktok do %>
+              <i class="fa-brands fa-tiktok fa-xl text-dark mr-1"></i>
+            <% end %>
+          <% end %>
+          <% if @school.youtube.present? %>
+            <%= link_to @school.youtube do %>
+              <i class="fa-brands fa-youtube fa-xl text-dark mr-1"></i>
+            <% end %>
+          <% end %>
       </div>
 
-      <table class="table">
-        <tr>
-          <td>HPリンク</td>
-          <td><%= link_to @school.hp, @school.hp %></td>
-        </tr>
-        <tr>
-          <td>Facebookリンク</td>
-          <td><%= link_to @school.facebook, @school.facebook %></td>
-        </tr>
-        <tr>
-          <td>Twitterリンク</td>
-          <td><%= link_to @school.twitter, @school.twitter %></td>
-        </tr>
-        <tr>
-          <td>Instagramリンク</td>
-          <td><%= link_to @school.instagram, @school.instagram %></td>
-        </tr>
-        <tr>
-          <td>TikTokリンク</td>
-          <td><%= link_to @school.tiktok, @school.tiktok %></td>
-        </tr>
-        <tr>
-          <td>YouTubeリンク</td>
-          <td><%= link_to @school.youtube, @school.youtube %></td>
-        </tr>
-        <tr>
-          <td>入学要件</td>
-          <td><%= @school.condition %></td>
-        </tr>
-        <tr>
-          <td>学費（年間）</td>
-          <td><%= @school.anual_fee.to_s(:delimited) %>円</td>
-        </tr>
-        <tr>
-          <td>学生の国籍</td>
-          <td>
-            <% @school.student_nationality_tags.each do |tag| %>
-              <li><%= tag.nationality %></li>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td>寮の有無</td>
-          <td><%= @school.have_dormitory %></td>
-        </tr>
-        <tr>
-          <td>寮の家賃（月額）</td>
-          <td>
-            <% if @school.dormitory_fee.present? %>
-              <%= @school.dormitory_fee.to_s(:delimited) %>円</td>
-            <% end %>
-        </tr>
+      <div>
+        <h6>入学要件</h6>
+        <p><%= @school.condition %></p>
+      </div>
 
-      </table>
+      <div>
+        <h6>学費（年間）</h6>
+        <p><%= @school.anual_fee.to_s(:delimited) %>円</p>
+      </div>
+
+      <div>
+        <h6>学生の国籍</h6>
+        <ul class="list-unstyled">
+          <% @school.student_nationality_tags.each do |tag| %>
+            <li><%= tag.nationality %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div>
+        <h6>寮の有無（寮の家賃）</h6>
+          <% if @school.have_dormitory == true %>
+            <p>あり（家賃：<%= @school.dormitory_fee.to_s(:delimited) %>円/月）</p>
+          <% else %>
+            <p>なし</p>
+          <% end %>
+      </div>
 
     </div>
   </div>
