@@ -146,9 +146,9 @@
     <% @courses.each do |course| %>
     <tr>
       <td><%= course.name %></td>
-      <td><%= course.admission_month %></td>
-      <td><%= course.duration %></td>
-      <td><%= course.capacity %></td>
+      <td><%= course.admission_month %>月</td>
+      <td><%= course.duration %>ヶ月</td>
+      <td><%= course.capacity %>名</td>
       <td><%= course.condition %></td>
     </tr>
     <% end %>
