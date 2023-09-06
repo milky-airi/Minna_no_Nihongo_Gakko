@@ -1,4 +1,5 @@
 class Public::WentSchoolsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :craete, :edit, :update, :destroy]
 
   def new
   end

@@ -1,4 +1,5 @@
 class Admin::ReviewsController < ApplicationController
+  before_action :authenticate_admin!, only: [:show, :index, :edit, :update, :individual]
 
   def show
     @review = Review.find(params[:id])

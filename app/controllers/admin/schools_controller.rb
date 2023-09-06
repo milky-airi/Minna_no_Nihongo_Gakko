@@ -1,4 +1,5 @@
 class Admin::SchoolsController < ApplicationController
+  before_action :authenticate_admin!
 
   def new
     @school = School.new

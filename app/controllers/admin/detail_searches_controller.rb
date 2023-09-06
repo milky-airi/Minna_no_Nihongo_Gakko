@@ -1,4 +1,5 @@
 class Admin::DetailSearchesController < ApplicationController
+  before_action :authenticate_admin!, only: [:detail_search]
 
   def detail_search
     @prefecture = params[:prefecture]

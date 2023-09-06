@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_normal_user, only: [:destroy, :update]
+  before_action :authenticate_user!
 
   def show
     @user = current_user

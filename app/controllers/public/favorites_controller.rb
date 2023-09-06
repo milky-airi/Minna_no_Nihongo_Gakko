@@ -1,4 +1,5 @@
 class Public::FavoritesController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   def create
     school = School.find(params[:school_id])

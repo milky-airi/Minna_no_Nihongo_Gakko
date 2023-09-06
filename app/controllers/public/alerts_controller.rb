@@ -1,4 +1,5 @@
 class Public::AlertsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :thanks]
 
   def new
     @review = Review.find(params[:review_id])

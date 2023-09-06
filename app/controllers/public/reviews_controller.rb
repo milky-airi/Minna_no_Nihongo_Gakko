@@ -1,4 +1,5 @@
 class Public::ReviewsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @school = School.find(params[:school_id])

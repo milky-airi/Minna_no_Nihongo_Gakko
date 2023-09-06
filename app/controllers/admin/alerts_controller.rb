@@ -1,4 +1,5 @@
 class Admin::AlertsController < ApplicationController
+  before_action :authenticate_admin!, only: [:index, :edit, :update]
 
   def index
     @alerts = Alert.all
