@@ -149,12 +149,12 @@
           <%= link_to school_path(top_review_school.id) do %>
             <%= image_tag top_review_school.get_image(200,150) %>
           <% end %>
-          <div>
-            <p>
-              <%= link_to top_review_school.name, school_path(top_review_school.id) %><br>
-              <%= top_review_school.name_en %>
-            </p>
-          </div>
+          <p>
+            <%= link_to top_review_school.name, school_path(top_review_school.id) %><br>
+            <%= top_review_school.name_en %>
+          </p>
+          <%= render "public/reviews/average_rate.html.erb", school: top_review_school %>
+
         </div>
       <% end %>
     </div>
