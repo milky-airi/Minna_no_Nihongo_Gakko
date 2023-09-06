@@ -134,27 +134,33 @@
     </div>
   </div>
 
-  <h3><%= @school.name %>のコース情報</h3>
 
-  <table class="table">
-    <tr>
-      <td>コース名</td>
-      <td>入学時期</td>
-      <td>在学期間</td>
-      <td>定員</td>
-      <td>コース入学要件</td>
-    </tr>
-    <% @courses.each do |course| %>
-    <tr>
-      <td><%= course.name %></td>
-      <td><%= course.admission_month %>月</td>
-      <td><%= course.duration %>ヶ月</td>
-      <td><%= course.capacity %>名</td>
-      <td><%= course.condition %></td>
-    </tr>
-    <% end %>
-  </table>
+  <% if @school.courses.present? %>
+    <h3><%= @school.name %>のコース情報</h3>
 
+    <table class="table">
+      <tr>
+        <td>コース名</td>
+        <td>入学時期</td>
+        <td>在学期間</td>
+        <td>定員</td>
+        <td>コース入学要件</td>
+      </tr>
+      <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.name %></td>
+        <td><%= course.admission_month %>月</td>
+        <td><%= course.duration %>ヶ月</td>
+        <td><%= course.capacity %>名</td>
+        <td><%= course.condition %></td>
+      </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <h5>この日本語学校のコース情報はまだ登録されていません</h5>
+  <% end %>
+
+  <% if @school.courses.present? %>
   <h3><%= @school.name %>のレビュー一覧</h3>
 
   <!--<table class="table">-->
@@ -234,5 +240,9 @@
       <div><%= review.comment_life %></div>
     </div>
     <% end %>
+
+  <% else %>
+    <h5>この日本語学校のレビューはまだ登録されていません</h5>
+  <% end %>
 
 </div>
