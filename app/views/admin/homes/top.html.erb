@@ -12,7 +12,7 @@
         </tr>
         <% @schools.each do |school| %>
         <tr>
-          <td><%= link_to school.name, school_path(school.id) %></td>
+          <td><%= link_to school.name, admin_school_path(school.id) %></td>
           <td><%= school.name_kana %></td>
           <td><%= school.name_en %></td>
           <td><%= school.summary %></td>
