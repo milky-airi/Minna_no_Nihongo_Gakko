@@ -143,6 +143,22 @@
       </div>
     </div>
 
+    <div class="row mt-5">
+      <% @top_review_schools.each do |top_review_school| %>
+        <div class="col-md-3">
+          <%= link_to school_path(top_review_school.id) do %>
+            <%= image_tag top_review_school.get_image(200,150) %>
+          <% end %>
+          <div>
+            <p>
+              <%= link_to top_review_school.name, school_path(top_review_school.id) %><br>
+              <%= top_review_school.name_en %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
   <div class="row mt-5">
     <div class="col-md-12">
       <table class="table">
