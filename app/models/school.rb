@@ -81,6 +81,10 @@ class School < ApplicationRecord
     return schools
   end
 
+  def self.look_prefecture_for(prefecture)
+    where(prefecture: prefecture)
+  end
+
   def get_image(width, height)
   	unless image.attached?
   		file_path = Rails.root.join('app/assets/images/SchoolImage.jpg')

@@ -2,6 +2,149 @@
 
   <div class="row">
     <div class="col-md-12">
+      <h5>都道府県から日本語学校を探す</h5>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-6 my-auto">
+      <%= image_tag 'japan-map.png', size: "500x375" %>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <div>
+        【北海道・東北】<br>
+        <%= link_to "北海道", prefecture_search_path(prefecture: "北海道"), class: "text-dark mr-1"  %>
+        <%= link_to "青森県", prefecture_search_path(prefecture: "青森県"), class: "text-dark mr-1"  %>
+        <%= link_to "秋田県", prefecture_search_path(prefecture: "秋田県"), class: "text-dark mr-1"  %>
+        <%= link_to "岩手県", prefecture_search_path(prefecture: "岩手県"), class: "text-dark mr-1"  %>
+        <%= link_to "山形県", prefecture_search_path(prefecture: "山形県"), class: "text-dark mr-1"  %>
+        <%= link_to "宮城県", prefecture_search_path(prefecture: "宮城県"), class: "text-dark mr-1"  %>
+        <%= link_to "福島県", prefecture_search_path(prefecture: "福島県"), class: "text-dark mr-1"  %>
+      </div>
+
+      <div class="mt-2">
+        【甲信越・北陸】<br>
+        <%= link_to "新潟県", prefecture_search_path(prefecture: "新潟県"), class: "text-dark mr-1"  %>
+        <%= link_to "長野県", prefecture_search_path(prefecture: "長野県"), class: "text-dark mr-1"  %>
+        <%= link_to "富山県", prefecture_search_path(prefecture: "富山県"), class: "text-dark mr-1"  %>
+        <%= link_to "石川県", prefecture_search_path(prefecture: "石川県"), class: "text-dark mr-1"  %>
+        <%= link_to "福井県", prefecture_search_path(prefecture: "福井県"), class: "text-dark mr-1"  %>
+        <%= link_to "山梨県", prefecture_search_path(prefecture: "山梨県"), class: "text-dark mr-1"  %>
+      </div>
+
+      <div class="mt-2">
+        【関東】<br>
+        <%= link_to "東京都", prefecture_search_path(prefecture: "東京都"), class: "text-dark mr-1"  %>
+        <%= link_to "神奈川県", prefecture_search_path(prefecture: "神奈川県"), class: "text-dark mr-1"  %>
+        <%= link_to "埼玉県", prefecture_search_path(prefecture: "埼玉県"), class: "text-dark mr-1"  %>
+        <%= link_to "千葉県", prefecture_search_path(prefecture: "千葉県"), class: "text-dark mr-1"  %>
+        <%= link_to "茨城県", prefecture_search_path(prefecture: "茨城県"), class: "text-dark mr-1"  %>
+        <%= link_to "群馬県", prefecture_search_path(prefecture: "群馬県"), class: "text-dark mr-1"  %>
+        <%= link_to "栃木県", prefecture_search_path(prefecture: "栃木県"), class: "text-dark mr-1"  %>
+      </div>
+
+      <div class="mt-2">
+        【東海】<br>
+        <%= link_to "愛知県", prefecture_search_path(prefecture: "愛知県"), class: "text-dark mr-1"  %>
+        <%= link_to "岐阜県", prefecture_search_path(prefecture: "岐阜県"), class: "text-dark mr-1"  %>
+        <%= link_to "静岡県", prefecture_search_path(prefecture: "静岡県"), class: "text-dark mr-1"  %>
+        <%= link_to "三重県", prefecture_search_path(prefecture: "三重県"), class: "text-dark mr-1"  %>
+      </div>
+
+      <div class="mt-2">
+        【関西】<br>
+        <%= link_to "大阪府", prefecture_search_path(prefecture: "大阪府"), class: "text-dark mr-1"  %>
+        <%= link_to "兵庫県", prefecture_search_path(prefecture: "兵庫県"), class: "text-dark mr-1"  %>
+        <%= link_to "京都府", prefecture_search_path(prefecture: "京都府"), class: "text-dark mr-1"  %>
+        <%= link_to "滋賀県", prefecture_search_path(prefecture: "滋賀県"), class: "text-dark mr-1"  %>
+        <%= link_to "奈良県", prefecture_search_path(prefecture: "奈良県"), class: "text-dark mr-1"  %>
+        <%= link_to "和歌山県", prefecture_search_path(prefecture: "和歌山県"), class: "text-dark mr-1"  %>
+      </div>
+
+      <div class="mt-2">
+        【中国・四国】<br>
+        <%= link_to "鳥取県", prefecture_search_path(prefecture: "鳥取県"), class: "text-dark mr-1"  %>
+        <%= link_to "島根県", prefecture_search_path(prefecture: "島根県"), class: "text-dark mr-1"  %>
+        <%= link_to "岡山県", prefecture_search_path(prefecture: "岡山県"), class: "text-dark mr-1"  %>
+        <%= link_to "広島県", prefecture_search_path(prefecture: "広島県"), class: "text-dark mr-1"  %>
+        <%= link_to "山口県", prefecture_search_path(prefecture: "山口県"), class: "text-dark mr-1"  %>
+        <%= link_to "徳島県", prefecture_search_path(prefecture: "徳島県"), class: "text-dark mr-1"  %>
+        <%= link_to "香川県", prefecture_search_path(prefecture: "香川県"), class: "text-dark mr-1"  %>
+        <%= link_to "愛媛県", prefecture_search_path(prefecture: "愛媛県"), class: "text-dark mr-1"  %>
+        <%= link_to "高知県", prefecture_search_path(prefecture: "高知県"), class: "text-dark mr-1"  %>
+      </div>
+
+      <div class="mt-2">
+        【九州・沖縄】<br>
+        <%= link_to "福岡県", prefecture_search_path(prefecture: "福岡県"), class: "text-dark mr-1"  %>
+        <%= link_to "佐賀県", prefecture_search_path(prefecture: "佐賀県"), class: "text-dark mr-1"  %>
+        <%= link_to "長崎県", prefecture_search_path(prefecture: "長崎県"), class: "text-dark mr-1"  %>
+        <%= link_to "熊本県", prefecture_search_path(prefecture: "熊本県"), class: "text-dark mr-1"  %>
+        <%= link_to "大分県", prefecture_search_path(prefecture: "大分県"), class: "text-dark mr-1"  %>
+        <%= link_to "宮崎県", prefecture_search_path(prefecture: "宮崎県"), class: "text-dark mr-1"  %>
+        <%= link_to "鹿児島県", prefecture_search_path(prefecture: "鹿児島県"), class: "text-dark mr-1"  %>
+        <%= link_to "沖縄県", prefecture_search_path(prefecture: "沖縄県"), class: "text-dark mr-1"  %>
+      </div>
+
+    </div>
+  </div>
+
+    <div class="row mt-5">
+      <h5>条件から日本語学校を探す</h5>
+    </div>
+
+    <div class="row mt-5">
+
+      <div class="col-md-5 offset-md-1">
+        <%= form_with url: detail_search_path, local: true, method: :get do |f| %>
+
+        <div class="field">
+          <%= f.label :都道府県　, class: "mr-2" %>
+          <%= f.select :prefecture, School.prefectures.keys, { include_blank: '選択してください'} %>
+        </div>
+
+        <div class="field">
+          <%= f.label :学生の国籍, class: "mr-2" %>
+          <%= f.text_field :nationality, placeholder: "インドネシア" %> を含む
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="field">
+          <%= f.label :学費, class: "mr-2" %>
+          <%= f.text_field :anual_fee_greater_than_or_equal, placeholder: "下限なし" %>
+          〜
+          <%= f.text_field :anual_fee_less_than, placeholder: "上限なし" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :単語, class: "mr-2" %>
+          <%= f.text_field :word %>
+        </div>
+      </div>
+
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-12 text-center">
+
+      <div class="actions">
+        <%= f.submit "検索", class: "btn btn-secondary w-25" %>
+      </div>
+      <% end %>
+
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h5>口コミランキング</h5>
+      </div>
+    </div>
+
+  <div class="row mt-5">
+    <div class="col-md-12">
       <table class="table">
         <tr>
           <td>日本語学校名</td>
@@ -21,50 +164,6 @@
         <% end %>
       </table>
     </div>
-  </div>
-
-    <div class="row">
-      <h3>条件から日本語学校を探す</h3>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <%= form_with url: detail_search_path, local: true, method: :get do |f| %>
-
-        <div class="field">
-          <%= f.label :都道府県 %>
-          <%= f.select :prefecture, School.prefectures.keys, { include_blank: '選択してください'} %>
-        </div>
-
-        <div class="field">
-          <%= f.label :学生の国籍 %>(タグは半角スペースで区切ってください)<br />
-          <%= f.text_field :nationality, placeholder: "インドネシア" %> を含む
-        </div>
-
-      </div>
-
-      <div class="col-md-6">
-
-        <div class="field">
-          <%= f.label :学費 %>(年間)
-          <%= f.text_field :anual_fee_greater_than_or_equal, placeholder: "下限なし" %>
-          〜
-          <%= f.text_field :anual_fee_less_than, placeholder: "上限なし" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :キーワード %>
-          <%= f.text_field :word %>
-        </div>
-
-      </div>
-
-      <div class="actions">
-        <%= f.submit "検索", class: "btn btn-outline-secondary" %>
-      </div>
-
-      <% end %>
-
   </div>
 
 </div>

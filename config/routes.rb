@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'prefecture_search/prefecture_search'
+  end
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -50,6 +53,7 @@ Rails.application.routes.draw do
     end
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
+    get '/prefecture_search' => 'prefecture_searches#prefecture_search'
     resources :users, only: [:show, :edit, :update] do
       get :favorited, on: :collection
       collection do
