@@ -23,3 +23,5 @@ window.raty = function(elem,opt) {
  raty.init();
  return raty;
 }
+
+import '../stylesheets/map.scss';

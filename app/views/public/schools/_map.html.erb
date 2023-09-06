@@ -1,0 +1,27 @@
+<div class="map">
+  <!-- data-latitudeとdata-longitude属性で緯度と経度を埋め込む -->
+  <div id="map" data-latitude="<%= school.latitude %>" data-longitude="<%= school.longitude %>">
+  </div>
+</div>
+
+<script type="text/javascript">
+  function initMap() {
+    // data-latitudeとdata-longitudeから緯度と経度を取得
+    var lat = parseFloat(document.getElementById('map').dataset.latitude);
+    var lng = parseFloat(document.getElementById('map').dataset.longitude);
+
+    // マップの設定
+    let map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: lat, lng: lng },
+      zoom: 15
+    });
+
+    // ピンを立てる
+    var marker = new google.maps.Marker({
+      position: {lat: lat, lng: lng},
+      map: map
+    });
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>

@@ -1,4 +1,7 @@
 class School < ApplicationRecord
+  geocoded_by :full_address
+  after_validation :geocode
+
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :courses, dependent: :destroy
@@ -100,6 +103,10 @@ class School < ApplicationRecord
   		image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpg')
   	end
   	  image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def full_address
+    [prefecture, address].compact.join(', ')
   end
 
 end

@@ -96,10 +96,16 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     ffi (1.15.5)
+    geocoder (1.8.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    gmaps4rails (2.1.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -255,6 +261,9 @@ DEPENDENCIES
   capybara (>= 3.26)
   carmen-rails!
   devise
+  dotenv-rails
+  geocoder
+  gmaps4rails
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
