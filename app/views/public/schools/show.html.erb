@@ -33,8 +33,14 @@
             <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
         <% end %>
       <% end %>
-      <%= render "public/reviews/average_rate.html.erb", school: @school %>
-      <p>口コミ：<%= @school.reviews.count %>件</p>
+
+      <% if @school.reviews.present? %>
+        <%= render "public/reviews/average_rate.html.erb", school: @school %>
+        <p>口コミ：<%= @school.reviews.count %>件</p>
+      <% else %>
+        <p>口コミはまだありません</p>
+      <% end %>
+
       <div>
         <% if user_signed_in? %>
           <% unless @school.reviewed_by?(current_user)  %>
@@ -65,7 +71,11 @@
 
       <div>
         <h6>【HP】</h6>
-        <p><%= link_to @school.hp, @school.hp %></p>
+        <% if @school.hp.blank? %>
+          HP情報はありません
+        <% else %>
+          <p><%= link_to @school.hp, @school.hp %></p>
+        <% end %>
       </div>
 
       <div class="mb-2">
@@ -95,7 +105,7 @@
               <i class="fa-brands fa-youtube fa-xl text-dark mr-1"></i>
             <% end %>
           <% end %>
-          <% unless @school.facebook.present? && @school.twitter.present? && @school.instagram.present? && @school.tiktok.present? && @school.youtube.present? %>
+          <% if @school.facebook.blank? && @school.twitter.blank? && @school.instagram.blank? && @school.tiktok.blank? && @school.youtube.blank? %>
             SNSアカウントはありません
           <% end %>
       </div>

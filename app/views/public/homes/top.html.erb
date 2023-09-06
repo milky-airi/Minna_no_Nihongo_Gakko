@@ -153,8 +153,11 @@
             <%= link_to top_review_school.name, school_path(top_review_school.id) %><br>
             <%= top_review_school.name_en %>
           </p>
-          <%= render "public/reviews/average_rate.html.erb", school: top_review_school %>
-
+          <% if top_review_school.reviews.present? %>
+            <%= render "public/reviews/average_rate.html.erb", school: top_review_school %>
+          <% else %>
+            <p>口コミはまだありません</p>
+          <% end %>
         </div>
       <% end %>
     </div>
