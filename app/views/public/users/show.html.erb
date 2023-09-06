@@ -1,10 +1,18 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-9">
-      <%= flash[:notice] %>
-      <h3><%= @user.name %>様のプロフィール</h3>
+   <div class="col-md-12">
+     <%= flash[:notice] %>
+     <h5>マイページ</h5>
+     <h5><%= @user.name %>様のプロフィール</h5>
+   </div>
 
+    <div class="col-md-2">
+      <%= image_tag @user.get_profile_image(120,120) %>
+      <%= link_to "画像変更", edit_user_path(@user), class: "btn btn-outline-success"  %>
+    </div>
+
+    <div class="col-md-7">
       <table class="table">
         <tr>
           <td>お名前</td>
