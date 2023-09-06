@@ -1,5 +1,5 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   def create
     comment = Comment.new(comment_params)
@@ -7,9 +7,6 @@ class Public::CommentsController < ApplicationController
     comment.review_id = params[:comment][:review_id]
     comment.save
     redirect_to review_path(comment.review_id)
-  end
-
-  def update
   end
 
   def destroy

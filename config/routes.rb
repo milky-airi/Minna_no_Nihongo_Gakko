@@ -44,7 +44,7 @@ Rails.application.routes.draw do
         get '/individual/:user_id', action: :individual, as: 'individual'
       end
     end
-    resources :comments, only: [:create, :update, :destroy]
+    resources :comments, only: [:create, :destroy]
     resources :schools, only: [:index, :show] do
       resource :favorites, only: [:create, :destroy]
     end
