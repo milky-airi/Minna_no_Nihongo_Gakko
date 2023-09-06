@@ -6,6 +6,8 @@ class School < ApplicationRecord
   has_many :student_nationality_tags, through: :student_nationality_taggings
   has_many :went_schools, dependent: :destroy
 
+  has_one_attached :image
+
   enum prefecture:{
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
      茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,
@@ -77,6 +79,14 @@ class School < ApplicationRecord
       schools = schools.where("name LIKE ?", "%#{word}%").or(schools.where("name_kana LIKE ?", "%#{word}%")).or(schools.where("name_en LIKE ?", "%#{word}%"))
     end
     return schools
+  end
+
+  def get_image(width, height)
+  	unless image.attached?
+  		file_path = Rails.root.join('app/assets/images/SchoolImage.jpg')
+  		image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpg')
+  	end
+  	  image.variant(resize_to_limit: [width, height]).processed
   end
 
 end

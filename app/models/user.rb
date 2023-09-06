@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_one :went_school
   has_many :reviews, dependent: :destroy
 
+  has_one_attached :profile_image
+
   def country
     Carmen::Country.coded(country_code)
   end
@@ -24,6 +26,15 @@ class User < ApplicationRecord
       user.job = "大学生"
       user.is_deleted = false
     end
+  end
+
+
+  def get_profile_image(width, height)
+  	unless profile_image.attached?
+  		file_path = Rails.root.join('app/assets/images/UserImage.jpg')
+  		profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpg')
+  	end
+  	  profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
 end

@@ -58,3 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 以下追記
 gem 'devise'
 gem 'carmen-rails', git: 'git@github.com:Studiosity/carmen-rails.git'
+gem 'image_processing', '~> 1.2'
