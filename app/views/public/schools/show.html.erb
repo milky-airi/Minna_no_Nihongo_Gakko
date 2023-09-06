@@ -33,6 +33,7 @@
             <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
         <% end %>
       <% end %>
+      <%= render "public/reviews/average_rate.html.erb", school: @school %>
       <p>口コミ：<%= @school.reviews.count %>件</p>
       <div>
         <% if user_signed_in? %>
