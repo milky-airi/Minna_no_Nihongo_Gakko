@@ -3,7 +3,6 @@
   <div class="row">
 
     <div class="col-md-4 text-center">
-      <%#= image_tag @school.get_image(300,225) %>
       <% if @school.image_from.present? %>
         <%= link_to @school.image_from do %>
           <%= image_tag @school.get_image(300,225), class: "object-fit-cover" %>
@@ -20,17 +19,6 @@
       <i class="fa-solid fa-location-dot text-info mr-1"></i><%= @school.prefecture %>/<%= @school.station %>
 
       <% if user_signed_in? %>
-        <% unless @school.reviewed_by?(current_user)  %>
-
-          <%= form_with url: new_review_path, method: :get do |f| %>
-            <%= hidden_field_tag :school_id, @school.id %>
-            <%= f.submit "この学校のレビューを作成する", class: "btn btn-outline-success" %>
-          <% end %>
-
-        <% end %>
-      <% end %>
-
-      <% if user_signed_in? %>
         <% if @school.favorited_by?(current_user) %>
           <%= link_to school_favorites_path(@school.id), method: :delete do %>
               <p class="text-dark"><i class="fa-solid fa-heart text-danger mr-1"></i>お気に入り解除</p>
@@ -40,31 +28,47 @@
               <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
           <% end %>
         <% end %>
+      <% else %>
+        <%= link_to school_favorites_path(@school.id), method: :post do %>
+            <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
+        <% end %>
       <% end %>
       <p>口コミ：<%= @school.reviews.count %>件</p>
+      <div>
+        <% if user_signed_in? %>
+          <% unless @school.reviewed_by?(current_user)  %>
+            <%= form_with url: new_review_path, method: :get do |f| %>
+              <%= hidden_field_tag :school_id, @school.id %>
+              <%= f.submit "この学校のレビューを作成する", class: "btn btn-outline-success" %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to "レビューを投稿する", new_review_path, class: "btn btn-outline-success" %>
+        <% end %>
+      </div>
     </div>
   </div>
 
   <div class="row mt-3">
-    <div class="col-md-12">
+    <div class="col-md-6">
 
       <div>
-        <h6>概要</h6>
+        <h6>【<%= @school.name %>の特色】</h6>
         <p><%= @school.summary %></p>
       </div>
 
       <div>
-        <h6>住所</h6>
+        <h6>【住所】</h6>
         <p><%= @school.prefecture %> <%= @school.address %></p>
       </div>
 
       <div>
-        <h6>HP</h6>
+        <h6>【HP】</h6>
         <p><%= link_to @school.hp, @school.hp %></p>
       </div>
 
       <div class="mb-2">
-        <h6>SNS</h6>
+        <h6>【SNS】</h6>
           <% if @school.facebook.present? %>
             <%= link_to @school.facebook do %>
               <i class="fa-brands fa-facebook fa-xl text-dark mr-1"></i>
@@ -90,20 +94,26 @@
               <i class="fa-brands fa-youtube fa-xl text-dark mr-1"></i>
             <% end %>
           <% end %>
+          <% unless @school.facebook.present? && @school.twitter.present? && @school.instagram.present? && @school.tiktok.present? && @school.youtube.present? %>
+            SNSアカウントはありません
+          <% end %>
       </div>
 
+    </div>
+    <div class="col-md-6">
+
       <div>
-        <h6>入学要件</h6>
+        <h6>【入学要件】</h6>
         <p><%= @school.condition %></p>
       </div>
 
       <div>
-        <h6>学費（年間）</h6>
+        <h6>【学費（年間）】</h6>
         <p><%= @school.anual_fee.to_s(:delimited) %>円</p>
       </div>
 
       <div>
-        <h6>学生の国籍</h6>
+        <h6>【学生の国籍】</h6>
         <ul class="list-unstyled">
           <% @school.student_nationality_tags.each do |tag| %>
             <li><%= tag.nationality %></li>
@@ -112,7 +122,7 @@
       </div>
 
       <div>
-        <h6>寮の有無（寮の家賃）</h6>
+        <h6>【寮の有無（寮の家賃）】</h6>
           <% if @school.have_dormitory == true %>
             <p>あり（家賃：<%= @school.dormitory_fee.to_s(:delimited) %>円/月）</p>
           <% else %>
