@@ -16,7 +16,7 @@
     <div class="col-md-8">
       <h5><%= @school.name %></h5>
       <p class="text-secondary"><%= @school.name_en %></p>
-      <i class="fa-solid fa-location-dot text-info mr-1"></i><%= @school.prefecture %>/<%= @school.station %>
+      <i class="fa-solid fa-location-dot text-info mr-1"></i><%= @school.prefecture_i18n %>/<%= @school.station %>
 
       <% if user_signed_in? %>
         <% if @school.favorited_by?(current_user) %>
@@ -66,7 +66,7 @@
 
       <div>
         <h6>【住所】</h6>
-        <p><%= @school.prefecture %> <%= @school.address %></p>
+        <p><%= @school.prefecture_i18n %> <%= @school.address %></p>
       </div>
 
       <div>

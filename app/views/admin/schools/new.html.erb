@@ -34,7 +34,8 @@
 
       <div class="field">
         <%= f.label :都道府県 %><br />
-        <%= f.select :prefecture, School.prefectures.keys, {} %>
+        <%#= f.select :prefectures, School.prefectures.keys, {} %>
+        <%= f.select :prefecture, School.prefectures.keys.map { |key| [I18n.t("enums.school.prefecture.#{key}"), key] }, {} %>
       </div>
 
       <div class="field">

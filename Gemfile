@@ -58,6 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 以下追記
 gem 'devise'
 gem 'dotenv-rails'
+gem "enum_help"
 
 # 国コード
 gem 'carmen-rails', git: 'git@github.com:Studiosity/carmen-rails.git'
