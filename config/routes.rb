@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :public do
     get 'prefecture_search/prefecture_search'
   end
+
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'

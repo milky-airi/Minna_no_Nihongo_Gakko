@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -14,6 +14,11 @@ class User < ApplicationRecord
   # KANA_REGEX = /\A[\p{katakana}\p{hiragana}\u{30fc}]+\z/
   # validates :name_kana, format: { with: KANA_REGEX, message: 'はひらがなかカタカナで入力してください' }
   validate :validate_country_code
+
+  enum confirmation_status: {
+    confirmed: 0,
+    unconfirmed: 1,
+  }
 
   def validate_country_code
     unless Carmen::Country.coded(country_code)
