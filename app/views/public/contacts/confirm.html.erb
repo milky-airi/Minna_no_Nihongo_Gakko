@@ -20,14 +20,17 @@
   </tbody>
 </table>
 
-<%= form_for(@contact) do |f| %>
+<%#= form_for(@contact) do |f| %>
+<%= form_with model: @contact do |f| %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :email %>
   <%= f.hidden_field :subject %>
   <%= f.hidden_field :message %>
   <div><%= f.submit '送信' %></div>
 <% end %>
-<%= form_for @contact, url: back_path do |f| %>
+
+<%#= form_for @contact, url: back_path do |f| %>
+<%= form_with model: @contact, url: back_contacts_path do |f| %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :email %>
   <%= f.hidden_field :subject %>
