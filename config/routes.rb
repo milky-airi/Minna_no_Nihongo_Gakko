@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :public do
+    get 'contacts/new'
+    get 'contacts/done'
+  end
+  namespace :public do
     get 'prefecture_search/prefecture_search'
   end
 
@@ -64,9 +68,16 @@ Rails.application.routes.draw do
       end
     end
     resources :went_schools, only: [:new, :create, :edit, :update, :destroy]
-    resources :sessions do
+    # resources :sessions do
     # get :resend_email_confirmation, on: :member
-  end
+    resources :contacts, only: [:new, :create] do
+      collection do
+        post 'confirm'
+        post 'back'
+        get 'done'
+      end
+    end
+  # end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
