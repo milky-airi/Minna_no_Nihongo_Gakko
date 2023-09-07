@@ -10,9 +10,9 @@ class User < ApplicationRecord
   has_one :went_school
   has_many :reviews, dependent: :destroy
 
-  # ひらがな・カタカナの正規表現
-  KANA_REGEX = /\A[\p{katakana}\p{hiragana}\u{30fc}]+\z/
-  validates :name_kana, format: { with: KANA_REGEX, message: 'はひらがなかカタカナで入力してください' }
+  # # ひらがな・カタカナの正規表現
+  # KANA_REGEX = /\A[\p{katakana}\p{hiragana}\u{30fc}]+\z/
+  # validates :name_kana, format: { with: KANA_REGEX, message: 'はひらがなかカタカナで入力してください' }
   validate :validate_country_code
 
   def validate_country_code
