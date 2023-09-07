@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_one :went_school
-  has_many :reviews, dependent: :destroy
+  has_one :review
 
   # # ひらがな・カタカナの正規表現
   # KANA_REGEX = /\A[\p{katakana}\p{hiragana}\u{30fc}]+\z/
