@@ -173,9 +173,10 @@ ActiveRecord::Schema.define(version: 2023_09_07_024956) do
     t.string "job"
     t.string "country_code", default: "JP"
     t.boolean "is_deleted", default: false, null: false
-    t.integer "confirmation_status", default: 1, null: false
-    t.string "confirmation_token", limit: 64
-    t.datetime "expiration_date"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

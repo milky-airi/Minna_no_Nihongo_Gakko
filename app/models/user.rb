@@ -2,7 +2,11 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable
+        # , :confirmable
+
+  # before_create :set_email_confirmation
+  # before_create :send_email_confirmation
 
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -15,10 +19,10 @@ class User < ApplicationRecord
   # validates :name_kana, format: { with: KANA_REGEX, message: 'はひらがなかカタカナで入力してください' }
   validate :validate_country_code
 
-  enum confirmation_status: {
-    confirmed: 0,
-    unconfirmed: 1,
-  }
+  # enum confirmation_status: {
+  #   confirmed: 0,
+  #   unconfirmed: 1,
+  # }
 
   def validate_country_code
     unless Carmen::Country.coded(country_code)
@@ -52,5 +56,27 @@ class User < ApplicationRecord
   	end
   	  profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  # def set_email_confirmation
+  #   self.confirmation_token = SecureRandom.urlsafe_base64(47)
+  #   self.expiration_date = Time.zone.now + Constants::EMAIL_CONFIRMATION_LIMIT
+  # end
+
+  # def send_email_confirmation
+  #   UserMailer.send_email_confirmation(self).deliver_later
+  # end
+
+  # def expired?
+  #   expiration_date.present? ? expiration_date < Time.zone.now : false
+  # end
+
+  # def activate
+  #   status = User.confirmation_statuses[:confirmed]
+  #   update!(
+  #     confirmation_status: status,
+  #     confirmation_token: nil,
+  #     expiration_date: nil,
+  #   )
+  # end
 
 end

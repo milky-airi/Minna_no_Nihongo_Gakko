@@ -56,6 +56,7 @@ Rails.application.routes.draw do
     get '/detail_search' => 'detail_searches#detail_search'
     get '/prefecture_search' => 'prefecture_searches#prefecture_search'
     resources :users, only: [:show, :edit, :update] do
+      # get :confirm_email, on: :collection
       get :favorited, on: :collection
       collection do
         patch 'quit'
@@ -63,6 +64,9 @@ Rails.application.routes.draw do
       end
     end
     resources :went_schools, only: [:new, :create, :edit, :update, :destroy]
+    resources :sessions do
+    # get :resend_email_confirmation, on: :member
+  end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
