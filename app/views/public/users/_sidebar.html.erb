@@ -8,7 +8,13 @@
       <li class="mt-1"><%= link_to "▶︎出身校登録", new_went_school_path, class: "text-dark" %></li>
     <% end %>
     <li class="mt-1"><%= link_to "▶︎退会手続き", confirm_quit_users_path, class: "text-dark" %></li>
-    <li class="mt-1"><%= link_to "▶︎投稿レビュー一覧", individual_reviews_path(user), class: "text-dark" %></li>
+    <% if current_user.review.present? %>
+      <li class="mt-1"><%= link_to "▶︎投稿したレビュー", individual_reviews_path(user), class: "text-dark" %></li>
+    <% elsif current_user.went_school.present? %>
+      <li class="mt-1"><%= link_to "▶︎レビューを投稿", new_review_path, class: "text-dark"  %></li>
+    <% elsif current_user.went_school.nil? %>
+      <li class="mt-1"><%= link_to "▶︎レビュー投稿の前に出身校を登録してください", new_went_school_path, class: "text-danger" %></li>
+    <% end %>
     <li class="mt-1"><%= link_to "▶︎お気に入り一覧", favorited_users_path, class: "text-dark" %></li
     <li class="mt-1"><%= link_to "▶︎お問い合わせ", "#", class: "text-dark" %></li>
   </ul>

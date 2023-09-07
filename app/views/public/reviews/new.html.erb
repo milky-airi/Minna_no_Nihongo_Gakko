@@ -6,7 +6,11 @@
       <%#= f.label :日本語学校 %>
       <%#= f.collection_select :school_id, School.all, :id, :name %>
     <!--</div>-->
-    <%= hidden_field_tag :school_id, @school.id %>
+    <%#= hidden_field_tag :school_id, @school.id %>
+
+    <h5><%= current_user.went_school.school.name %>のレビュー</h5>
+
+    <%= hidden_field_tag :school_id, current_user.went_school.school.id %>
 
     <div class="form-group" id="star_integer">
       <%= f.label :star_integer %>

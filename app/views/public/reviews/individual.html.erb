@@ -1,25 +1,143 @@
+<!--<div class="container">-->
+<!--  <div class="row">-->
+
+<!--  <h3>投稿したレビュー</h3>-->
+<!--  <table class="table">-->
+<!--    <tr>-->
+<!--      <td>No.</td>-->
+<!--      <td>日本語学校名</td>-->
+<!--      <td>投稿者名</td>-->
+<!--      <td>星評価（全体）</td>-->
+<!--      <td>コメント（全体）</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <%# @reviews.each do |review| %>-->
+<!--      <td><%#= link_to review.id, review_path(review.id) %></td>-->
+<!--      <td><%#= review.school.name %></td>-->
+<!--      <td><%#= review.user.name %></td>-->
+<!--      <td><%#= render "public/reviews/static_rate", review: review %></td>-->
+<!--      <td><%#= review.comment_integer %></td>-->
+<!--    </tr>-->
+<!--      <%# end %>-->
+<!--  </table>-->
+
+<!--  </div>-->
+<!--</div>-->
+
 <div class="container">
   <div class="row">
 
-  <h3>投稿したレビュー</h3>
-  <table class="table">
-    <tr>
-      <td>No.</td>
-      <td>日本語学校名</td>
-      <td>投稿者名</td>
-      <td>星評価（全体）</td>
-      <td>コメント（全体）</td>
-    </tr>
-    <tr>
-      <% @reviews.each do |review| %>
-      <td><%= link_to review.id, review_path(review.id) %></td>
-      <td><%= review.school.name %></td>
-      <td><%= review.user.name %></td>
-      <td><%= render "public/reviews/static_rate", review: review %></td>
-      <td><%= review.comment_integer %></td>
-    </tr>
+    <div class="col-md-9">
+    <h3>
+      <%= link_to school_path(@review.school) do %>
+        <%= @review.school.name %>のレビュー
       <% end %>
-  </table>
+    </h3>
+
+    <div class="review-title d-flex align-items-center">
+      <p><%= image_tag @review.user.get_profile_image(120, 120) %></p>
+      <p class="ml-5"><%= @review.user.name %>さん(<%= @review.user.country %>)</p>
+      <% if @review.user.went_school.present? %>
+        <p><%= @review.user.went_school.graduate_year %>年<%= @review.user.went_school.graduate_month %>月　<%= @review.user.went_school.school.name %>卒業</p>
+      <% else %>
+      <% end %>
+    </div>
+    <p>投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
+
+    <div class="d-flex">
+      <h5>総合評価</h5>
+      <div class="ml-3"><%= render "public/reviews/static_rate", review: @review %></div>
+    </div>
+    <h5><%= @review.comment_integer %></h5>
+
+    <div class="d-flex mt-4">
+      <h6>授業について</h6>
+      <div class="ml-3"><%= @review.evaluation_class %>点/5点</div>
+    </div>
+    <div><%= @review.comment_class %></div>
+
+    <div class="d-flex mt-4">
+      <h6>進路について</h6>
+      <div class="ml-3"><%= @review.evaluation_after_graduation %>点/5点</div>
+    </div>
+    <div><%= @review.comment_after_graduation %></div>
+
+    <div class="d-flex mt-4">
+      <h6>立地について</h6>
+      <div class="ml-3"><%= @review.evaluation_place %>点/5点</div>
+    </div>
+    <div><%= @review.comment_place %></div>
+
+    <div class="d-flex mt-4">
+      <h6>施設・設備について</h6>
+      <div class="ml-3"><%= @review.evaluation_facility %>点/5点</div>
+    </div>
+    <div><%= @review.comment_facility %></div>
+
+    <div class="d-flex mt-4">
+      <h6>学生について</h6>
+      <div class="ml-3"><%= @review.evaluation_student %>点/5点</div>
+    </div>
+    <div><%= @review.comment_student %></div>
+
+    <div class="d-flex mt-4">
+      <h6>教師について</h6>
+      <div class="ml-3"><%= @review.evaluation_teacher %>点/5点</div>
+    </div>
+    <div><%= @review.comment_teacher %></div>
+
+    <div class="d-flex mt-4">
+      <h6>学校生活について</h6>
+      <div class="ml-3"><%= @review.evaluation_life %>点/5点</div>
+    </div>
+    <div><%= @review.comment_life %></div>
+
+    <% if @review.user == current_user %>
+      <p class="mt-4"><%= link_to "編集", edit_review_path(@review), class: "btn btn-success" %>
+      <%= link_to "削除", review_path(@review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></p>
+    <% else %>
+      <p>
+        <%= form_with url: new_alert_path, method: :get do |f| %>
+          <%= hidden_field_tag :review_id, @review.id %>
+          <%= f.submit "このレビューを通報する", class: "btn btn-outline-danger" %>
+        <% end %>
+      </p>
+    <% end %>
+
+  <% @comments.each do |comment| %>
+    <div class="d-flex">
+      <div class="mr-2">
+        <%= image_tag comment.user.get_profile_image(80, 80) %>
+      </div>
+      <div>
+        <%= comment.user.name %>　<span class="text-secondary"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
+        <div><%= comment.comment %></div>
+        <% if comment.user_id == current_user.id %>
+          <%= link_to "削除", comment_path(comment.id), method: :delete, data: { confirm: "コメントを削除してもよろしいですか？" }, class: "text-secondary" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= form_with model: Comment.new, url: comments_path, method: :post do |f| %>
+
+    <div class="field">
+      <%= f.text_area :comment %>
+    </div>
+
+    <%= f.hidden_field :review_id, :value => @review.id %>
+
+    <div class="form-group">
+      <%= f.submit "コメント送信", class: 'btn btn-success' %>
+    </div>
+
+  <% end %>
+    </div>
+
+
+    <div class="col-md-3">
+      <%= render "public/users/sidebar.html.erb", user: current_user %>
+    </div>
 
   </div>
 </div>

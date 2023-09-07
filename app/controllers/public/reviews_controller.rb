@@ -2,7 +2,7 @@ class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @school = School.find(params[:school_id])
+    # @school = School.find(params[:school_id])
   end
 
   def create
@@ -42,7 +42,8 @@ class Public::ReviewsController < ApplicationController
   end
 
   def individual
-    @reviews = current_user.reviews
+    @review = current_user.review
+    @comments = @review.comments
   end
 
   private
