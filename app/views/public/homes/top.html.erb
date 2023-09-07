@@ -173,15 +173,27 @@
       <% @reviews.each do |review| %>
 
       <div class="each-review bg-light p-4 mt-3">
-        <h5><%= review.school.name %>の口コミ</h5>
-        <div class="review-title d-flex align-items-center">
-          <p><%= image_tag review.user.get_profile_image(100, 100), class: "rounded-circle" %></p>
-          <p class="ml-5"><%= review.user.name %>さん(<%= review.user.country %>)</p>
-          <% if review.user.went_school.present? %>
-            <p><%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月　<%= review.user.went_school.school.name %>卒業</p>
-          <% else %>
-          <% end %>
-        </div>
+        <% if review.user.is_deleted == true %>
+          <h5>退会済みユーザーの口コミ</h5>
+          <div class="review-title d-flex align-items-center">
+            <p><%= image_tag "UserImage.jpg", size: "100x100", class: "rounded-circle" %></p>
+            <p class="ml-5">退会済みユーザー(<%= review.user.country %>)</p>
+            <% if review.user.went_school.present? %>
+              <p><%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月　<%= review.user.went_school.school.name %>卒業</p>
+            <% else %>
+            <% end %>
+          </div>
+        <% else %>
+          <h5><%= review.school.name %>の口コミ</h5>
+          <div class="review-title d-flex align-items-center">
+            <p><%= image_tag review.user.get_profile_image(100, 100), class: "rounded-circle" %></p>
+            <p class="ml-5"><%= review.user.name %>さん(<%= review.user.country %>)</p>
+            <% if review.user.went_school.present? %>
+              <p><%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月　<%= review.user.went_school.school.name %>卒業</p>
+            <% else %>
+            <% end %>
+          </div>
+        <% end %>
         <p>投稿日：<%= review.created_at.strftime('%Y/%m/%d') %></p>
 
         <div class="d-flex">
