@@ -1,10 +1,10 @@
-<div class="container">
+<div class="top-blue-title p-2">
+  <h5 class="text-white text-center">都道府県から日本語学校を探す</h5>
+</div>
 
+<div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <%= flash[:notice] %>
-      <h5>都道府県から日本語学校を探す</h5>
-    </div>
+    <%= flash[:notice] %>
   </div>
 
   <div class="row mt-5">
@@ -90,85 +90,93 @@
 
     </div>
   </div>
+</div>
 
-    <div class="row mt-5">
-      <h5>条件から日本語学校を探す</h5>
-    </div>
+<div class="container-fluid blue-container p-5 mt-5">
+  <h5 class="text-white text-center">詳しい条件から日本語学校を探す</h5>
 
-    <div class="row mt-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 bg-white p-5 mt-5">
+      <div class="row">
 
-      <div class="col-md-5 offset-md-1">
-        <%= form_with url: detail_search_path, local: true, method: :get do |f| %>
+        <div class="col-md-5 offset-md-1">
+          <%= form_with url: detail_search_path, local: true, method: :get do |f| %>
 
-        <div class="field">
-          <%= f.label :都道府県　, class: "mr-2" %>
-          <%= f.select :prefecture, School.prefectures.keys, { include_blank: '選択してください'} %>
+          <div class="field">
+            <%= f.label :都道府県　, class: "mr-2" %>
+            <%= f.select :prefecture, School.prefectures.keys, { include_blank: '選択してください'} %>
+          </div>
+
+          <div class="field">
+            <%= f.label :学生の国籍, class: "mr-2 mt-3" %>
+            <%= f.text_field :nationality, placeholder: "インドネシア" %> を含む
+          </div>
         </div>
 
-        <div class="field">
-          <%= f.label :学生の国籍, class: "mr-2" %>
-          <%= f.text_field :nationality, placeholder: "インドネシア" %> を含む
-        </div>
+        <div class="col-md-6">
+          <div class="field">
+            <%= f.label :学費, class: "mr-2" %>
+            <%= f.text_field :anual_fee_greater_than_or_equal, placeholder: "下限なし" %>
+            〜
+            <%= f.text_field :anual_fee_less_than, placeholder: "上限なし" %>
+          </div>
 
+          <div class="field">
+            <%= f.label :単語, class: "mr-2 mt-3" %>
+            <%= f.text_field :word %>
+          </div>
+        </div>
       </div>
 
-      <div class="col-md-6">
-        <div class="field">
-          <%= f.label :学費, class: "mr-2" %>
-          <%= f.text_field :anual_fee_greater_than_or_equal, placeholder: "下限なし" %>
-          〜
-          <%= f.text_field :anual_fee_less_than, placeholder: "上限なし" %>
+      <div class="row mt-4">
+        <div class="col-md-12 text-center">
+        <div class="actions">
+          <%= f.submit "検索", class: "btn btn-secondary w-25" %>
         </div>
-
-        <div class="field">
-          <%= f.label :単語, class: "mr-2" %>
-          <%= f.text_field :word %>
+        <% end %>
         </div>
       </div>
 
     </div>
-    <div class="row mt-5">
-      <div class="col-md-12 text-center">
+  </div>
+</div>
 
-      <div class="actions">
-        <%= f.submit "検索", class: "btn btn-secondary w-25" %>
-      </div>
-      <% end %>
+</div>
 
-      </div>
-    </div>
-
-    <div class="row mt-5">
-      <div class="col-md-12">
-        <h5>口コミランキング</h5>
-      </div>
-    </div>
+<div class="container-fluid p-5">
+<h5 class="text-center">口コミランキング</h5>
 
     <div class="row mt-5 mb-5">
-      <% @top_review_schools.each do |top_review_school| %>
-        <div class="col-md-3">
-          <%= link_to school_path(top_review_school.id) do %>
-            <%= image_tag top_review_school.get_image(200,150) %>
-          <% end %>
-          <p>
-            <%= link_to top_review_school.name, school_path(top_review_school.id) %><br>
-            <%= top_review_school.name_en %>
-          </p>
-          <% if top_review_school.reviews.present? %>
-            <%= render "public/reviews/average_rate.html.erb", school: top_review_school %>
-          <% else %>
-            <p>口コミはまだありません</p>
-          <% end %>
+      <div class="col-md-10 offset-md-1">
+        <div class="row">
+        <% @top_review_schools.each do |top_review_school| %>
+          <div class="col-md-3">
+            <%= link_to school_path(top_review_school.id) do %>
+              <%= image_tag top_review_school.get_image(200,150) %>
+            <% end %>
+            <p>
+              <%= link_to top_review_school.name, school_path(top_review_school.id) %><br>
+              <%= top_review_school.name_en %>
+            </p>
+            <% if top_review_school.reviews.present? %>
+              <%= render "public/reviews/average_rate.html.erb", school: top_review_school %>
+            <% else %>
+              <p>口コミはまだありません</p>
+            <% end %>
+          </div>
+        <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 
+<div class="top-blue-title p-2">
+  <h5 class="text-white text-center">最新の口コミ</h5>
+</div>
+
+
 <div class="container-fluid light-blue-container p-5">
   <div class="row">
-    <div class="col-md-12 text-center mb-3">
-      <h5>最新の口コミ</h5>
-    </div>
       <%= render "public/reviews/short_review.html.erb", reviews: @reviews %>
     </div>
   </div>
