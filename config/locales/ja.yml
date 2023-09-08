@@ -74,6 +74,11 @@ ja:
     attributes:
       review:
         star_integer: "星評価"
+    models:
+      comment: "コメント"
+    attributes:
+      comment:
+        comment: "コメント"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

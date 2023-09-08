@@ -5,8 +5,12 @@ class Public::CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     comment.user_id = current_user.id
     comment.review_id = params[:comment][:review_id]
-    comment.save
-    redirect_to review_path(comment.review_id)
+    if comment.save
+      redirect_to review_path(comment.review_id)
+    else
+      flash[:alert] = comment.errors.full_messages.join(", ")
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def destroy
