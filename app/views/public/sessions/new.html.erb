@@ -2,10 +2,10 @@
   <div class="row mx-auto">
 
     <div class="col-md-5 offset-md-1">
-
     <h5>ログイン</h5>
       <div class="bg-white p-5 mt-4">
       <%= form_with model: @user, url: new_user_session_path, method: :post do |f|  %>
+      <%= render "public/shared/error_messages", resource: resource %>
 
         <div class="row">
           <div class="col-md-5 text-right">
@@ -35,7 +35,7 @@
         </div>
 
         <div class="actions text-center mt-3">
-          <%= f.submit "ログイン", class: "btn login-page-login-button" %>
+          <%= f.submit "ログイン", class: "btn login-button" %>
         </div>
       <% end %>
       </div>
@@ -48,7 +48,7 @@
         <p>まずは無料の会員登録をお願いします。</p>
         <p>登録することで、気になる学校情報をブックマークしたり、レビューやコメントを投稿できるようになります。</p>
         <div class="text-center">
-          <%= link_to "会員登録する（無料）", new_user_registration_path, class: "btn text-white login-page-registration-btn" %>
+          <%= link_to "会員登録する（無料）", new_user_registration_path, class: "btn text-white registration-btn" %>
         </div>
       </div>
     </div>

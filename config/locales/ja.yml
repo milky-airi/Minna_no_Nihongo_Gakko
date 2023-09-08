@@ -1,4 +1,17 @@
 ja:
+  world:
+    sx:
+      name: "シント・マールテン"
+    ss:
+      name: "南スーダン"
+    mf:
+      name: "サン・マルタン"
+    cw:
+      name: "キュラソー"
+    bq:
+      name: "ボネール、シント・ユースタティウスおよびサバ"
+    bl:
+      name: "サン・バルテルミー"
   enums:
     school:
       prefecture:

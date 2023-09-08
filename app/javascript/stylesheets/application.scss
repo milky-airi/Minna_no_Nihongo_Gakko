@@ -20,7 +20,7 @@ header .container {
   padding: 20px;
 }
 
-.header-registration-btn {
+.registration-btn {
   background-color: #FF914D;
 }
 
@@ -30,13 +30,15 @@ header .container {
   background-color: #DEEFFF;
 }
 
-.login-page-login-button {
+.login-button {
   border: 2px solid #3A8CD8;
   color: #3A8CD8;
 }
 
-.login-page-registration-btn {
-  background-color: #FF914D;
+// public/registration/new
+
+.registration-page-container {
+  background-color: #DEEFFF;
 }
 
 // footer
