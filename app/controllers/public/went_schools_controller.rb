@@ -8,6 +8,7 @@ class Public::WentSchoolsController < ApplicationController
     went_school = WentSchool.new(went_school_params)
     went_school.user_id = current_user.id
     if went_school.save
+      flash[:notice] = "出身校情報を登録しました"
       redirect_to user_path(current_user)
     else
       render :new
@@ -16,13 +17,12 @@ class Public::WentSchoolsController < ApplicationController
 
   def edit
     @went_school = current_user.went_school
-    # @went_school = WentSchool.find_by(user_id: current_user.id)
   end
 
   def update
-    # went_school = WentSchool.find_by(user_id: current_user.id)
     went_school = current_user.went_school
     if went_school.update(went_school_params)
+      flash[:notice] = "出身校情報を登録しました"
       redirect_to user_path(current_user)
     else
       @went_school = current_user.went_school

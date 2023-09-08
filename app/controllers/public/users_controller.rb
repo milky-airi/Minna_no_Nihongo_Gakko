@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_normal_user, only: [:destroy, :update]
+  before_action :ensure_normal_user, only: [:quit]
   before_action :authenticate_user!
 
   def show
@@ -34,14 +34,6 @@ class Public::UsersController < ApplicationController
     @favorites = current_user.favorites
   end
 
-  # def confirm_email
-  #   if @user = User.find_by(confirmation_token: params[:token])
-  #     unless @user.expired?
-  #       @user.activate
-  #     end
-  #   end
-  # end
-#
   private
 
     def user_params
@@ -50,7 +42,7 @@ class Public::UsersController < ApplicationController
 
     def ensure_normal_user
       if current_user.email == 'guest@example.com'
-        flash[:notice] = "ゲストユーザーの情報変更はできません。"
+        flash[:notice] = "ゲストユーザーは退会できません。"
         redirect_to user_path(current_user)
       end
     end
