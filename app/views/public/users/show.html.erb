@@ -13,9 +13,9 @@
           <h5><%= @user.name %>さんのプロフィール</h5>
         </div>
 
-        <div class="col-md-2 offset-md-1">
+        <div class="col-md-2 offset-md-1 text-center">
           <%= image_tag @user.get_profile_image(120,120), class: "mt-5" %>
-          <%= link_to "画像変更", edit_user_path(@user), class: "btn btn-outline-success"  %>
+          <%= link_to "画像変更", edit_user_path(@user), class: "btn btn-outline-success mt-1"  %>
         </div>
 
         <div class="col-md-8 offset-md-1">

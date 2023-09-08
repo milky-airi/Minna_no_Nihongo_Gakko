@@ -3,6 +3,7 @@
   <div class="row mx-auto">
     <div class="col-md-10 offset-md-1">
       <h5>新規会員登録</h5>
+      <%= flash[:notice] %>
 
       <div class="bg-white p-5 mt-4">
         <%= form_with model: @user, url: user_registration_path, method: :post do |f|  %>
