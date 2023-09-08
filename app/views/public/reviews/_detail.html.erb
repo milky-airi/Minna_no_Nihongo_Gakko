@@ -119,7 +119,7 @@
       <%= form_with model: Comment.new, url: comments_path, method: :post do |f| %>
         <div class="d-flex mt-4">
           <div class="field">
-            <%= f.text_area :comment, class: "mr-3 review-comment-input", placeholder: "ここにコメントを書いてください" %>
+            <%= f.text_area :comment, class: "mr-3 review-comment-input form-control", placeholder: "ここにコメントを書いてください" %>
             <%= f.hidden_field :review_id, :value => review.id %>
           </div>
           <div class="form-group">
