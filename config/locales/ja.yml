@@ -69,6 +69,11 @@ ja:
       went_school:
         graduate_year: "卒業年"
         graduate_month: "卒業月"
+    models:
+      review: "レビュー"
+    attributes:
+      review:
+        star_integer: "星評価"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

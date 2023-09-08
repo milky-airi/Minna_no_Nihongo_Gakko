@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-12">
 
+    <%= flash[:notice] %>
     <h3>
       <%= link_to school_path(@review.school) do %>
         <%= @review.school.name %>のレビュー

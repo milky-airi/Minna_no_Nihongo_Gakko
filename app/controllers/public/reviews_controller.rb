@@ -8,10 +8,17 @@ class Public::ReviewsController < ApplicationController
   def create
     review = Review.new(review_params)
     review.user_id = current_user.id
-    review.school_id = params[:school_id]
+    review.school_id = current_user.went_school.id
     if review.save
-      redirect_to review_path(review.id)
+      if review.is_open
+        flash[:notice] = "レビューを投稿しました"
+        redirect_to individual_reviews_path(current_user)
+      else
+        flash[:notice] = "レビューの下書きを保存しました"
+        redirect_to individual_reviews_path(current_user)
+      end
     else
+      flash[:alert] = review.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -38,7 +45,7 @@ class Public::ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    redirect_to school_path(review.school.id)
+    redirect_to new_review_path
   end
 
   def individual
