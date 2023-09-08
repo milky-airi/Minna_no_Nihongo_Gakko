@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container p-5">
 
   <div class="row">
 
@@ -53,18 +53,6 @@
             <%= link_to "投稿したレビューを見る", review_path(current_user.review), class: "btn btn-outline-info" %>
           <% end %>
         <% end %>
-
-        <%# if user_signed_in? %>
-          <%# unless @school.reviewed_by?(current_user)  %>
-            <%#= form_with url: new_review_path, method: :get do |f| %>
-              <%#= hidden_field_tag :school_id, @school.id %>
-              <%#= f.submit "この学校のレビューを作成する", class: "btn btn-outline-success" %>
-            <%# end %>
-          <%# end %>
-        <%# else %>
-          <%#= link_to "レビューを投稿する", new_review_path, class: "btn btn-outline-success" %>
-        <%# end %>
-
       </div>
     </div>
   </div>
