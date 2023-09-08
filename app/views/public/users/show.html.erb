@@ -1,56 +1,68 @@
-<div class="container">
+<div class="continaer light-blue-container p-5">
   <div class="row">
 
-   <div class="col-md-12">
+   <div class="col-md-11 offset-md-1">
      <%= flash[:notice] %>
-     <h5>マイページ</h5>
-     <h5><%= @user.name %>様のプロフィール</h5>
+     <h5>マイページトップ</h5>
    </div>
 
-    <div class="col-md-2">
-      <%= image_tag @user.get_profile_image(120,120) %>
-      <%= link_to "画像変更", edit_user_path(@user), class: "btn btn-outline-success"  %>
+    <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
+
+      <div class="row">
+
+        <div class="col-md-12">
+          <h5><%= @user.name %>さんのプロフィール</h5>
+        </div>
+
+        <div class="col-md-2 offset-md-1">
+          <%= image_tag @user.get_profile_image(120,120), class: "mt-5" %>
+          <%= link_to "画像変更", edit_user_path(@user), class: "btn btn-outline-success"  %>
+        </div>
+
+        <div class="col-md-8 offset-md-1">
+          <table class="table table-borderless">
+            <tr>
+              <td>お名前</td>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <td>お名前（かな）</td>
+              <td><%= @user.name_kana %></td>
+            </tr>
+            <tr>
+              <td>国籍</td>
+              <td><%= @user.country %></td>
+            </tr>
+            <tr>
+              <td>職業</td>
+              <td><%= @user.job %></td>
+            </tr>
+
+            <% if @user.went_school.present? %>
+            <tr>
+              <td>出身校</td>
+              <td><%= @user.went_school.school.name %></td>
+            </tr>
+            <tr>
+              <td>卒業年月</td>
+              <td><%= @user.went_school.graduate_year %>年<%= @user.went_school.graduate_month %>月</td>
+            </tr>
+            <% else %>
+            <tr>
+              <td>出身校</td>
+              <td><%= link_to "登録する",new_went_school_path %></td>
+            </tr>
+            <% end %>
+
+          </table>
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="col-md-7">
-      <table class="table">
-        <tr>
-          <td>お名前</td>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <td>お名前（かな）</td>
-          <td><%= @user.name_kana %></td>
-        </tr>
-        <tr>
-          <td>国籍</td>
-          <td><%= @user.country %></td>
-        </tr>
-        <tr>
-          <td>職業</td>
-          <td><%= @user.job %></td>
-        </tr>
-
-        <% if @user.went_school.present? %>
-        <tr>
-          <td>出身校</td>
-          <td><%= @user.went_school.school.name %></td>
-        </tr>
-        <tr>
-          <td>卒業年月</td>
-          <td><%= @user.went_school.graduate_year %>年<%= @user.went_school.graduate_month %>月</td>
-        </tr>
-        <% else %>
-        <tr>
-          <td>出身校</td>
-          <td><%= link_to "登録する",new_went_school_path %></td>
-        </tr>
-        <% end %>
-
-      </table>
-    </div>
-
-    <div class="col-md-3">
+    <div class="col-md-3 offset-md-1 bg-white p-4 mt-4">
+      <!--<div class="col-md-7 offset-md-1 bg-white p-4 mt-4">-->
       <%= render "public/users/sidebar.html.erb", user: current_user %>
     </div>
 
