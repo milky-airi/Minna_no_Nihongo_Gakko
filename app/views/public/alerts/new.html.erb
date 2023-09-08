@@ -1,20 +1,110 @@
-<div class="container">
+<div class="continer light-blue-container p-5">
+
   <div class="row">
+    <div class="col-md-11 offset-md-1">
+     <%= flash[:notice] %>
+     <h5 class="text-danger">以下のレビューを通報する理由を教えてください。</h5>
+   </div>
+  </div>
+
+   <div class="row">
+     <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
+
+        <div class="text-center border-bottom pb-3">
+          <%= link_to user_path(@review.user.id) do %>
+          <%= image_tag @review.user.get_profile_image(70,70), class: "rounded-circle mr-3" %>
+          <% end %>
+          <%= link_to @review.school.name, school_path(@review.school.id), class: "ml-3, text-dark" %>
+          （<%= @review.user.went_school.graduate_year %>年<%= @review.user.went_school.graduate_month %>月卒業）
+        </div>
+
+        <div class="d-flex mt-3">
+          <h6>総合評価</h6>
+          <div class="ml-3"><%= render "public/reviews/static_rate", review: @review %></div>
+        </div>
+        <h6><%= @review.comment_integer %></h6>
+
+        <div class="mt-4">
+          【授業について】
+          <%= @review.evaluation_class %>点/5点
+        </div>
+        <div><%= @review.comment_class %></div>
+
+        <div class="mt-4">
+          【進路について】
+          <%= @review.evaluation_after_graduation %>点/5点
+        </div>
+        <div><%= @review.comment_after_graduation %></div>
+
+        <div class="mt-4">
+          【立地について】
+          <%= @review.evaluation_place %>点/5点
+        </div>
+        <div><%= @review.comment_place %></div>
+
+        <div class="mt-4">
+          【施設・設備について】
+          <%= @review.evaluation_facility %>点/5点
+        </div>
+        <div><%= @review.comment_facility %></div>
+
+        <div class="mt-4">
+          【学生について】
+          <%= @review.evaluation_student %>点/5点
+        </div>
+        <div><%= @review.comment_student %></div>
+
+        <div class="mt-4">
+          【教師について】
+          <%= @review.evaluation_teacher %>点/5点
+        </div>
+        <div><%= @review.comment_teacher %></div>
+
+        <div class="mt-4">
+          【学校生活について】
+          <%= @review.evaluation_life %>点/5点
+        </div>
+        <div><%= @review.comment_life %></div>
+
+        <div class="mt-4">
+          【公開状況】
+
+            <% if @review.is_open %>
+              公開中
+            <% else %>
+              非公開
+            <% end %>
+          </div>
+
+        <div class="mt-4">
+          <p>投稿日：<%= @review.created_at.strftime('%Y/%m/%d') %></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-md-11 offset-md-1">
+        <h5>通報理由</h5>
+      </div>
+    </div>
 
     <%= form_with model: Alert.new, url: alerts_path, method: :post do |f| %>
-
-    <div class="field">
-      <%= f.label :通報理由 %><br />
-      <%= f.text_area :reason %>
-    </div>
 
     <%#= hidden_field :review_id, params[:review_id] %>
     <%= hidden_field_tag :review_id, @review.id %>
 
-    <div class="form-group">
-      <%= f.submit "通報する", class: 'btn btn-outline-danger' %>
+    <div class="row">
+      <div class="col-md-11 offset-md-1 field">
+        <%= f.text_area :reason, class: "w-50" %>
+      </div>
     </div>
-    <% end %>
 
-  </div>
+    <div class="row">
+      <div class="col-md-11 offset-md-1 form-group">
+        <%= f.submit "管理者へ通報", class: 'btn btn-danger' %>
+        <% end %>
+      </div>
+    </div>
+
 </div>

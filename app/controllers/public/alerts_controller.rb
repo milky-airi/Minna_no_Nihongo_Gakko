@@ -9,8 +9,12 @@ class Public::AlertsController < ApplicationController
     alert = Alert.new(alert_params)
     alert.user_id = current_user.id
     alert.review_id = params[:review_id]
-    alert.save
-    redirect_to thanks_alerts_path
+    if alert.save
+      redirect_to thanks_alerts_path
+    else
+      flash[:alert] = alert.errors.full_messages.join(", ")
+      redirect_to review_path(params[:review_id])
+    end
   end
 
   def thanks

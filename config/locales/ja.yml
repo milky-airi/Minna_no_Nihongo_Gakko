@@ -79,6 +79,11 @@ ja:
     attributes:
       comment:
         comment: "コメント"
+    models:
+      alert: "通報"
+    attributes:
+      alert:
+        reason: "通報理由"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
