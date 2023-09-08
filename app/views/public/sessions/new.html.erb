@@ -5,7 +5,13 @@
     <h5>ログイン</h5>
       <div class="bg-white p-5 mt-4">
       <%= form_with model: @user, url: new_user_session_path, method: :post do |f|  %>
-      <%= render "public/shared/error_messages", resource: resource %>
+
+        <% unless flash[:alert].blank? %>
+          <div class="text-center">
+            <p><%= flash[:alert] %></p>
+          </div>
+        <% end %>
+
 
         <div class="row">
           <div class="col-md-5 text-right">
