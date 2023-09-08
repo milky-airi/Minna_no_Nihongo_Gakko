@@ -1,5 +1,5 @@
 class Public::ReviewsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :craete, :edit, :update, :destroy, :indeividual]
 
   def new
     # @school = School.find(params[:school_id])
