@@ -25,3 +25,4 @@ window.raty = function(elem,opt) {
 }
 
 import '../stylesheets/map.scss';
+import '../stylesheets/public/footer.css';

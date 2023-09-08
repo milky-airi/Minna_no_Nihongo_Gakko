@@ -1,1 +1,47 @@
 @use '~bootstrap/scss/bootstrap';
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Shippori Mincho', serif;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+// header
+
+header {
+  width: 100%;
+  border-bottom: 5px solid #3A8CD8;
+}
+
+header .container {
+  padding: 20px;
+}
+
+.header-registration-btn {
+  background-color: #FF914D;
+}
+
+// public/session/new
+
+.login-page-container {
+  background-color: #DEEFFF;
+}
+
+.login-page-login-button {
+  border: 2px solid #3A8CD8;
+  color: #3A8CD8;
+}
+
+.login-page-registration-btn {
+  background-color: #FF914D;
+}
+
+// footer
+
+footer .container-fluid {
+  background-color: #3A8CD8;
+  padding: 20px;
+}
