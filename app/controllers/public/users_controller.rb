@@ -2,16 +2,6 @@ class Public::UsersController < ApplicationController
   before_action :ensure_normal_user, only: [:destroy, :update]
   before_action :authenticate_user!
 
-  # def create
-  #   @user = User.new(user_params)
-  #   if @user.save
-  #     redirect_to root_path, notice: '登録したメールアドレスに確認メールを送信しました。'
-  #   else
-  #     flash[:notice] = 'ユーザー登録ができませんでした。'
-  #     render :new
-  #   end
-  # end
-
   def show
     @user = current_user
   end
@@ -22,8 +12,13 @@ class Public::UsersController < ApplicationController
 
   def update
     user = current_user
-    user.update(user_params)
-    redirect_to user_path(user)
+    if user.update(user_params)
+      flash[:notice] = "プロフィールを更新しました"
+      redirect_to user_path(user)
+    else
+      @user = current_user
+      render :edit
+    end
   end
 
   def confirm_quit

@@ -1,48 +1,80 @@
-<div class="container">
+<div class="continaer light-blue-container p-5">
   <div class="row">
 
-    <div class="col-md-9">
-        <h3><%= @user.name %>様のプロフィール編集</h3>
+    <div class="col-md-11 offset-md-1">
+     <%= render "public/shared/error_messages", resource: current_user %>
+     <h5><%= @user.name %>さんのプロフィール編集</h5>
+   </div>
+
+   <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
+      <div class="row">
         <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
 
-          <div class="field">
-            <%= f.label :プロフィール画像 %><br />
-            <%= f.file_field :profile_image, accept: "image/*" %>
+          <div class="row">
+            <div class="col-md-5 offset-md-1 text-right">
+              <%= f.label :プロフィール画像 %>
+            </div>
+            <div class="field col-md-5 offset-md-1">
+              <%= f.file_field :profile_image, accept: "image/*" %>
+            </div>
           </div>
 
-          <div class="field">
-            <%= f.label :お名前 %><br />
-            <%= f.text_field :name %>
+          <div class="row mt-2">
+            <div class="col-md-5 offset-md-1 text-right">
+              <%= f.label :お名前 %>
+            </div>
+            <div class="field col-md-5 offset-md-1">
+              <%= f.text_field :name %>
+            </div>
           </div>
 
-          <div class="field">
-            <%= f.label :おなまえ %>(ひらがな)<br />
-            <%= f.text_field :name_kana %>
+          <div class="row mt-2">
+            <div class="col-md-5 offset-md-1 text-right">
+              <%= f.label :おなまえ %>(ひらがな)
+            </div>
+            <div class="field col-md-5 offset-md-1">
+              <%= f.text_field :name_kana %>
+            </div>
           </div>
 
-          <div class="field">
-            <%= f.label :メールアドレス %><br />
-            <%= f.email_field :email %>
+          <div class="row mt-2">
+            <div class="col-md-5 offset-md-1 text-right">
+              <%= f.label :メールアドレス %>
+            </div>
+            <div class="field col-md-5 offset-md-1">
+              <%= f.email_field :email %>
+            </div>
           </div>
 
-          <div class="field">
-            <%= f.label :お国 %><br />
-            <%= f.country_select :country_code %>
+          <div class="row mt-2">
+            <div class="col-md-5 offset-md-1 text-right">
+              <%= f.label :お国 %>
+            </div>
+            <div class="field col-md-5 offset-md-1">
+              <%= f.country_select :country_code %>
+            </div>
           </div>
 
-          <div class="field">
-            <%= f.label :お仕事 %><br />
-            <%= f.text_field :job, placeholder: "会社員" %>
+          <div class="row mt-2">
+            <div class="col-md-5 offset-md-1 text-right">
+              <%= f.label :お仕事 %>
+            </div>
+            <div class="field col-md-5 offset-md-1">
+              <%= f.text_field :job, placeholder: "会社員" %>
+            </div>
           </div>
 
-          <div class="actions">
-            <%= f.submit "更新", class: "btn btn-success" %>
+          <div class="row mt-4 actions">
+            <div class="col-md-12 text-center">
+              <%= f.submit "更新", class: "btn btn-success w-25" %>
+            </div>
           </div>
         <% end %>
-        <%= link_to "退会手続き", confirm_quit_users_path, class: "btn btn-danger" %>
+
+      </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 offset-md-1 bg-white p-4 mt-4">
       <%= render "public/users/sidebar.html.erb", user: current_user %>
     </div>
 

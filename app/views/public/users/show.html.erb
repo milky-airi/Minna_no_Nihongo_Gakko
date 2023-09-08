@@ -7,7 +7,6 @@
    </div>
 
     <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
-
       <div class="row">
 
         <div class="col-md-12">
@@ -37,7 +36,6 @@
               <td>職業</td>
               <td><%= @user.job %></td>
             </tr>
-
             <% if @user.went_school.present? %>
             <tr>
               <td>出身校</td>
@@ -53,16 +51,12 @@
               <td><%= link_to "登録する",new_went_school_path %></td>
             </tr>
             <% end %>
-
           </table>
         </div>
-
       </div>
-
     </div>
 
     <div class="col-md-3 offset-md-1 bg-white p-4 mt-4">
-      <!--<div class="col-md-7 offset-md-1 bg-white p-4 mt-4">-->
       <%= render "public/users/sidebar.html.erb", user: current_user %>
     </div>
 
