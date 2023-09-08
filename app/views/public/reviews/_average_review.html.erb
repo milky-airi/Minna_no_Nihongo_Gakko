@@ -1,0 +1,83 @@
+<% if school.reviews.present? %>
+<div class="container-fluid blue-container p-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+
+      <h5 class="text-white">口コミ平均：
+        <% average_star = school.reviews.average(:star_integer).to_f.round %>
+        <% average_star.times do %>
+          <i class="fa-solid fa-star" style="color: #ffdf3d;"></i>
+        <% end %>
+        （<%= school.reviews.average(:star_integer).to_f.round(1) %>）
+      </h5>
+
+
+      <div class="bg-white mt-5 p-5">
+        <div class="row">
+          <div class="col-md-12">
+            <!DOCTYPE html>
+              <html>
+                <head>
+                  <meta charset="UTF-8" />
+                  <title>bar chart</title>
+                  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
+                  <script>
+                    window.onload = function () {
+                      let context = document.querySelector("#average_review_chart").getContext('2d')
+                      new Chart(context, {
+                        type: 'bar',
+                        data: {
+                          labels: [
+                            '授業(<%= school.reviews.average(:evaluation_class).to_f.round(1) %>)',
+                            '進路(<%= school.reviews.average(:evaluation_after_graduation).to_f.round(1) %>)',
+                            '立地（<%= school.reviews.average(:evaluation_place).to_f.round(1) %>）',
+                            '施設・設備（<%= school.reviews.average(:evaluation_facility).to_f.round(1) %>）',
+                            '学生(<%= school.reviews.average(:evaluation_student).to_f.round(1) %>)',
+                            '教師(<%= school.reviews.average(:evaluation_teacher).to_f.round(1) %>)',
+                            '学校生活(<%= school.reviews.average(:evaluation_life).to_f.round(1) %>)'
+                            ],
+                          datasets: [{
+                            label: "口コミによる評価（平均値）",
+                            data: [
+                              <%= school.reviews.average(:evaluation_class).to_f.round(1) %>,
+                              <%= school.reviews.average(:evaluation_after_graduation).to_f.round(1) %>,
+                              <%= school.reviews.average(:evaluation_place).to_f.round(1) %>,
+                              <%= school.reviews.average(:evaluation_facility).to_f.round(1) %>,
+                              <%= school.reviews.average(:evaluation_student).to_f.round(1) %>,
+                              <%= school.reviews.average(:evaluation_teacher).to_f.round(1) %>,
+                              <%= school.reviews.average(:evaluation_life).to_f.round(1) %>
+                              ]
+                          }],
+                        },
+                        options: {
+                        indexAxis: 'y',
+                        scales: {
+                          x: {
+                            stacked: true,
+                            max: 5.0
+                          },
+                          y: {
+                            stacked: true,
+                          }
+                        },
+                        responsive: false
+                      }
+                      })
+                    }
+                  </script>
+                </head>
+                <body>
+                  <div class="text-center">
+                    <canvas id="average_review_chart" width="500" height="500" class="d-inline"></canvas>
+                  </div>
+                </body>
+              </html>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

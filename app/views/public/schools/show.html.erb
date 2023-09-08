@@ -171,31 +171,41 @@
   </div>
 </div>
 
-
+<div class="container">
   <% if @school.courses.present? %>
-    <h3><%= @school.name %>のコース情報</h3>
+    <div class="row">
+      <div class="col-md-12">
+        <h5>コース情報</h5>
+      </div>
+    </div>
 
-    <table class="table">
-      <tr>
-        <td>コース名</td>
-        <td>入学時期</td>
-        <td>在学期間</td>
-        <td>定員</td>
-        <td>コース入学要件</td>
-      </tr>
-      <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.name %></td>
-        <td><%= course.admission_month %>月</td>
-        <td><%= course.duration %>ヶ月</td>
-        <td><%= course.capacity %>名</td>
-        <td><%= course.condition %></td>
-      </tr>
-      <% end %>
-    </table>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <table class="table table-borderless text-center">
+          <tr>
+            <td>【コース名】</td>
+            <td>【入学時期】</td>
+            <td>【在学期間】</td>
+            <td>【定員】</td>
+            <td>【コース入学要件】</td>
+          </tr>
+          <% @courses.each do |course| %>
+          <tr>
+            <td><%= course.name %></td>
+            <td><%= course.admission_month %>月</td>
+            <td><%= course.duration %>ヶ月</td>
+            <td><%= course.capacity %>名</td>
+            <td><%= course.condition %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    </div>
   <% else %>
-    <h5>この日本語学校のコース情報はまだ登録されていません</h5>
   <% end %>
+</div>
+
+<%= render "public/reviews/average_review.html.erb", school: @school %>
 
   <% if @school.reviews.present? %>
   <h3><%= @school.name %>のレビュー一覧</h3>
