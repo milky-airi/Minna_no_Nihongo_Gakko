@@ -3,14 +3,14 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
 
-      <h5 class="text-white">口コミ平均：
+      <h5 class="text-white">
+        口コミ平均：
         <% average_star = school.reviews.average(:star_integer).to_f.round %>
         <% average_star.times do %>
           <i class="fa-solid fa-star" style="color: #ffdf3d;"></i>
         <% end %>
         （<%= school.reviews.average(:star_integer).to_f.round(1) %>）
       </h5>
-
 
       <div class="bg-white mt-5 p-5">
         <div class="row">

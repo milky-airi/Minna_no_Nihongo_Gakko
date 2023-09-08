@@ -207,80 +207,21 @@
 
 <%= render "public/reviews/average_review.html.erb", school: @school %>
 
-  <% if @school.reviews.present? %>
-  <h3><%= @school.name %>のレビュー一覧</h3>
-
-    <% @school.reviews.each do |review| %>
-    <div class="each-review bg-light p-4 mt-3">
-      <div class="review-title d-flex align-items-center">
-
-        <% if review.user.is_deleted == true %>
-          <p><%= image_tag "UserImage.jpg", size: "100x100", class: "rounded-circle" %></p>
-          <p class="ml-5">退会済みユーザー(<%= review.user.country %>)</p>
-          <% if review.user.went_school.present? %>
-            <p><%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月　<%= review.user.went_school.school.name %>卒業</p>
-          <% end %>
-        <% else %>
-          <p><%= image_tag review.user.get_profile_image(100, 100), class: "rounded-circle" %></p>
-          <p class="ml-5"><%= review.user.name %>さん(<%= review.user.country %>)</p>
-          <% if review.user.went_school.present? %>
-            <p><%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月　<%= review.user.went_school.school.name %>卒業</p>
-          <% end %>
-        <% end %>
-      </div>
-      <p>投稿日：<%= review.created_at.strftime('%Y/%m/%d') %></p>
-
-      <div class="d-flex">
-        <h5>総合評価</h5>
-        <div class="ml-3"><%= render "public/reviews/static_rate", review: review %></div>
-      </div>
-      <h5><%= review.comment_integer %></h5>
-
-      <div class="d-flex mt-4">
-        <h6>授業について</h6>
-        <div class="ml-3"><%= review.evaluation_class %>点/5点</div>
-      </div>
-      <div><%= review.comment_class %></div>
-
-      <div class="d-flex mt-4">
-        <h6>進路について</h6>
-        <div class="ml-3"><%= review.evaluation_after_graduation %>点/5点</div>
-      </div>
-      <div><%= review.comment_after_graduation %></div>
-
-      <div class="d-flex mt-4">
-        <h6>立地について</h6>
-        <div class="ml-3"><%= review.evaluation_place %>点/5点</div>
-      </div>
-      <div><%= review.comment_place %></div>
-
-      <div class="d-flex mt-4">
-        <h6>施設・設備について</h6>
-        <div class="ml-3"><%= review.evaluation_facility %>点/5点</div>
-      </div>
-      <div><%= review.comment_facility %></div>
-
-      <div class="d-flex mt-4">
-        <h6>学生について</h6>
-        <div class="ml-3"><%= review.evaluation_student %>点/5点</div>
-      </div>
-      <div><%= review.comment_student %></div>
-
-      <div class="d-flex mt-4">
-        <h6>教師について</h6>
-        <div class="ml-3"><%= review.evaluation_teacher %>点/5点</div>
-      </div>
-      <div><%= review.comment_teacher %></div>
-
-      <div class="d-flex mt-4">
-        <h6>学校生活について</h6>
-        <div class="ml-3"><%= review.evaluation_life %>点/5点</div>
-      </div>
-      <div><%= review.comment_life %></div>
-    </div>
-    <% end %>
-
-  <% else %>
-    <h5>この日本語学校のレビューはまだ登録されていません</h5>
+<% if @school.reviews.present? %>
+  <% @school.reviews.each do |review| %>
+  <%= render "public/reviews/detail.html.erb", review: review %>
   <% end %>
+<% else %>
+  <div class="container-fluid light-blue-container p-5">
+  <div class="row">
+
+    <div class="col-md-11 offset-md-1">
+       <h5>まだレビューがありません</h5>
+     </div>
+
+    </div>
+  </div>
+<% end %>
+
+
 
