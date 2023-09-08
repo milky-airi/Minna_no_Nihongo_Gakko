@@ -1,8 +1,6 @@
 <div class="continer light-blue-container p-5">
   <div class="row">
 
-    <%#= hidden_field_tag :school_id, @school.id %>
-
     <div class="col-md-11 offset-md-1">
       <%= flash[:alert] %>
       <%#= render "public/shared/error_messages", resource: Review.new %>
@@ -11,16 +9,20 @@
 
     <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
 
-      <div class="row">
+      <!--<div class="row">-->
        <%= form_with model: Review.new, url: reviews_path, method: :post do |f| %>
        <%= hidden_field_tag :school_id, current_user.went_school.school.id %>
 
           <div class="row">
-
-            <div class="form-group" id="star_integer">
-              <%= f.label :star_integer %>
-              <%= f.hidden_field :star_integer, id: :review_star, class: "form-control" %>
-              <!--<div id="star_integer"></div>-->
+            <div class="col-md-5 text-right">
+              <p>星評価</p>
+            </div>
+            <div class="field col-md-7">
+              <div class="form-group" id="star_integer">
+                <%= f.label :star_integer %>
+                <%= f.hidden_field :star_integer, id: :review_star, class: "form-control" %>
+                <!--<div id="star_integer"></div>-->
+              </div>
             </div>
 
               <script>
@@ -40,7 +42,7 @@
               </script>
 
           </div>
-      </div>
+      <!--</div>-->
 
 
         <div class="row">

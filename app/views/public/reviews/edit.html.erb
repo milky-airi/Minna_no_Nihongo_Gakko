@@ -3,8 +3,9 @@
   <%= form_with model:  @review, url: review_path(@review), method: :patch do |f| %>
 
     <div class="field">
-      <%= f.label :日本語学校 %><br />
-      <%= f.collection_select :school_id, School.all, :id, :name %>
+      <%= flash[:alert] %><br>
+      <%#= f.label :日本語学校 %><br />
+      <%#= f.collection_select :school_id, School.all, :id, :name %>
     </div>
 
     <div class="form-group" id="star_integer">

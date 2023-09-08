@@ -29,8 +29,14 @@ class Public::ReviewsController < ApplicationController
 
   def update
     review = Review.find(params[:id])
-    review.update(review_params)
-    redirect_to review_path(review)
+    if review.update(review_params)
+      flash[:notice] = "レビューを更新しました"
+      redirect_to review_path(review)
+    else
+      @review = Review.find(params[:id])
+      flash[:alert] = review.errors.full_messages.join(", ")
+      render :edit
+    end
   end
 
   def index
