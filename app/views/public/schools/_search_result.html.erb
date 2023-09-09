@@ -1,0 +1,19 @@
+<div class="container-fluid light-blue-container">
+  <div class="row">
+
+
+    <% if schools.present? %>
+    <div class="col-md-12 p-5">
+      <div class="col-md-8 offset-md-2">
+        <h3>検索結果(<%= schools.count %>件)</h3>
+      </div>
+      <%= render "public/schools/index.html.erb", schools: schools %>
+    </div>
+    <% else %>
+      <div class="col-md-12 p-5">
+        <h5 class="text-center">条件に合致する日本語学校はありませんでした。他の条件で検索してください。</h5>
+      </div>
+    <% end %>
+
+  </div>
+</div>
