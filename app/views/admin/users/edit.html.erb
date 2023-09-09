@@ -1,22 +1,84 @@
 <div class="container">
 
-  <h3><%= @user.name %>様の詳細情報</h3>
+  <div class="row mt-5">
+    <h5>会員情報編集</h5>
+  </div>
 
-  <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
+  <div class="row">
+    <p><%= flash[:alert] %></p>
+  </div>
 
+      <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
 
-        <div class="field">
-          <%= f.label :退会ステータス %><br />
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>名前</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.name %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>フリガナ</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.name_kana %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>メールアドレス</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.email %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>国籍</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.country %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>職業</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.job %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>登録日</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.created_at.strftime('%Y/%m/%d') %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :退会ステータス %>
+      </div>
+      <div class="col-md-5 offset-md-1">
           <%= f.radio_button :is_deleted, :true %>
           <%= f.label :is_deleted, "退会済み" %>
           <%= f.radio_button :is_deleted, :false %>
           <%= f.label :is_deleted, "有効" %>
-        </div>
+      </div>
+    </div>
 
-        <div class="actions">
-          <%= f.submit "更新", class: "btn btn-success" %>
-        </div>
-
-  <% end %>
+      <div class="actions mt-5 text-center mb-5">
+        <%= f.submit "更新", class: "btn btn-success w-25" %>
+      </div>
+    <% end %>
 
 </div>

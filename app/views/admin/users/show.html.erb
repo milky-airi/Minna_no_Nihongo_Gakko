@@ -1,45 +1,82 @@
 <div class="container">
 
-  <h3><%= @user.name %>様の詳細情報</h3>
+  <div class="row mt-5">
+    <h5><%= @user.name %>様の会員情報詳細</h5>
+  </div>
 
-  <table class="table">
-    <tr>
-      <td>氏名</td>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <td>氏名（かな）</td>
-      <td><%= @user.name_kana %></td>
-    </tr>
-    <tr>
-      <td>国籍</td>
-      <td><%= @user.country %></td>
-    </tr>
-    <tr>
-      <td>職業</td>
-      <td><%= @user.job %></td>
-    </tr>
-    <tr>
-      <td>登録日</td>
-      <td><%= @user.created_at.strftime('%Y/%m/%d') %></td>
-    </tr>
-    <tr>
-      <td>退会ステータス</td>
-      <td>
+  <div class="row">
+    <p><%= flash[:notice] %></p>
+  </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>名前</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.name %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>フリガナ</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.name_kana %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>メールアドレス</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.email %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>国籍</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.country %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>職業</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.job %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>登録日</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @user.created_at.strftime('%Y/%m/%d') %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        退会ステータス
+      </div>
+      <div class="col-md-5 offset-md-1">
         <% if @user.is_deleted == true %>
           退会済み
         <% else %>
           有効
         <% end %>
-        </td>
-    </tr>
-  </table>
-  <%= link_to "編集", edit_admin_user_path, class: "btn btn-success" %>
+      </div>
+    </div>
 
-  <p>
-    <%= link_to individual_admin_reviews_path(@user.id), class: "text-dark" do %>
-      ▶︎ <%= @user.name %>様の投稿したレビュー一覧
-    <% end %>
-  </p>
+    <div class="actions text-center mt-5">
+      <%= link_to "退会ステータス編集", edit_admin_user_path(@user.id), class: "btn btn-success w-25" %>
+    </div>
 
 </div>

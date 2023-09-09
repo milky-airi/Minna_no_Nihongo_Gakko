@@ -15,8 +15,13 @@ class Admin::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to admin_user_path(user.id)
+    if user.update(user_params)
+      flash[:notice] = "会員情報を更新しました"
+      redirect_to admin_user_path(user.id)
+    else
+      @user = User.find(params[:id])
+      render :edit
+    end
   end
 
   private
