@@ -3,29 +3,13 @@
 
 
     <% if @schools.present? %>
-      <h3>検索結果(<%= @schools.count %>件)</h3>
-
-    <table class="table">
-      <tr>
-        <td>日本語学校名</td>
-        <td>日本語学校名（かな）</td>
-        <td>日本語学校名（英語）</td>
-        <td>日本語学校情報</td>
-        <td>住所</td>
-      </tr>
-      <% @schools.each do |school| %>
-      <tr>
-        <td><%= link_to school.name, school_path(school.id) %></td>
-        <td><%= school.name_kana %></td>
-        <td><%= school.name_en %></td>
-        <td><%= school.summary %></td>
-        <td><%= school.address %></td>
-      </tr>
-      <% end %>
-    </table>
+    <div class="col-md-12 mt-5">
+      <h5>検索結果(<%= @schools.count %>件)</h5>
+    </div>
+    <%= render "admin/schools/index.html.erb", schools: @schools %>
 
     <% else %>
-      <h3>条件に合致する日本語学校はありませんでした。他の条件で検索してください。</h3>
+      <h3>キーワードに合致する日本語学校はありませんでした。他のキーワードで検索してください。</h3>
     <% end %>
 
   </div>
