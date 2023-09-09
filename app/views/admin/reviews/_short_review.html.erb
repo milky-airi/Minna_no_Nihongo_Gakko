@@ -1,0 +1,37 @@
+<div class="col-md-10 offset-md-1">
+  <% reviews.each do |review| %>
+
+  <div class="col-md-10 offset-md-1 bg-white p-4 mt-4">
+
+      <div class="text-center border-bottom pb-3">
+        <%= link_to admin_user_path(review.user.id) do %>
+          <%= image_tag review.user.get_profile_image(70,70), class: "rounded-circle mr-3" %>
+        <% end %>
+        <u><%= link_to review.school.name, admin_school_path(review.school.id), class: "ml-3, text-dark" %></u>
+        （<%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月卒業）
+      </div>
+
+      <div class="d-flex mt-3">
+        <h6>総合評価</h6>
+        <div class="ml-3"><%= render "public/reviews/static_rate", review: review %></div>
+      </div>
+      <h6><%= review.comment_integer %></h6>
+
+      <div class="mt-4">
+        【授業について】
+        <%= review.evaluation_class %>点/5点
+      </div>
+      <div><%= review.comment_class %></div>
+
+      <div class="mt-4">
+        【進路について】
+        <%= review.evaluation_after_graduation %>点/5点
+      </div>
+      <div><%= review.comment_after_graduation %></div>
+
+      <div class="mt-4 ">
+        <u><%= link_to "続きを読む", admin_review_path(review), class: "text-dark" %></u>
+      </div>
+    </div>
+  <% end %>
+</div>

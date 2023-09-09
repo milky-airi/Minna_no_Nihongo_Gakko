@@ -25,8 +25,8 @@
         <% @reviews.each do |review| %>
         <tr>
           <td><%= link_to review.id, admin_review_path(review.id) %></td>
-          <td><%= review.school.name %></td>
-          <td><%= review.user.name %></td>
+          <td><%= link_to review.school.name, admin_school_path(review.school.id) %></td>
+          <td><%= link_to review.user.name, admin_user_path(review.user.id) %></td>
           <td><%= render "public/reviews/static_rate", review: review %></td>
           <td><%= review.comments.count %></td>
           <td><%= review.alerts.count %></td>

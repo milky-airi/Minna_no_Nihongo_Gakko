@@ -212,7 +212,7 @@
   <div class="container-fluid light-blue-container p-5">
     <div class="row">
       <% @school.reviews.each do |review| %>
-      <%= render "public/reviews/short_review.html.erb", reviews: @school.reviews %>
+      <%= render "admin/reviews/short_review.html.erb", reviews: @school.reviews %>
       <% end %>
     </div>
   </div>
