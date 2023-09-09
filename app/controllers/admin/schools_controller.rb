@@ -9,8 +9,13 @@ class Admin::SchoolsController < ApplicationController
     school = School.new(school_params)
     input_tags = tag_params[:nationality].split(' ')
     school.create_tags(input_tags)
-    school.save
-    redirect_to admin_schools_path
+    if school.save
+      flash[:notice] = "学校情報を登録しました"
+      redirect_to admin_schools_path
+    else
+      flash[:alert] = school.errors.full_messages.join(", ")
+      render :new
+    end
   end
 
   def edit
@@ -19,10 +24,16 @@ class Admin::SchoolsController < ApplicationController
 
   def update
     school = School.find(params[:id])
-    school.update(school_params)
-    input_tags = tag_params[:nationality].split(' ')
-    school.update_tags(input_tags)
-    redirect_to admin_school_path(school.id)
+    if school.update(school_params)
+      input_tags = tag_params[:nationality].split(' ')
+      school.update_tags(input_tags)
+      flash[:notice] = "学校情報を更新しました"
+      redirect_to admin_school_path(school.id)
+    else
+      @school = School.find(params[:id])
+      flash[:alert] = school.errors.full_messages.join(", ")
+      render :edit
+    end
   end
 
   def index

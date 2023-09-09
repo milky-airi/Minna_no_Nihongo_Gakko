@@ -11,6 +11,8 @@ class School < ApplicationRecord
 
   has_one_attached :image
 
+  validates :name, presence: true
+
   # ひらがな・カタカナの正規表現
   KANA_REGEX = /\A[\p{katakana}\p{hiragana}\u{30fc}]+\z/
   validates :name_kana, format: { with: KANA_REGEX, message: 'はひらがなかカタカナで入力してください' }

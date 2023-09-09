@@ -99,6 +99,17 @@ ja:
         admission_month: "入学時期"
         duration: "在学期間"
         capacity: "定員"
+    models:
+      school: "日本語学校"
+    attributes:
+      school:
+        name: "日本語学校名"
+        name_kana: "日本語学校名(かな)"
+        name_en: "日本語学校名(英語)"
+        summary: "学校情報"
+        station: "最寄駅"
+        prefecture: "都道府県"
+        address: "都道府県以降の住所"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
