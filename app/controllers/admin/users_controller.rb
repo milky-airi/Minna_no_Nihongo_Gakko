@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :show, :edit, :update]
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def show
