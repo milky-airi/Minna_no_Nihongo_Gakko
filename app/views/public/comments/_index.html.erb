@@ -1,0 +1,20 @@
+<% review.comments.each do |comment| %>
+  <div class="d-flex bg-white mt-4 p-4">
+    <div class="mr-2">
+      <%= image_tag comment.user.get_profile_image(80, 80), class: "rounded-circle mr-3" %>
+    </div>
+    <div>
+
+      <% if comment.user.is_deleted == true %>
+        退会済みユーザー
+      <% else %>
+        <%= comment.user.name %>
+      <% end %>
+      <span class="text-secondary"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
+      <div><%= comment.comment %></div>
+      <% if user_signed_in? && comment.user_id == current_user.id %>
+        <%= link_to "削除", comment_path(comment.id), method: :delete, data: { confirm: "コメントを削除してもよろしいですか？" }, class: "text-secondary", remote: true, data: {"turbolinks" => false} %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
