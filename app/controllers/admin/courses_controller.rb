@@ -1,14 +1,21 @@
 class Admin::CoursesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   def new
+    @school_id = params[:school_id]
     @course = Course.new
   end
 
+
   def create
     course = Course.new(course_params)
-    course.save
-    redirect_to admin_school_path(course.school_id)
+    if course.save
+      flash[:notice] = "コース情報を追加しました"
+      redirect_to admin_school_path(course.school_id)
+    else
+      flash[:alert] = course.errors.full_messages.join(", ")
+      render :new
+    end
   end
 
   def edit
@@ -17,21 +24,20 @@ class Admin::CoursesController < ApplicationController
 
   def update
     course = Course.find(params[:id])
-    course.update(course_params)
-    redirect_to admin_courses_path
-  end
-
-  def index
-    @courses = Course.all
-  end
-
-  def show
-    @course = Course.find(params[:id])
+    if course.update(course_params)
+      flash[:notice] = "コース情報を更新しました"
+      redirect_to admin_school_path(course.school.id)
+    else
+      flash[:alert] = course.errors.full_messages.join(", ")
+      @course = Course.find(params[:id])
+      render :edit
+    end
   end
 
   def destroy
     course = Course.find(params[:id])
     course.destroy
+    flash[:notice] = "コース情報を削除しました"
     redirect_to admin_school_path(course.school_id)
   end
 

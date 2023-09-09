@@ -84,6 +84,14 @@ ja:
     attributes:
       alert:
         reason: "通報理由"
+    models:
+      course: "コース"
+    attributes:
+      course:
+        name: "コース名"
+        admission_month: "入学時期"
+        duration: "在学期間"
+        capacity: "定員"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

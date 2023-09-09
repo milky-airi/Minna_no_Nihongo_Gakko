@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container p-5">
 
   <div class="row">
     <h3>コース登録</h3>
@@ -9,35 +9,38 @@
 
       <div class="field">
         <%= f.label :コース名 %><br />
-        <%= f.text_field :name, autofocus: true, placeholder: "2年コース" %>
+        <%= f.text_field :name, autofocus: true, placeholder: "2年コース", class: "form-control" %>
       </div>
 
-      <div class="field">
-        <%= f.label :日本語学校 %><br />
-        <%= f.collection_select :school_id, School.all, :id, :name %>
-      </div>
+      <!--<div class="field">-->
+        <%#= f.label :日本語学校 %>
+        <%#= f.collection_select :school_id, School.all, :id, :name %>
+        <%#= f.hidden_field :school_id, @shcool_id %>
+        <%= f.hidden_field :school_id, value: @school_id %>
+
+      <!--</div>-->
 
       <div class="field">
         <%= f.label :入学時期 %>(月)<br />
-        <%=  f.select :admission_month, 1..12%>
+        <%=  f.select :admission_month, 1..12 %>
       </div>
 
       <div class="field">
         <%= f.label :在学期間 %>（ヶ月）<br />
-        <%= f.text_field :duration, placeholder: "24" %>
+        <%= f.text_field :duration, placeholder: "24", class: "form-control" %>
       </div>
 
       <div class="field">
         <%= f.label :定員 %><br />
-        <%= f.text_field :capacity, placeholder: "40" %>
+        <%= f.text_field :capacity, placeholder: "40", class: "form-control" %>
       </div>
 
       <div class="field">
         <%= f.label :コースの入学要件 %><br />
-        <%= f.text_area :condition, placeholder: "N4以上" %>
+        <%= f.text_area :condition, placeholder: "N4以上", class: "form-control" %>
       </div>
 
-      <div class="actions">
+      <div class="actions mt-3">
         <%= f.submit "新規登録", class: "btn btn-success" %>
       </div>
     <% end %>

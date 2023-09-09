@@ -1,133 +1,229 @@
-<div class="container">
-
-  <h3><%= @school.name %>の詳細情報</h3>
-
-  <% if @school.image_from.present? %>
-    <%= link_to @school.image_from do %>
-      <%= image_tag @school.get_image(300,225),class: "object-fit-cover" %>
-    <% end %>
-    <p>引用：<%= link_to "リンク", @school.image_from %></p>
-  <% else %>
-    <%= image_tag @school.get_image(300,225),class: "object-fit-cover" %>
-  <% end %>
-
-  <table class="table">
-    <tr>
-      <td>日本語学校名</td>
-      <td><%= @school.name %></td>
-    </tr>
-    <tr>
-      <td>日本語学校名（かな）</td>
-      <td><%= @school.name_kana %></td>
-    </tr>
-    <tr>
-      <td>日本語学校名（英語）</td>
-      <td><%= @school.name_en %></td>
-    </tr>
-    <tr>
-      <td>学校情報</td>
-      <td><%= @school.summary %></td>
-    </tr>
-    <tr>
-      <td>最寄駅</td>
-      <td><%= @school.station %></td>
-    </tr>
-    <tr>
-      <td>都道府県</td>
-      <td><%= @school.prefecture %></td>
-    </tr>
-    <tr>
-      <td>都道府県以降の住所</td>
-      <td><%= @school.address %></td>
-    </tr>
-    <tr>
-      <td>HPリンク</td>
-      <td><%= @school.hp %></td>
-    </tr>
-    <tr>
-      <td>Facebookリンク</td>
-      <td><%= @school.facebook %></td>
-    </tr>
-    <tr>
-      <td>Twitterリンク</td>
-      <td><%= @school.twitter %></td>
-    </tr>
-    <tr>
-      <td>Instagramリンク</td>
-      <td><%= @school.instagram %></td>
-    </tr>
-    <tr>
-      <td>TikTokリンク</td>
-      <td><%= @school.tiktok %></td>
-    </tr>
-    <tr>
-      <td>YouTubeリンク</td>
-      <td><%= @school.youtube %></td>
-    </tr>
-    <tr>
-      <td>入学要件</td>
-      <td><%= @school.condition %></td>
-    </tr>
-    <tr>
-      <td>学費（年間）</td>
-      <td><%= @school.anual_fee.to_s(:delimited) %>円</td>
-    </tr>
-    <tr>
-      <td>学生の国籍</td>
-      <td>
-        <%#= @school.student_nationality_tags %>
-        <% @school.student_nationality_tags.each do |tag| %>
-          <li><%= tag.nationality %></li>
+<div class="container p-5">
+<%= flash[:notice] %>
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <% if @school.image_from.present? %>
+        <%= link_to @school.image_from do %>
+          <%= image_tag @school.get_image(300,225), class: "object-fit-cover" %>
         <% end %>
-      </td>
-    </tr>
-    <tr>
-      <td>寮の有無</td>
-      <td><%= @school.have_dormitory %></td>
-    </tr>
-    <tr>
-      <td>寮の家賃（月額）</td>
-      <td>
-        <% if @school.dormitory_fee.present? %>
-          <%= @school.dormitory_fee.to_s(:delimited) %>円</td>
-        <% end %>
-    </tr>
-    <tr>
-      <td>公開状況</td>
-      <td><%= @school.is_open %></td>
-    </tr>
+        <p>引用：<%= link_to "リンク", @school.image_from %></p>
+      <% else %>
+        <%= image_tag @school.get_image(300,225), class: "object-fit-cover" %>
+      <% end %>
+    </div>
 
-  </table>
+    <div class="col-md-8">
+      <h5><%= @school.name %></h5>
+      <p class="text-secondary"><%= @school.name_en %></p>
+      <i class="fa-solid fa-location-dot text-info mr-1"></i><%= @school.prefecture_i18n %>/<%= @school.station %>
+
+      <p><%= link_to "学校情報編集", edit_admin_school_path(@school), class: "btn btn-success mt-2" %></p>
+
+      <% if @school.reviews.present? %>
+        <%= render "public/reviews/average_rate.html.erb", school: @school %>
+        <p>口コミ：<%= @school.reviews.count %>件</p>
+      <% else %>
+        <p>口コミはまだありません</p>
+      <% end %>
+
+      <div>
+
+        <% if user_signed_in? && current_user.went_school.present? && current_user.went_school.school.id == @school.id %>
+          <% unless @school.reviewed_by?(current_user)  %>
+              <%= form_with url: new_review_path, method: :get do |f| %>
+                <%= hidden_field_tag :school_id, @school.id %>
+                <%= f.submit "この学校のレビューを作成する", class: "btn btn-outline-success" %>
+              <% end %>
+          <% else %>
+            <%= link_to "投稿したレビューを見る", review_path(current_user.review), class: "btn btn-outline-info" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h5><%= @school.name %>の特色</h5>
+      <p><%= @school.summary %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <p>【住所】</p>
+    </div>
+    <div class="col-md-9">
+      <p><%= @school.prefecture_i18n %> <%= @school.address %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <p>【HP】</p>
+    </div>
+    <div class="col-md-9">
+      <% if @school.hp.blank? %>
+          HP情報はありません
+        <% else %>
+          <p><%= link_to @school.hp, @school.hp %></p>
+        <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <p>【SNS】</p>
+    </div>
+    <div class="col-md-9">
+      <% if @school.facebook.present? %>
+        <%= link_to @school.facebook do %>
+          <i class="fa-brands fa-facebook fa-xl text-dark mr-1"></i>
+        <% end %>
+      <% end %>
+      <% if @school.twitter.present? %>
+        <%= link_to @school.twitter do %>
+          <i class="fa-brands fa-square-x-twitter fa-xl text-dark mr-1"></i>
+        <% end %>
+      <% end %>
+      <% if @school.instagram.present? %>
+        <%= link_to @school.instagram do %>
+          <i class="fa-brands fa-instagram fa-xl text-dark mr-1"></i>
+        <% end %>
+      <% end %>
+      <% if @school.tiktok.present? %>
+        <%= link_to @school.tiktok do %>
+          <i class="fa-brands fa-tiktok fa-xl text-dark mr-1"></i>
+        <% end %>
+      <% end %>
+      <% if @school.youtube.present? %>
+        <%= link_to @school.youtube do %>
+          <i class="fa-brands fa-youtube fa-xl text-dark mr-1"></i>
+        <% end %>
+      <% end %>
+      <% if @school.facebook.blank? && @school.twitter.blank? && @school.instagram.blank? && @school.tiktok.blank? && @school.youtube.blank? %>
+        SNSアカウントはありません
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <p>【入学要件】</p>
+    </div>
+    <div class="col-md-9">
+      <p><%= @school.condition %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <p>【学費（年間）】</p>
+    </div>
+    <div class="col-md-9">
+      <p><%= @school.anual_fee.to_s(:delimited) %>円</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <p>【学生の国籍】</p>
+    </div>
+    <div class="col-md-9">
+      <ul class="list-unstyled">
+        <%= @school.student_nationality_tags.map { |tag| tag.nationality }.join(", ") %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <p>【寮の有無（寮の家賃）】</p>
+    </div>
+    <div class="col-md-9">
+      <% if @school.have_dormitory == true %>
+        <p>あり（家賃：<%= @school.dormitory_fee.to_s(:delimited) %>円/月）</p>
+      <% else %>
+        <p>なし</p>
+      <% end %>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col-md-12">
       <%= render "public/schools/map.html.erb", school: @school %>
     </div>
   </div>
-
-  <h3><%= @school.name %>のコース情報</h3>
-
-  <table class="table">
-    <tr>
-      <td>コース名</td>
-      <td>入学時期</td>
-      <td>在学期間</td>
-      <td>定員</td>
-      <td>コース入学要件</td>
-    </tr>
-    <% @courses.each do |course| %>
-    <tr>
-      <td><%= link_to course.name, admin_course_path(course.id) %></td>
-      <td><%= course.admission_month %></td>
-      <td><%= course.duration %></td>
-      <td><%= course.capacity %></td>
-      <td><%= course.condition %></td>
-    </tr>
-    <% end %>
-
-  </table>
-
-  <%= link_to "編集", edit_admin_school_path, class: "btn btn-success" %>
-  <%= link_to "コース追加", new_admin_course_path, class: "btn btn-info" %>
-  <%= link_to "削除", admin_school_path(@school.id), method: :delete, data: { confirm: "日本語学校情報を削除してもよろしいですか？" } , class: "btn btn-danger" %>
 </div>
+
+<div class="container">
+
+  <% if @school.courses.present? %>
+    <div class="row">
+      <div class="col-md-12">
+        <h5>コース情報</h5>
+        <%= link_to "コース追加", new_admin_course_path(school_id: @school.id), class: "btn btn-info" %>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <table class="table text-center">
+          <tr>
+            <td>【コース名】</td>
+            <td>【入学時期】</td>
+            <td>【在学期間】</td>
+            <td>【定員】</td>
+            <td>【コース入学要件】</td>
+            <td></td>
+          </tr>
+          <% @courses.each do |course| %>
+          <tr>
+            <td><%= course.name %></td>
+            <td><%= course.admission_month %>月</td>
+            <td><%= course.duration %>ヶ月</td>
+            <td><%= course.capacity %>名</td>
+            <td><%= course.condition %></td>
+            <td>
+              <%= link_to "編集", edit_admin_course_path(course.id), class: "btn btn-success" %>
+              <%= link_to "削除", admin_course_path(course.id), method: :delete, class: "btn btn-danger", data: { confirm: "コースを削除してよろしいですか？" } %>
+              </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    </div>
+  <% else %>
+  <div class="row py-3">
+    <div class="col-md-12">
+      <h5>コース情報がまだありません</h5>
+      <%= link_to "コース追加", new_admin_course_path(school_id: @school.id), class: "btn btn-info" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<%= render "public/reviews/average_review.html.erb", school: @school %>
+
+<% if @school.reviews.present? %>
+  <div class="container-fluid light-blue-container p-5">
+    <div class="row">
+      <% @school.reviews.each do |review| %>
+      <%= render "public/reviews/short_review.html.erb", reviews: @school.reviews %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="container-fluid light-blue-container p-5">
+  <div class="row">
+
+    <div class="col-md-11 offset-md-1">
+       <h5>まだレビューがありません</h5>
+     </div>
+
+    </div>
+  </div>
+<% end %>
+
+
+

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
         get '/individual/:user_id', action: :individual, as: 'individual'
       end
     end
-    resources :courses
+    resources :courses, only: [:new, :create, :edit, :update, :destroy]
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
     resources :searches, only: [:search]
