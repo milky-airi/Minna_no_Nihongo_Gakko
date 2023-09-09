@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
   }
 
-  # ユーザーログイン
+  # ゲストユーザーログイン
   devise_scope :user do
     post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end

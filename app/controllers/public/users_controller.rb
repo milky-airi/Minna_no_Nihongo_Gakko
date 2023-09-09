@@ -1,5 +1,4 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_normal_user, only: [:quit]
   before_action :authenticate_user!
 
   def show
@@ -38,13 +37,6 @@ class Public::UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :password, :name, :name_kana, :job, :graduated_at, :school_id, :country_code, :profile_image)
-    end
-
-    def ensure_normal_user
-      if current_user.email == 'guest@example.com'
-        flash[:notice] = "ゲストユーザーは退会できません。"
-        redirect_to user_path(current_user)
-      end
     end
 
 end
