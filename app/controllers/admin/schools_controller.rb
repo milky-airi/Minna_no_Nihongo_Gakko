@@ -6,11 +6,6 @@ class Admin::SchoolsController < ApplicationController
   end
 
   def create
-    # school = School.new(school_params)
-    # input_tags = tag_params.split
-    # school.create_tags(input_tags)
-    # school.save
-    # redirect_to schools_path
     school = School.new(school_params)
     input_tags = tag_params[:nationality].split(' ')
     school.create_tags(input_tags)
@@ -31,7 +26,7 @@ class Admin::SchoolsController < ApplicationController
   end
 
   def index
-    @schools = School.all
+    @schools = School.all.page(params[:page]).per(10)
   end
 
   def show

@@ -1,5 +1,5 @@
 class Admin::HomesController < ApplicationController
   def top
-    @schools = School.where(is_open: true)
+    @schools = School.all.page(params[:page]).per(10)
   end
 end
