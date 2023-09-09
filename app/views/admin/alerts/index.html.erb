@@ -1,35 +1,42 @@
 <div class="container">
-
   <div class="row">
-    <h3>通報一覧</h3>
+
+    <div class="col-md-12 mt-5">
+      <h5>通報</h5>
+    </div>
+
+    <div class="col-md-12">
+      <table class="table mt-5">
+        <tr>
+          <td>No.</td>
+          <td>通報者</td>
+          <td>レビューNo.</td>
+          <td>通報理由</td>
+          <td>対応状況</td>
+          <td>通報日時</td>
+          <td></td>
+        </tr>
+        <% @alerts.each do |alert| %>
+        <tr>
+           <td><%= link_to alert.id, edit_admin_alert_path(alert.id) %></td>
+            <td><%= alert.user.name %></td>
+            <td><%= link_to alert.review.id, admin_review_path(alert.review) %></td>
+            <td><%= alert.reason %></td>
+            <td>
+              <% if alert.is_done == true %>
+                対応済み
+              <% else %>
+                未対応
+              <% end %>
+            </td>
+            <td><%= alert.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= link_to "編集", edit_admin_alert_path(alert.id), class: "btn btn-success" %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 
-  <div class="row">
-  <table class="table">
-    <tr>
-      <td>No.</td>
-      <td>通報者</td>
-      <td>レビューNo.</td>
-      <td>通報理由</td>
-      <td>対応状況</td>
-      <td>通報日時</td>
-    </tr>
-      <% @alerts.each do |alert| %>
-      <tr>
-        <td><%= link_to alert.id, edit_admin_alert_path(alert.id) %></td>
-        <td><%= alert.user.name %></td>
-        <td><%= link_to alert.review.id, admin_review_path(alert.review) %></td>
-        <td><%= alert.reason %></td>
-        <td>
-          <% if alert.is_done == true %>
-            対応済み
-          <% else %>
-            未対応
-          <% end %>
-        </td>
-        <td><%= alert.created_at.strftime('%Y/%m/%d') %></td>
-      </tr>
-      <% end %>
-  </table>
-  </div>
+<%= paginate @alerts, theme: 'bootstrap-5' %>
+
 </div>

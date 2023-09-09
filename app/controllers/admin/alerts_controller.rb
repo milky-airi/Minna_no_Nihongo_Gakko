@@ -2,7 +2,7 @@ class Admin::AlertsController < ApplicationController
   before_action :authenticate_admin!, only: [:index, :edit, :update]
 
   def index
-    @alerts = Alert.all
+    @alerts = Alert.all.page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def edit
