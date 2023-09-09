@@ -2,46 +2,46 @@
   <div class="row mt-5">
     <div class="col-md-8 offset-md-2 bg-white p-3">
       <div class="row">
-    <div class="col-md-4 text-center">
-      <% if school.image_from.present? %>
-        <%= link_to school.image_from do %>
-          <%= image_tag school.get_image(260,195), class: "object-fit-cover" %>
-        <% end %>
-        <p>引用：<%= link_to "リンク", school.image_from %></p>
-      <% else %>
-        <%= image_tag school.get_image(260,195), class: "object-fit-cover" %>
-      <% end %>
-    </div>
-
-    <div class="col-md-8">
-      <h5><%= link_to school.name, school_path(school.id) %></h5>
-      <p class="text-secondary"><%= school.name_en %></p>
-      <i class="fa-solid fa-location-dot text-info mr-1"></i><%= school.prefecture_i18n %>/<%= school.station %>
-
-      <% if user_signed_in? %>
-        <% if school.favorited_by?(current_user) %>
-          <%= link_to school_favorites_path(school.id), method: :delete do %>
-              <p class="text-dark"><i class="fa-solid fa-heart text-danger mr-1"></i>お気に入り解除</p>
+        <div class="col-md-4 text-center">
+          <% if school.image_from.present? %>
+            <%= link_to school.image_from do %>
+              <%= image_tag school.get_image(260,195), class: "object-fit-cover" %>
+            <% end %>
+            <p>引用：<%= link_to "リンク", school.image_from %></p>
+          <% else %>
+            <%= image_tag school.get_image(260,195), class: "object-fit-cover" %>
           <% end %>
-        <% else %>
-          <%= link_to school_favorites_path(school.id), method: :post do %>
-              <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
-          <% end %>
-        <% end %>
-      <% else %>
-        <%= link_to school_favorites_path(school.id), method: :post do %>
-            <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
-        <% end %>
-      <% end %>
+        </div>
 
-      <% if school.reviews.present? %>
-        <%= render "public/reviews/average_rate.html.erb", school: school %>
-        <p>口コミ：<%= school.reviews.count %>件</p>
-      <% else %>
-        <p>口コミはまだありません</p>
-      <% end %>
+        <div class="col-md-8">
+          <h5><%= link_to school.name, school_path(school.id) %></h5>
+          <p class="text-secondary"><%= school.name_en %></p>
+          <i class="fa-solid fa-location-dot text-info mr-1"></i><%= school.prefecture_i18n %>/<%= school.station %>
+
+          <% if user_signed_in? %>
+            <% if school.favorited_by?(current_user) %>
+              <%= link_to school_favorites_path(school.id), method: :delete do %>
+                  <p class="text-dark"><i class="fa-solid fa-heart text-danger mr-1"></i>お気に入り解除</p>
+              <% end %>
+            <% else %>
+              <%= link_to school_favorites_path(school.id), method: :post do %>
+                  <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to school_favorites_path(school.id), method: :post do %>
+                <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
+            <% end %>
+          <% end %>
+
+          <% if school.reviews.present? %>
+            <%= render "public/reviews/average_rate.html.erb", school: school %>
+            <p>口コミ：<%= school.reviews.count %>件</p>
+          <% else %>
+            <p>口コミはまだありません</p>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-  </div>
   </div>
 <% end %>
