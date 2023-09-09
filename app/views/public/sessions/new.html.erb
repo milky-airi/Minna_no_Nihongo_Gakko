@@ -18,7 +18,7 @@
             <%= f.label :メールアドレス %>
           </div>
           <div class="field col-md-7">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
           </div>
         </div>
 
@@ -27,7 +27,7 @@
             <%= f.label :パスワード %>
           </div>
           <div class="field col-md-7">
-            <%= f.password_field :password, autocomplete: "current-password" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
           </div>
         </div>
 

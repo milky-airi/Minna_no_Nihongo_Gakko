@@ -14,7 +14,7 @@
             <%= f.label :お名前 %>
           </div>
           <div class="field col-md-7">
-            <%= f.text_field :name, autofocus: true, placeholder: "お名前 / Your Name", class: "w-50" %>
+            <%= f.text_field :name, autofocus: true, placeholder: "お名前 / Your Name", class: "w-50 form-control" %>
           </div>
         </div>
 
@@ -23,7 +23,7 @@
             <%= f.label :おなまえ %>(ひらがな)
           </div>
           <div class="field col-md-7">
-            <%= f.text_field :name_kana, placeholder: "おなまえ", class: "w-50" %>
+            <%= f.text_field :name_kana, placeholder: "おなまえ", class: "w-50 form-control" %>
           </div>
         </div>
 
@@ -32,7 +32,7 @@
             <%= f.label :メールアドレス %>
           </div>
           <div class="field col-md-7">
-            <%= f.email_field :email, placeholder: "sample@example.com", class: "w-50" %>
+            <%= f.email_field :email, placeholder: "sample@example.com", class: "w-50 form-control" %>
           </div>
         </div>
 
@@ -41,7 +41,7 @@
             <%= f.label :お国 %>
           </div>
           <div class="field col-md-7">
-            <%= f.country_select :country_code %>
+            <%= f.country_select :country_code, class: "form-control" %>
           </div>
         </div>
 
@@ -50,7 +50,7 @@
             <%= f.label :お仕事 %>
           </div>
           <div class="field col-md-7">
-            <%= f.text_field :job, placeholder: "大学生", class: "w-50" %>
+            <%= f.text_field :job, placeholder: "大学生", class: "w-50 form-control" %>
           </div>
         </div>
 
@@ -62,7 +62,7 @@
             <% end %>
           </div>
           <div class="field col-md-7">
-            <%= f.password_field :password, placeholder: "新しいパスワード", class: "w-50" %>
+            <%= f.password_field :password, placeholder: "新しいパスワード", class: "w-50 form-control" %>
           </div>
         </div>
 
@@ -71,7 +71,7 @@
             <%= f.label :パスワード %>(確認用)
           </div>
           <div class="field col-md-7">
-            <%= f.password_field :password_confirmation, placeholder: "新しいパスワード（確認用）", class: "w-50" %>
+            <%= f.password_field :password_confirmation, placeholder: "新しいパスワード（確認用）", class: "w-50 form-control" %>
           </div>
         </div>
 

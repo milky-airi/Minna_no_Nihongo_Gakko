@@ -17,79 +17,126 @@
         （<%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月卒業）
       </div>
 
-      <div class="d-flex mt-3">
-        <h6>総合評価</h6>
-        <div class="ml-3"><%= render "public/reviews/static_rate", review: review %></div>
-      </div>
-      <h6><%= review.comment_integer %></h6>
-
-      <div class="mt-4">
-        【授業について】
-        <%= review.evaluation_class %>点/5点
-      </div>
-      <div><%= review.comment_class %></div>
-
-      <div class="mt-4">
-        【進路について】
-        <%= review.evaluation_after_graduation %>点/5点
-      </div>
-      <div><%= review.comment_after_graduation %></div>
-
-      <div class="mt-4">
-        【立地について】
-        <%= review.evaluation_place %>点/5点
-      </div>
-      <div><%= review.comment_place %></div>
-
-      <div class="mt-4">
-        【施設・設備について】
-        <%= review.evaluation_facility %>点/5点
-      </div>
-      <div><%= review.comment_facility %></div>
-
-      <div class="mt-4">
-        【学生について】
-        <%= review.evaluation_student %>点/5点
-      </div>
-      <div><%= review.comment_student %></div>
-
-      <div class="mt-4">
-        【教師について】
-        <%= review.evaluation_teacher %>点/5点
-      </div>
-      <div><%= review.comment_teacher %></div>
-
-      <div class="mt-4">
-        【学校生活について】
-        <%= review.evaluation_life %>点/5点
-      </div>
-      <div><%= review.comment_life %></div>
-
-      <div class="mt-4">
-        【公開状況】
-
-          <% if review.is_open %>
-            公開中
-          <% else %>
-            非公開
-          <% end %>
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="d-flex mt-3">
+            <h6>総合評価</h6>
+            <div class="ml-3"><%= render "public/reviews/static_rate", review: review %></div>
+          </div>
+          <h6><%= review.comment_integer %></h6>
         </div>
-
-      <div class="mt-4">
-        <p>投稿日：<%= review.created_at.strftime('%Y/%m/%d') %></p>
       </div>
 
-      <% if review.user == current_user %>
-        <p class="mt-4"><%= link_to "編集", edit_review_path(review), class: "btn btn-success" %>
-        <%= link_to "削除", review_path(review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></p>
-      <% else %>
-        <p>
-          <%= form_with url: new_alert_path, method: :get do |f| %>
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="mt-4">
+            【授業について】
+            <%= review.evaluation_class %>点/5点
+          </div>
+          <div><%= review.comment_class %></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="mt-4">
+            【進路について】
+            <%= review.evaluation_after_graduation %>点/5点
+          </div>
+          <div><%= review.comment_after_graduation %></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="mt-4">
+            【立地について】
+            <%= review.evaluation_place %>点/5点
+          </div>
+          <div><%= review.comment_place %></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="mt-4">
+            【施設・設備について】
+            <%= review.evaluation_facility %>点/5点
+          </div>
+          <div><%= review.comment_facility %></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="mt-4">
+            【学生について】
+            <%= review.evaluation_student %>点/5点
+          </div>
+          <div><%= review.comment_student %></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="mt-4">
+            【教師について】
+            <%= review.evaluation_teacher %>点/5点
+          </div>
+          <div><%= review.comment_teacher %></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="mt-4">
+            【学校生活について】
+            <%= review.evaluation_life %>点/5点
+          </div>
+          <div><%= review.comment_life %></div>
+        </div>
+      </div>
+
+      <% if current_user.id == review.user.id %>
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="mt-4">
+          【公開状況】
+            <% if review.is_open %>
+              公開中
+            <% else %>
+              非公開
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <div class="mt-4">
+            <% if review.created_at == review.updated_at %>
+              <p>投稿日：<%= review.created_at.strftime('%Y/%m/%d') %></p>
+            <% else %>
+              <p>更新日：<%= review.updated_at.strftime('%Y/%m/%d') %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <% if review.user == current_user %>
+            <p class="mt-4"><%= link_to "編集", edit_review_path(review), class: "btn btn-success" %>
+            <%= link_to "削除", review_path(review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></p>
+          <% else %>
+            <%= form_with url: new_alert_path, method: :get do |f| %>
             <%= hidden_field_tag :review_id, review.id %>
             <%= f.submit "このレビューを通報する", class: "btn btn-outline-danger" %>
+            <% end %>
           <% end %>
-        </p>
-      <% end %>
+        </div>
+      </div>
 
     </div>
 

@@ -1,5 +1,6 @@
 <div class="container-fluid light-blue-container p-5">
   <div class="row">
+    
     <div class="col-md-11 offset-md-1">
       <%= render "public/shared/error_messages", resource: current_user %>
       <h5><%= @user.name %>さんのプロフィール編集</h5>
@@ -23,7 +24,7 @@
               <%= f.label :お名前 %>
             </div>
             <div class="field col-md-5 offset-md-1">
-              <%= f.text_field :name %>
+              <%= f.text_field :name, class: "form-control" %>
             </div>
           </div>
 
@@ -32,7 +33,7 @@
               <%= f.label :おなまえ %>(ひらがな)
             </div>
             <div class="field col-md-5 offset-md-1">
-              <%= f.text_field :name_kana %>
+              <%= f.text_field :name_kana, class: "form-control" %>
             </div>
           </div>
 
@@ -41,7 +42,7 @@
               <%= f.label :メールアドレス %>
             </div>
             <div class="field col-md-5 offset-md-1">
-              <%= f.email_field :email %>
+              <%= f.email_field :email, class: "form-control" %>
             </div>
           </div>
 
@@ -50,7 +51,7 @@
               <%= f.label :お国 %>
             </div>
             <div class="field col-md-5 offset-md-1">
-              <%= f.country_select :country_code %>
+              <%= f.country_select :country_code, class: "form-control" %>
             </div>
           </div>
 
@@ -59,7 +60,7 @@
               <%= f.label :お仕事 %>
             </div>
             <div class="field col-md-5 offset-md-1">
-              <%= f.text_field :job, placeholder: "会社員" %>
+              <%= f.text_field :job, class: "form-control" %>
             </div>
           </div>
 

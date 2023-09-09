@@ -109,21 +109,21 @@
 
           <div class="field">
             <%= f.label :学生の国籍, class: "mr-2 mt-3" %>
-            <%= f.text_field :nationality, placeholder: "インドネシア" %> を含む
+            <%= f.text_field :nationality, placeholder: "インドネシア", class: "form-control w-50 d-inline" %> を含む
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="field">
             <%= f.label :学費, class: "mr-2" %>
-            <%= f.text_field :anual_fee_greater_than_or_equal, placeholder: "下限なし" %>
+            <%= f.text_field :anual_fee_greater_than_or_equal, placeholder: "下限なし", class: "form-control w-25 d-inline" %>
             〜
-            <%= f.text_field :anual_fee_less_than, placeholder: "上限なし" %>
+            <%= f.text_field :anual_fee_less_than, placeholder: "上限なし", class: "form-control w-25 d-inline" %>
           </div>
 
           <div class="field">
             <%= f.label :単語, class: "mr-2 mt-3" %>
-            <%= f.text_field :word %>
+            <%= f.text_field :word, class: "form-control w-50 d-inline" %>
           </div>
         </div>
       </div>

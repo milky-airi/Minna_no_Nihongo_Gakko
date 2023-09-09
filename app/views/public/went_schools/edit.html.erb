@@ -7,46 +7,46 @@
     </div>
 
     <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
-      <div class="row">
+      <!--<div class="row">-->
         <%= form_with model: @went_school, url: went_school_path(@went_school.id), method: :patch do |f| %>
 
-        <div class="row">
-          <div class="col-md-5 offset-md-1 text-right">
+        <div class="row mt-5">
+          <div class="col-md-5 text-right">
             <%= f.label :日本語学校 %>
           </div>
           <div class="field col-md-5 offset-md-1">
-            <%= f.collection_select :school_id, School.all, :id, :name %>
+            <%= f.collection_select :school_id, School.all, :id, :name, class: "form-control" %>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-5 offset-md-1 text-right">
+          <div class="col-md-5 text-right">
             <%= f.label :卒業年 %>
           </div>
           <div class="field col-md-5 offset-md-1">
-            <%= f.text_field :graduate_year, class: "w-75" %>
+            <%= f.text_field :graduate_year, class: "w-50 form-control" %>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-5 offset-md-1 text-right">
+          <div class="col-md-5 text-right">
             <%= f.label :卒業月 %>
           </div>
           <div class="field col-md-5 offset-md-1">
-            <%= f.select :graduate_month,  1..12 %>
+            <%= f.select :graduate_month,  1..12, class: "form-control" %>
           </div>
         </div>
 
         <div class="row mt-4">
-          <div class="actions col-md-5 offset-md-1 text-right">
+          <div class="col-md-5 text-right">
             <%= f.submit "更新", class: "btn btn-success" %>
             <% end %>
           </div>
           <div class="col-md-5 offset-md-1">
-            <%= link_to "削除", went_school_path(current_user.went_school.id), method: :delete, data: { confirm: "出身校情報を削除してもよろしいですか？" }, class: "btn btn-danger" %>
+            <%= link_to "出身校削除", went_school_path(current_user.went_school.id), method: :delete, data: { confirm: "出身校情報を削除してもよろしいですか？" }, class: "btn btn-danger" %>
           </div>
         </div>
-      </div>
+      <!--</div>-->
     </div>
 
     <div class="col-md-3 offset-md-1 bg-white p-4 mt-4">
