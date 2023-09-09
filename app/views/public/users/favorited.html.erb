@@ -6,15 +6,12 @@
      <h5>お気に入り一覧</h5>
   </div>
 
-    <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
+    <div class="col-md-7 offset-md-1">
       <div class="row">
         <% if @favorites.present? %>
 
-
-
         <% @favorites.each do |favorite| %>
-          <!--<div class="row mt-2">-->
-            <div class="col-md-11 offset-md-1 bg-white p-3 mt-5">
+            <div class="col-md-11 offset-md-1 bg-white p-4 mt-3">
 
               <div class="row">
 
@@ -59,7 +56,6 @@
                 </div>
               </div>
             </div>
-          <!--</div>-->
         <% end %>
 
         <% else %>
