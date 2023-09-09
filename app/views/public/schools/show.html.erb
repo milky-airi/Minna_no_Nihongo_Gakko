@@ -132,7 +132,9 @@
       <p>【学費（年間）】</p>
     </div>
     <div class="col-md-9">
-      <p><%= @school.anual_fee.to_s(:delimited) %>円</p>
+      <% if @school.anual_fee.present? %>
+        <p><%= @school.anual_fee.to_s(:delimited) %>円</p>
+      <% end %>
     </div>
   </div>
 

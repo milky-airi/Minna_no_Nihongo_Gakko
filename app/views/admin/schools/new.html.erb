@@ -1,118 +1,213 @@
 <div class="container">
 
-  <div class="row">
-    <h3>日本語学校登録</h3>
+  <div class="row mt-5">
+    <h3>学校情報登録</h3>
   </div>
 
   <div class="row">
-    <%= form_with model: @school, url: admin_schools_path, method: :post do |f| %>
+    <p><%= flash[:alert] %></p>
+  </div>
 
-      <div class="field">
-        <%= f.label :日本語学校名 %><br />
-        <%= f.text_field :name, autofocus: true, placeholder: "ABC日本語学校" %>
+    <%= form_with model: School.new, url: admin_schools_path, method: :post do |f| %>
+
+    <div class="row">
+      <div class="col-md-5 text-right">
+        <%= f.label :学校画像 %>
       </div>
-
-      <div class="field">
-        <%= f.label :日本語学校名 %>(かな)<br />
-        <%= f.text_field :name_kana, placeholder: "えーびーしーにほんごがっこう" %>
+      <div class="col-md-5 offset-md-1">
+        <%= f.file_field :image, accept: "image/*" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :日本語学校名 %>(英語)<br />
-        <%= f.text_field :name_en, placeholder: "ABC Japanese Language School" %>
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :学校画像出典 %>（URL）
       </div>
-
-      <div class="field">
-        <%= f.label :学校情報 %><br />
-        <%= f.text_area :summary, placeholder: "ABC日本語学校は2001年に設立され、これまでに数多くの卒業生を輩出してきました。" %>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_area :image_from, class: "form-control", rows: "1" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :最寄駅 %><br />
-        <%= f.text_field :station, placeholder: "JR渋谷駅" %>
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :日本語学校名 %>*
       </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_field :name, class: "form-control", autofocus: true, placeholder: "ABC日本語学校" %>
+      </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :都道府県 %><br />
-        <%#= f.select :prefectures, School.prefectures.keys, {} %>
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :日本語学校名 %>(かな)*
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_field :name_kana, class: "form-control", placeholder: "えーびーしーにほんごがっこう" %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :日本語学校名 %>(英語)*
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_field :name_en, class: "form-control", placeholder: "ABC Japanese Language School"%>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :学校情報 %>*
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_area :summary, class: "form-control", placeholder: "ABC日本語学校は2001年に設立され、これまでに数多くの卒業生を輩出してきました。" %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :最寄駅 %>*
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_field :station, class: "form-control", placeholder: "JR渋谷駅" %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :都道府県 %>*
+      </div>
+      <div class="col-md-5 offset-md-1">
         <%= f.select :prefecture, School.prefectures.keys.map { |key| [I18n.t("enums.school.prefecture.#{key}"), key] }, {} %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :都道府県以降の住所 %><br />
-        <%= f.text_area :address, placeholder: "渋谷区1-2-3" %>
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :都道府県以降の住所 %>*
       </div>
-
-      <div class="field">
-        <%= f.label :HPリンク %><br />
-        <%= f.text_area :hp, placeholder: "https://abc-nihongo-gakko.example" %>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_area :address, class: "form-control", rows: "1", placeholder: "渋谷区1-2-3" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :Facebookリンク %><br />
-        <%= f.text_area :facebook, placeholder: "https://facebook/abc-nihongo-gakko.com" %>
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :ホームページリンク %>
       </div>
-
-      <div class="field">
-        <%= f.label :Twitterリンク %><br />
-        <%= f.text_area :twitter, placeholder: "https://twitter/abc-nihongo-gakko.com" %>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_area :hp, class: "form-control", rows: "1", placeholder: "https://abc-nihongo-gakko.example" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :Instagramリンク %><br />
-        <%= f.text_area :instagram, placeholder: "https://instagram/abc-nihongo-gakko.com" %>
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :Facebookリンク %>
       </div>
-
-      <div class="field">
-        <%= f.label :TikTokリンク %><br />
-        <%= f.text_area :tiktok, placeholder: "https://tiktok/abc-nihongo-gakko.com" %>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_area :facebook, class: "form-control", rows: "1" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :YouTubeリンク %><br />
-        <%= f.text_area :youtube, placeholder: "https://youtube/abc-nihongo-gakko.com" %>
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :Twitterリンク %>
       </div>
-
-      <div class="field">
-        <%= f.label :入学要件 %><br />
-        <%= f.text_area :condition, placeholder: "日本語能力N5以上" %>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_area :twitter, class: "form-control", rows: "1" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :学費 %>(年間)<br />
-        <%= f.text_field :anual_fee, placeholder: "600,000" %>
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :Instagramリンク %>
       </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_area :instagram, class: "form-control", rows: "1" %>
+      </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :寮の有無 %><br />
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :TikTokリンク %>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_area :tiktok, class: "form-control", rows: "1" %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :YouTubeリンク %>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_area :youtube, class: "form-control", rows: "1" %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :入学要件 %>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_area :condition, class: "form-control", placeholder: "日本語能力N5以上" %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :学費 %>(年間)
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_field :anual_fee, class: "form-control", placeholder: "600000" %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :寮の有無 %>
+      </div>
+      <div class="col-md-5 offset-md-1">
         <%= f.radio_button :have_dormitory, :true %>
         <%= f.label :have_dormitory, "あり" %>
         <%= f.radio_button :have_dormitory, :false, checked: true %>
         <%= f.label :have_dormitory, "なし" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :寮の家賃 %>(月額)<br />
-        <%= f.text_field :dormitory_fee, placeholder: "20,000" %>
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :寮の家賃 %>(月額)
       </div>
+      <div class="col-md-5 offset-md-1">
+        <%= f.text_field :dormitory_fee, class: "form-control", placeholder: "20000" %>
+      </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :学生の国籍 %>(タグは半角スペースで区切ってください)<br />
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :学生の国籍 %>(半角スペースで区切ってください)
+      </div>
+      <div class="col-md-5 offset-md-1">
         <%= f.text_field :nationality, placeholder: "インドネシア" %>
       </div>
+    </div>
 
-      <div class="field">
-        <%= f.label :公開状況 %><br />
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :公開状況 %>*
+      </div>
+      <div class="col-md-5 offset-md-1">
         <%= f.radio_button :is_open, :true, checked: true %>
         <%= f.label :is_open, "公開" %>
         <%= f.radio_button :is_open, :false %>
         <%= f.label :is_open, "非公開" %>
       </div>
+    </div>
 
-      <div class="actions">
-        <%= f.submit "新規登録", class: "btn btn-success" %>
+      <div class="actions mt-3 text-center mb-5">
+        <%= f.submit "登録", class: "btn btn-success" %>
       </div>
     <% end %>
-  </div>
 
 </div>
