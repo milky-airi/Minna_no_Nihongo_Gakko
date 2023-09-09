@@ -4,7 +4,11 @@
     <div class="col-md-11 offset-md-1">
        <%= flash[:notice] %>
        <%= flash[:alert] %>
-       <h5><%= review.user.name %>さんの投稿したレビュー</h5>
+       <% if review.user.is_deleted == true %>
+         <h5>退会済みユーザーの投稿したレビュー</h5>
+       <% else %>
+         <h5><%= review.user.name %>さんの投稿したレビュー</h5>
+       <% end %>
      </div>
 
     <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
@@ -97,7 +101,7 @@
         </div>
       </div>
 
-      <% if current_user.id == review.user.id %>
+      <% if user_signed_in? && current_user.id == review.user.id %>
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
@@ -154,7 +158,13 @@
             <%= image_tag comment.user.get_profile_image(80, 80), class: "rounded-circle mr-3" %>
           </div>
           <div>
-            <%= comment.user.name %>　<span class="text-secondary"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
+
+            <% if comment.user.is_deleted == true %>
+              退会済みユーザー
+            <% else %>
+              <%= comment.user.name %>
+            <% end %>
+            <span class="text-secondary"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
             <div><%= comment.comment %></div>
             <% if user_signed_in? && comment.user_id == current_user.id %>
               <%= link_to "削除", comment_path(comment.id), method: :delete, data: { confirm: "コメントを削除してもよろしいですか？" }, class: "text-secondary" %>

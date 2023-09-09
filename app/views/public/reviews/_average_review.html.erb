@@ -15,16 +15,26 @@
       <div class="bg-white mt-5 p-5">
         <div class="row">
           <div class="col-md-12">
-            <!DOCTYPE html>
-              <html>
-                <head>
-                  <meta charset="UTF-8" />
-                  <title>bar chart</title>
+
+            <div class="text-center">
+              <canvas id="average_review_chart" width="500" height="500" class="d-inline"></canvas>
+            </div>
+
                   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
                   <script>
-                    window.onload = function () {
+                    let myChart;
+                    // window.onload = function () {
+
+                    document.addEventListener('turbolinks:load', function() {
+                    // $(document).on('turbolinks:load', function() {
                       let context = document.querySelector("#average_review_chart").getContext('2d')
-                      new Chart(context, {
+
+                      if (myChart) {
+                          myChart.destroy();
+                      }
+
+                      myChart = new Chart(context, {
+                      // new Chart(context, {
                         type: 'bar',
                         data: {
                           labels: [
@@ -50,28 +60,22 @@
                           }],
                         },
                         options: {
-                        indexAxis: 'y',
-                        scales: {
-                          x: {
-                            stacked: true,
-                            max: 5.0
+                          indexAxis: 'y',
+                          type: 'bar',
+                          scales: {
+                            x: {
+                              stacked: true,
+                              max: 5.0
+                            },
+                            y: {
+                              stacked: true,
+                            }
                           },
-                          y: {
-                            stacked: true,
-                          }
-                        },
-                        responsive: false
-                      }
+                          responsive: false
+                        }
                       })
-                    }
+                    });
                   </script>
-                </head>
-                <body>
-                  <div class="text-center">
-                    <canvas id="average_review_chart" width="500" height="500" class="d-inline"></canvas>
-                  </div>
-                </body>
-              </html>
 
           </div>
 
