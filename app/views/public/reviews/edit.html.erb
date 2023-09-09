@@ -13,7 +13,7 @@
 
           <div class="row">
             <div class="col-md-5 text-right">
-              <p>星評価</p>
+              <p>星評価<span class="text-danger">*</span></p>
             </div>
             <div class="field col-md-7">
               <div class="form-group" id="star_integer">
@@ -189,7 +189,8 @@
 
         <div class="row mt-4 actions">
             <div class="col-md-12 text-center">
-              <%= f.submit "レビューを更新", class: "btn btn-success w-25" %>
+              <%= f.submit "レビューを更新", class: "btn btn-success" %>
+              <%= link_to "レビューを削除", review_path(@review), method: :delete, data: { confirm: "レビューを削除してもよろしいですか？" }, class: "btn btn-danger" %>
             </div>
           </div>
         <% end %>

@@ -1,30 +1,30 @@
-<div class="container p-5">
+<div class="container-fluid light-blue-container p-5">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-8 offset-md-2">
 
       <%= form_with model: @contact, url: confirm_contacts_path, local: true do |f| %>
         <div class="form-group">
-          <%= f.label :name, 'お名前*' %>
+          <%= f.label :name, 'お名前' %><span class="text-danger">*</span>
           <%= f.text_field :name, autofocus: true, class: 'form-control' %>
         </div>
 
         <div class="form-group">
-          <%= f.label :email, 'メールアドレス*' %>
+          <%= f.label :email, 'メールアドレス' %><span class="text-danger">*</span>
           <%= f.email_field :email, class: 'form-control' %>
         </div>
 
         <div class="form-group">
-          <%= f.label :subject, '件名*' %>
+          <%= f.label :subject, '件名' %><span class="text-danger">*</span>
           <%= f.text_area :subject, class: 'form-control' %>
         </div>
 
         <div class="form-group">
-          <%= f.label :message, 'メッセージ*' %>
+          <%= f.label :message, 'メッセージ' %><span class="text-danger">*</span>
           <%= f.text_area :message, size: '10x10', class: 'form-control' %>
         </div>
 
         <div>
-          <%= f.submit '入力内容確認', class: "btn btn-outline-secondary" %>
+          <%= f.submit '入力内容確認', class: "btn btn-outline-info bg-white" %>
         </div>
       <% end %>
 

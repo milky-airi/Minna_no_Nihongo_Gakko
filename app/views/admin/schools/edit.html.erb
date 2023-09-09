@@ -30,7 +30,7 @@
 
     <div class="row mt-2">
       <div class="col-md-5 text-right">
-        <%= f.label :日本語学校名 %>*
+        <%= f.label :日本語学校名 %><span class="text-danger">*</span>
       </div>
       <div class="col-md-5 offset-md-1">
         <%= f.text_field :name, class: "form-control" %>
@@ -39,7 +39,7 @@
 
     <div class="row mt-2">
       <div class="col-md-5 text-right">
-        <%= f.label :日本語学校名 %>(かな)*
+        <%= f.label :日本語学校名 %>(かな)<span class="text-danger">*</span>
       </div>
       <div class="col-md-5 offset-md-1">
         <%= f.text_field :name_kana, class: "form-control" %>
@@ -48,7 +48,7 @@
 
     <div class="row mt-2">
       <div class="col-md-5 text-right">
-        <%= f.label :日本語学校名 %>(英語)*
+        <%= f.label :日本語学校名 %>(英語)<span class="text-danger">*</span>
       </div>
       <div class="col-md-5 offset-md-1">
         <%= f.text_field :name_en, class: "form-control" %>
@@ -57,7 +57,7 @@
 
     <div class="row mt-2">
       <div class="col-md-5 text-right">
-        <%= f.label :学校情報 %>*
+        <%= f.label :学校情報 %><span class="text-danger">*</span>
       </div>
       <div class="col-md-5 offset-md-1">
         <%= f.text_area :summary, class: "form-control" %>
@@ -66,7 +66,7 @@
 
     <div class="row mt-2">
       <div class="col-md-5 text-right">
-        <%= f.label :最寄駅 %>*
+        <%= f.label :最寄駅 %><span class="text-danger">*</span>
       </div>
       <div class="col-md-5 offset-md-1">
         <%= f.text_field :station, class: "form-control" %>
@@ -75,7 +75,7 @@
 
     <div class="row mt-2">
       <div class="col-md-5 text-right">
-        <%= f.label :都道府県 %>*
+        <%= f.label :都道府県 %><span class="text-danger">*</span>
       </div>
       <div class="col-md-5 offset-md-1">
         <%= f.select :prefecture, School.prefectures.keys.map { |key| [I18n.t("enums.school.prefecture.#{key}"), key] }, {} %>
@@ -84,7 +84,7 @@
 
     <div class="row mt-2">
       <div class="col-md-5 text-right">
-        <%= f.label :都道府県以降の住所 %>*
+        <%= f.label :都道府県以降の住所 %><span class="text-danger">*</span>
       </div>
       <div class="col-md-5 offset-md-1">
         <%= f.text_area :address, class: "form-control", rows: "1" %>
@@ -195,7 +195,7 @@
 
     <div class="row mt-2">
       <div class="col-md-5 text-right">
-        <%= f.label :公開状況 %>*
+        <%= f.label :公開状況 %><span class="text-danger">*</span>
       </div>
       <div class="col-md-5 offset-md-1">
         <%= f.radio_button :is_open, :true %>

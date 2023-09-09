@@ -10,9 +10,22 @@
             <nav>
               <ul class="navbar-nav list-group-horizontal">
                 <% if user_signed_in? %>
-                  <li><%= link_to "マイページ", user_path(current_user.id), class: "btn btn-outline-secondary mr-3" %></li>
-                  <li><%= link_to "お気に入り一覧", favorited_users_path, class: "btn btn-outline-secondary mr-3" %></li>
-                  <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %></li>
+                  <li>
+                    <%= link_to user_path(current_user.id), class: "btn btn-success mr-3" do %>
+                      <i class="fa-solid fa-user" style="color: #ffffff;"></i> マイページ
+                    <% end %>
+                    </li>
+                  <li>
+                    <%= link_to favorited_users_path, class: "btn btn-outline-secondary mr-3" do %>
+                      <!--<i class="fa-solid fa-star" style="color: #ff914d;"></i> お気に入り-->
+                      <i class="fa-solid fa-heart text-danger"></i> お気に入り
+                    <% end %>
+                    </li>
+                  <li>
+                    <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" do %>
+                      <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+                    <% end %>
+                  </li>
                 <% else %>
                 <li><%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mr-3" %></li>
                 <li><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-secondary mr-3" %></li>

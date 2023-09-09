@@ -51,7 +51,7 @@ class Public::ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    redirect_to new_review_path
+    redirect_to user_path(current_user)
   end
 
   def individual

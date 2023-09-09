@@ -1,6 +1,6 @@
 <div class="container-fluid light-blue-container p-5">
   <div class="row">
-    
+
     <div class="col-md-11 offset-md-1">
       <%= render "public/shared/error_messages", resource: current_user %>
       <h5><%= @user.name %>さんのプロフィール編集</h5>
@@ -21,7 +21,7 @@
 
           <div class="row mt-2">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :お名前 %>
+              <%= f.label :お名前 %><span class="text-danger">*</span>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.text_field :name, class: "form-control" %>
@@ -30,7 +30,7 @@
 
           <div class="row mt-2">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :おなまえ %>(ひらがな)
+              <%= f.label :おなまえ %>(ひらがな)<span class="text-danger">*</span>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.text_field :name_kana, class: "form-control" %>
@@ -39,7 +39,7 @@
 
           <div class="row mt-2">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :メールアドレス %>
+              <%= f.label :メールアドレス %><span class="text-danger">*</span>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.email_field :email, class: "form-control" %>
@@ -48,7 +48,7 @@
 
           <div class="row mt-2">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :お国 %>
+              <%= f.label :お国 %><span class="text-danger">*</span>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.country_select :country_code, class: "form-control" %>
@@ -57,7 +57,7 @@
 
           <div class="row mt-2">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :お仕事 %>
+              <%= f.label :お仕事 %><span class="text-danger">*</span>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.text_field :job, class: "form-control" %>
