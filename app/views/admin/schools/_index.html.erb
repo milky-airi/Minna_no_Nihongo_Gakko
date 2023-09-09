@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12 mt-5">
+      <h5>日本語学校一覧</h5>
+
+      <table class="table mt-5">
+        <tr>
+          <td>No.</td>
+          <td>日本語学校名</td>
+          <td>都道府県</td>
+          <td>日本語学校情報</td>
+          <td>レビュー件数</td>
+          <td>公開状況</td>
+          <td>作成日</td>
+        </tr>
+        <% schools.each do |school| %>
+        <tr>
+          <td><%= school.id %></td>
+          <td><%= link_to school.name, admin_school_path(school.id) %></td>
+          <td><%= school.prefecture_i18n %></td>
+          <td><%= school.summary.truncate(20) %></td>
+        <td><%= school.reviews.count %></td>
+        <td>
+          <% if school.is_open == true %>
+            公開中
+          <% else %>
+            非公開
+          <% end %>
+          </td>
+        <td><%= school.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+
+</div>
