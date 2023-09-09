@@ -66,10 +66,6 @@ class School < ApplicationRecord
     reviews.exists?(user_id: user.id)
   end
 
-  # def self.look_for(word)
-  #   @schools = School.where("name LIKE ?", "%#{word}%") + School.where("name_kana LIKE ?", "%#{word}%") + School.where("name_en LIKE ?", "%#{word}%")
-  # end
-
   def self.look_for(word)
     School.where("name LIKE ? OR name_kana LIKE ? OR name_en LIKE ?", "%#{word}%", "%#{word}%", "%#{word}%")
   end

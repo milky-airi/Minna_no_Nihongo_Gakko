@@ -27,11 +27,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update]
     resources :alerts, only: [:index, :edit, :update]
-    resources :reviews, only: [:show, :index, :edit, :update] do
-      collection do
-        get '/individual/:user_id', action: :individual, as: 'individual'
-      end
-    end
+    resources :reviews, only: [:show, :index, :edit, :update]
     resources :courses, only: [:new, :create, :edit, :update, :destroy]
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
@@ -47,20 +43,19 @@ Rails.application.routes.draw do
         get 'thanks'
       end
     end
-    resources :reviews do
+    resources :reviews do, only: [:new, :create, :edit, :update, :show, :destroy]
       collection do
         get '/individual/:user_id', action: :individual, as: 'individual'
       end
     end
     resources :comments, only: [:create, :destroy]
-    resources :schools, only: [:index, :show] do
+    resources :schools, only: [:show] do
       resource :favorites, only: [:create, :destroy]
     end
     get '/search' => 'searches#search'
     get '/detail_search' => 'detail_searches#detail_search'
     get '/prefecture_search' => 'prefecture_searches#prefecture_search'
     resources :users, only: [:show, :edit, :update] do
-      # get :confirm_email, on: :collection
       get :favorited, on: :collection
       collection do
         patch 'quit'
@@ -68,8 +63,6 @@ Rails.application.routes.draw do
       end
     end
     resources :went_schools, only: [:new, :create, :edit, :update, :destroy]
-    # resources :sessions do
-    # get :resend_email_confirmation, on: :member
     resources :contacts, only: [:new, :create] do
       collection do
         post 'confirm'
@@ -77,7 +70,6 @@ Rails.application.routes.draw do
         get 'done'
       end
     end
-  # end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

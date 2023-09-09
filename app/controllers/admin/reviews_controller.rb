@@ -26,11 +26,6 @@ class Admin::ReviewsController < ApplicationController
     end
   end
 
-  def individual
-    @user = User.find(params[:user_id])
-    @reviews = Review.where(user_id: @user.id)
-  end
-
   private
 
     def review_params

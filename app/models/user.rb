@@ -1,12 +1,9 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
         # , :confirmable
 
-  # before_create :set_email_confirmation
-  # before_create :send_email_confirmation
 
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -57,27 +54,5 @@ class User < ApplicationRecord
   	end
   	  profile_image.variant(resize_to_limit: [width, height]).processed
   end
-
-  # def set_email_confirmation
-  #   self.confirmation_token = SecureRandom.urlsafe_base64(47)
-  #   self.expiration_date = Time.zone.now + Constants::EMAIL_CONFIRMATION_LIMIT
-  # end
-
-  # def send_email_confirmation
-  #   UserMailer.send_email_confirmation(self).deliver_later
-  # end
-
-  # def expired?
-  #   expiration_date.present? ? expiration_date < Time.zone.now : false
-  # end
-
-  # def activate
-  #   status = User.confirmation_statuses[:confirmed]
-  #   update!(
-  #     confirmation_status: status,
-  #     confirmation_token: nil,
-  #     expiration_date: nil,
-  #   )
-  # end
 
 end

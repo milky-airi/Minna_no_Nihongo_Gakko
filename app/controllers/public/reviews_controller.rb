@@ -2,7 +2,6 @@ class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :craete, :edit, :update, :destroy, :indeividual]
 
   def new
-    # @school = School.find(params[:school_id])
   end
 
   def create
@@ -37,10 +36,6 @@ class Public::ReviewsController < ApplicationController
       flash[:alert] = review.errors.full_messages.join(", ")
       render :edit
     end
-  end
-
-  def index
-    @reviews = Review.where(is_open: true)
   end
 
   def show
