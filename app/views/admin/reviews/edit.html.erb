@@ -1,87 +1,192 @@
 <div class="container">
 
-  <div class="row">
-    <h3>レビュー編集</h3>
-
-    <table class="table">
-      <tr>
-        <td>レビュー投稿者</td>
-        <td><%= @review.user.name %></td>
-      </tr>
-      <tr>
-        <td>日本語学校名</td>
-        <td><%= @review.school.name %></td>
-      </tr>
-        <td>星評価（全体）</td>
-        <td><%= render "public/reviews/static_rate", review: @review %></td>
-      </tr>
-        <td>コメント（全体）</td>
-        <td><%= @review.comment_integer %></td>
-      </tr>
-        <td>5段階評価（授業）</td>
-        <td><%= @review.evaluation_class %></td>
-      </tr>
-        <td>コメント（授業）</td>
-        <td><%= @review.comment_class %></td>
-      </tr>
-        <td>5段階評価（進路）</td>
-        <td><%= @review.evaluation_after_graduation %></td>
-      </tr>
-        <td>コメント（進路）</td>
-        <td><%= @review.comment_after_graduation %></td>
-      </tr>
-        <td>5段階評価（立地）</td>
-        <td><%= @review.evaluation_place %></td>
-      </tr>
-        <td>コメント（立地）</td>
-        <td><%= @review.comment_place %></td>
-      </tr>
-        <td>5段階評価（施設・設備）</td>
-        <td><%= @review.evaluation_facility %></td>
-      </tr>
-        <td>コメント（施設・設備）</td>
-        <td><%= @review.comment_facility %></td>
-      </tr>
-        <td>5段階評価（学生）</td>
-        <td><%= @review.evaluation_student %></td>
-      </tr>
-        <td>コメント（学生）</td>
-        <td><%= @review.comment_student %></td>
-      </tr>
-        <td>5段階評価（教師）</td>
-        <td><%= @review.evaluation_teacher %></td>
-      </tr>
-        <td>コメント（教師）</td>
-        <td><%= @review.comment_teacher %></td>
-      </tr>
-        <td>5段階評価（学校生活）</td>
-        <td><%= @review.evaluation_life %></td>
-      </tr>
-        <td>コメント（学校生活）</td>
-        <td><%= @review.comment_life %></td>
-      </tr>
-    </table>
-
-      <%= form_with model: @review, url: admin_review_path, method: :patch do |f| %>
-
-      <div class="field">
-        <%= f.label :公開状況 %><br>
-        <%= f.radio_button :is_open, :true %>
-        <%= f.label :is_open, "公開" %>
-        <%= f.radio_button :is_open, :false %>
-        <%= f.label :is_open, "非公開" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "更新", class: "btn btn-success" %>
-        <%= link_to "戻る", admin_review_path(@review),  class: "btn btn-secondary" %>
-      </div>
-
-      <% end %>
-
-
-
-
-
+  <div class="row mt-5">
+    <h5>レビュー編集</h5>
   </div>
+
+  <div class="row">
+    <p><%= flash[:alert] %></p>
+  </div>
+
+    <%= form_with model: @review, url: admin_review_path, method: :patch do |f| %>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>レビュー投稿者</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.user.name %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>日本語学校名</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.school.name %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>星評価</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= render "public/reviews/static_rate", review: @review %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>コメント（全体）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.comment_integer %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>5段階評価（授業）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.evaluation_class %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>コメント（授業）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.comment_class %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>5段階評価（進路）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.evaluation_after_graduation %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>コメント（進路）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.comment_after_graduation %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>5段階評価（立地）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.evaluation_place %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>コメント（立地）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.comment_place %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>5段階評価（施設・設備）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.evaluation_facility %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>コメント（施設・設備）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.comment_facility %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>5段階評価（学生）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.evaluation_student %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>コメント（学生）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.comment_student %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>5段階評価（教師）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.evaluation_teacher %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>コメント（教師）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.comment_teacher %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>5段階評価（学校生活）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.evaluation_life %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <p>コメント（学校生活）</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= @review.comment_life %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-5 text-right">
+        <%= f.label :公開状況 %>
+      </div>
+      <div class="col-md-5 offset-md-1">
+          <%= f.radio_button :is_open, :true %>
+          <%= f.label :is_open, "公開中" %>
+          <%= f.radio_button :is_open, :false %>
+          <%= f.label :is_open, "非公開" %>
+      </div>
+    </div>
+
+      <div class="actions mt-5 text-center mb-5">
+        <%= f.submit "更新", class: "btn btn-success w-25" %>
+      </div>
+    <% end %>
+
 </div>

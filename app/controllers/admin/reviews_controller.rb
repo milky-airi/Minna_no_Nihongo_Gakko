@@ -16,8 +16,14 @@ class Admin::ReviewsController < ApplicationController
 
   def update
     review = Review.find(params[:id])
-    review.update(review_params)
-    redirect_to admin_reviews_path
+    if review.update(review_params)
+      flash[:notice] = "レビュー情報を更新しました"
+      redirect_to admin_reviews_path
+    else
+      flash[:alert] = review.errors.full_messages.join(", ")
+      @review = Review.find(params[:id])
+      render :edit
+    end
   end
 
   def individual

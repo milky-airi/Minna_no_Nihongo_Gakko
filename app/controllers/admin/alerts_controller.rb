@@ -11,8 +11,14 @@ class Admin::AlertsController < ApplicationController
 
   def update
     alert = Alert.find(params[:id])
-    alert.update(alert_params)
-    redirect_to admin_alerts_path
+    if alert.update(alert_params)
+      flash[:notice] = "通報情報を更新しました"
+      redirect_to admin_alerts_path
+    else
+      @alert = Alert.find(params[:id])
+      flash[:alert] = review.errors.full_messages.join(", ")
+      render :edit
+    end
   end
 
   private
