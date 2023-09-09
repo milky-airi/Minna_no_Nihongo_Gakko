@@ -11,6 +11,15 @@
       <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
 
     <div class="row mt-2">
+      <div class="col-md-5 text-right mt-4">
+        <p>プロフィール画像</p>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <%= image_tag @user.get_profile_image(100,100) %>
+      </div>
+    </div>
+
+    <div class="row mt-2">
       <div class="col-md-5 text-right">
         <p>名前</p>
       </div>

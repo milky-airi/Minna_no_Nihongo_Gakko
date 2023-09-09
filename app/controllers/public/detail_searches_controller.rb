@@ -6,7 +6,7 @@ class Public::DetailSearchesController < ApplicationController
     @anual_fee_greater_than_or_equal = params[:anual_fee_greater_than_or_equal]
     @anual_fee_less_than = params[:anual_fee_less_than]
     @word = params[:word]
-    @schools = School.look_detail_for(@prefecture, @nationalities, @anual_fee_greater_than_or_equal, @anual_fee_less_than, @word)
+    @schools = School.look_detail_for(@prefecture, @nationalities, @anual_fee_greater_than_or_equal, @anual_fee_less_than, @word).page(params[:page]).per(10)
   end
 
 end

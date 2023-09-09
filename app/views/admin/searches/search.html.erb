@@ -8,7 +8,13 @@
     <%= render "admin/schools/index.html.erb", schools: @schools %>
 
     <% else %>
-      <h3>キーワードに合致する日本語学校はありませんでした。他のキーワードで検索してください。</h3>
+    <div class="container p-5">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h5>キーワードに合致する日本語学校はありませんでした。他のキーワードで検索してください。</h5>
+        </div>
+      </div>
+    </div>
     <% end %>
 
   </div>
