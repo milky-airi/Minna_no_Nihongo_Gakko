@@ -26,7 +26,7 @@ class Admin::SchoolsController < ApplicationController
   end
 
   def index
-    @schools = School.all.page(params[:page]).per(10)
+    @schools = School.all.page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def show
