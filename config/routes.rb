@@ -43,7 +43,7 @@ Rails.application.routes.draw do
         get 'thanks'
       end
     end
-    resources :reviews do, only: [:new, :create, :edit, :update, :show, :destroy]
+    resources :reviews, only: [:new, :create, :edit, :update, :show, :destroy] do
       collection do
         get '/individual/:user_id', action: :individual, as: 'individual'
       end

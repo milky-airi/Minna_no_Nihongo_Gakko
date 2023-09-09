@@ -18,22 +18,10 @@
       <p class="text-secondary"><%= @school.name_en %></p>
       <i class="fa-solid fa-location-dot text-info mr-1"></i><%= @school.prefecture_i18n %>/<%= @school.station %>
 
-      <% if user_signed_in? %>
-        <% if @school.favorited_by?(current_user) %>
-          <%= link_to school_favorites_path(@school.id), method: :delete do %>
-              <p class="text-dark"><i class="fa-solid fa-heart text-danger mr-1"></i>お気に入り解除</p>
-          <% end %>
-        <% else %>
-          <%= link_to school_favorites_path(@school.id), method: :post do %>
-              <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
-          <% end %>
-        <% end %>
-      <!--未ログイン状態  -->
-      <% else %>
-        <%= link_to school_favorites_path(@school.id), method: :post do %>
-          <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
-        <% end %>
-      <% end %>
+      <span id="favorite_btns_<%= @school.id %>">
+        <% school = @school %>
+        <%= render 'public/favorites/btn.html.erb', school: school %>
+      </span>
 
       <% if @school.reviews.present? %>
         <%= render "public/reviews/average_rate.html.erb", school: @school %>
