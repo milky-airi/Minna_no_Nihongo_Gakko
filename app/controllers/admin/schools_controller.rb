@@ -48,6 +48,7 @@ class Admin::SchoolsController < ApplicationController
   def destroy
     school = School.find(params[:id])
     school.destroy
+    flash[:notice] = "学校情報を削除しました"
     redirect_to admin_schools_path
   end
 

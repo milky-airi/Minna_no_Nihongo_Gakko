@@ -18,6 +18,7 @@
       <i class="fa-solid fa-location-dot text-info mr-1"></i><%= @school.prefecture_i18n %>/<%= @school.station %>
 
       <p><%= link_to "学校情報編集", edit_admin_school_path(@school), class: "btn btn-success mt-2" %></p>
+      <p><%= link_to "学校情報削除", admin_school_path(@school), method: :delete, class: "btn btn-danger", data: { confirm: "学校情報を削除してもよろしいですか？" } %></p>
 
       <% if @school.reviews.present? %>
         <%= render "public/reviews/average_rate.html.erb", school: @school %>
