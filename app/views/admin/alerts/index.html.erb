@@ -23,7 +23,7 @@
         <% @alerts.each do |alert| %>
         <tr>
            <td><%= link_to alert.id, edit_admin_alert_path(alert.id) %></td>
-            <td><%= alert.user.name %></td>
+            <td><%= link_to alert.user.name, admin_user_path(alert.user.id) %></td>
             <td><%= link_to alert.review.id, admin_review_path(alert.review) %></td>
             <td><%= alert.reason %></td>
             <td>
