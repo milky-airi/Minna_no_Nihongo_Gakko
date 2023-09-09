@@ -1,70 +1,79 @@
-<div class="container">
+<div class="container-fluid blue-container p-5">
+  <h5 class="text-white text-center">詳しい条件から日本語学校を探す</h5>
 
   <div class="row">
-    <div class="col-md-12">
-      <table class="table">
+    <div class="col-md-10 offset-md-1 bg-white p-5 mt-5">
+      <div class="row">
+
+        <div class="col-md-5 offset-md-1">
+          <%= form_with url: admin_detail_search_path, local: true, method: :get do |f| %>
+
+          <div class="field">
+            <%= f.label :都道府県　, class: "mr-2" %>
+            <%= f.select :prefecture, School.prefectures.keys.map { |key| [I18n.t("enums.school.prefecture.#{key}"), key] }, { include_blank: '選択してください'} %>
+          </div>
+
+          <div class="field">
+            <%= f.label :学生の国籍, class: "mr-2 mt-3" %>
+            <%= f.text_field :nationality, placeholder: "インドネシア", class: "form-control w-50 d-inline" %> を含む
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="field">
+            <%= f.label :学費, class: "mr-2" %>
+            <%= f.text_field :anual_fee_greater_than_or_equal, placeholder: "下限なし", class: "form-control w-25 d-inline" %>
+            〜
+            <%= f.text_field :anual_fee_less_than, placeholder: "上限なし", class: "form-control w-25 d-inline" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :単語, class: "mr-2 mt-3" %>
+            <%= f.text_field :word, class: "form-control w-50 d-inline" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-12 text-center">
+        <div class="actions">
+          <%= f.submit "検索", class: "btn btn-secondary w-25" %>
+        </div>
+        <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12 mt-5">
+      <h5>日本語学校一覧</h5>
+
+      <table class="table mt-5">
         <tr>
+          <td>No.</td>
           <td>日本語学校名</td>
-          <td>日本語学校名（かな）</td>
           <td>日本語学校名（英語）</td>
           <td>日本語学校情報</td>
           <td>住所</td>
         </tr>
         <% @schools.each do |school| %>
         <tr>
+          <td><%= school.id %></td>
           <td><%= link_to school.name, admin_school_path(school.id) %></td>
-          <td><%= school.name_kana %></td>
           <td><%= school.name_en %></td>
-          <td><%= school.summary %></td>
-          <td><%= school.address %></td>
+          <td><%= school.summary.truncate(20) %></td>
+          <td><%= school.prefecture_i18n %> <%= school.address %></td>
         </tr>
         <% end %>
       </table>
     </div>
   </div>
 
-    <div class="row">
-      <h3>条件から日本語学校を探す</h3>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <%= form_with url: detail_search_path, local: true, method: :get do |f| %>
-
-        <div class="field">
-          <%= f.label :都道府県 %>
-          <%= f.select :prefecture, School.prefectures.keys, { include_blank: '選択してください'} %>
-        </div>
-
-        <div class="field">
-          <%= f.label :学生の国籍 %>(タグは半角スペースで区切ってください)<br />
-          <%= f.text_field :nationality, placeholder: "インドネシア" %> を含む
-        </div>
-
-      </div>
-
-      <div class="col-md-6">
-
-        <div class="field">
-          <%= f.label :学費 %>(年間)
-          <%= f.text_field :anual_fee_greater_than_or_equal, placeholder: "下限なし" %>
-          〜
-          <%= f.text_field :anual_fee_less_than, placeholder: "上限なし" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :キーワード %>
-          <%= f.text_field :word %>
-        </div>
-
-      </div>
-
-      <div class="actions">
-        <%= f.submit "検索", class: "btn btn-outline-secondary" %>
-      </div>
-
-      <% end %>
-
-  </div>
 
 </div>
+<!--</div>-->
