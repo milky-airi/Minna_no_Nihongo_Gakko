@@ -17,7 +17,7 @@ class School < ApplicationRecord
   KANA_REGEX = /\A[\p{katakana}\p{hiragana}\u{30fc}]+\z/
   validates :name_kana, format: { with: KANA_REGEX, message: 'はひらがなかカタカナで入力してください' }
   # アルファベットのみの正規表現
-  ENGLISH_REGEX = /\A[a-zA-Z\s]+\z/
+  ENGLISH_REGEX = /\A[a-zA-Z\s&]+\z/
   validates :name_en, format: { with: ENGLISH_REGEX, message: 'はアルファベットで入力してください' }
 
   enum prefecture:{

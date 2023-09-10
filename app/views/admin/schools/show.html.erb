@@ -50,34 +50,26 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-3">
-      <p>【住所】</p>
-    </div>
-    <div class="col-md-9">
-      <p><%= @school.prefecture_i18n %> <%= @school.address %></p>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-3">
-      <p>【HP】</p>
-    </div>
-    <div class="col-md-9">
-      <% if @school.hp.blank? %>
+  <table class="table mt-3">
+    <tr>
+      <td>【住所】</td>
+      <td><%= @school.prefecture_i18n %> <%= @school.address %></td>
+    </tr>
+    <tr>
+      <td>【HP】</td>
+      <td>
+        <% if @school.hp.blank? %>
           HP情報はありません
         <% else %>
           <p><%= link_to @school.hp, @school.hp %></p>
         <% end %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <p>【SNS】</p>
-    </div>
-    <div class="col-md-9">
-      <% if @school.facebook.present? %>
+      </td>
+    </tr>
+    <tr>
+      <td>【SNS】</td>
+      <td>
+        <% if @school.facebook.present? %>
         <%= link_to @school.facebook do %>
           <i class="fa-brands fa-facebook fa-xl text-dark mr-1"></i>
         <% end %>
@@ -105,52 +97,36 @@
       <% if @school.facebook.blank? && @school.twitter.blank? && @school.instagram.blank? && @school.tiktok.blank? && @school.youtube.blank? %>
         SNSアカウントはありません
       <% end %>
-    </div>
-  </div>
+      </td>
+    </tr>
+    <tr>
+      <td>【入学要件】</td>
+      <td><%= @school.condition %></td>
+    </tr>
+    <tr>
+      <td>【学費（年間）】</td>
+      <td>
+        <% if @school.anual_fee.present? %>
+          <%= @school.anual_fee.to_s(:delimited) %>円
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>【学生の国籍】</td>
+      <td><%= @school.student_nationality_tags.map { |tag| tag.nationality }.join(", ") %></td>
+    </tr>
+    <tr>
+      <td>【寮の有無（寮の家賃）】</td>
+      <td>
+        <% if @school.have_dormitory == true %>
+          あり（家賃：<%= @school.dormitory_fee.to_s(:delimited) %>円/月）
+        <% else %>
+          なし
+        <% end %>
+      </td>
+    </tr>
+  </table>
 
-  <div class="row">
-    <div class="col-md-3">
-      <p>【入学要件】</p>
-    </div>
-    <div class="col-md-9">
-      <p><%= @school.condition %></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <p>【学費（年間）】</p>
-    </div>
-    <div class="col-md-9">
-      <% if @school.anual_fee.present? %>
-        <p><%= @school.anual_fee.to_s(:delimited) %>円</p>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <p>【学生の国籍】</p>
-    </div>
-    <div class="col-md-9">
-      <ul class="list-unstyled">
-        <%= @school.student_nationality_tags.map { |tag| tag.nationality }.join(", ") %>
-      </ul>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <p>【寮の有無（寮の家賃）】</p>
-    </div>
-    <div class="col-md-9">
-      <% if @school.have_dormitory == true %>
-        <p>あり（家賃：<%= @school.dormitory_fee.to_s(:delimited) %>円/月）</p>
-      <% else %>
-        <p>なし</p>
-      <% end %>
-    </div>
-  </div>
 
   <div class="row">
     <div class="col-md-12">

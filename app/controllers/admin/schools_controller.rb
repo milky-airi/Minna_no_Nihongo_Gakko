@@ -14,6 +14,7 @@ class Admin::SchoolsController < ApplicationController
       redirect_to admin_schools_path
     else
       flash[:alert] = school.errors.full_messages.join(", ")
+      @school = School.new(school_params)
       render :new
     end
   end
