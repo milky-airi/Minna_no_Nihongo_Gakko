@@ -2,7 +2,7 @@
 
   <div class="row">
 
-    <div class="col-md-4 text-center">
+    <div class="col-md-4  offset-md-1 text-center">
       <% if @school.image_from.present? %>
         <%= link_to @school.image_from do %>
           <%= image_tag @school.get_image(300,225), class: "object-fit-cover" %>
@@ -13,7 +13,7 @@
       <% end %>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-7">
       <h5><%= @school.name %></h5>
       <p class="text-secondary"><%= @school.name_en %></p>
       <i class="fa-solid fa-location-dot text-info mr-1"></i><%= @school.prefecture_i18n %>/<%= @school.station %>
@@ -46,8 +46,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
+  <div class="row mt-3">
+    <div class="col-md-10 offset-md-1">
       <h5><%= @school.name %>の特色</h5>
       <p><%= @school.summary %></p>
     </div>
@@ -135,8 +135,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
+  <div class="row mt-3">
+    <div class="col-md-10 offset-md-1">
       <%= render "public/schools/map.html.erb", school: @school %>
     </div>
   </div>
@@ -165,7 +165,11 @@
             <td><%= course.name %></td>
             <td><%= course.admission_month %>月</td>
             <td><%= course.duration %>ヶ月</td>
-            <td><%= course.capacity %>名</td>
+            <td>
+              <% if course.capacity.present? %>
+                <%= course.capacity %>名
+              <% end %>
+              </td>
             <td><%= course.condition %></td>
           </tr>
         <% end %>

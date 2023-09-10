@@ -10,7 +10,9 @@
             <% end %>
             <p>引用：<%= link_to "リンク", school.image_from %></p>
           <% else %>
-            <%= image_tag school.get_image(260,195), class: "object-fit-cover" %>
+            <%= link_to school_path(school) do %>
+              <%= image_tag school.get_image(260,195), class: "object-fit-cover" %>
+            <% end %>
           <% end %>
         </div>
 

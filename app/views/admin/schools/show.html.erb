@@ -1,6 +1,7 @@
 <div class="container p-5">
 <%= flash[:notice] %>
   <div class="row">
+
     <div class="col-md-4 text-center">
       <% if @school.image_from.present? %>
         <%= link_to @school.image_from do %>
@@ -161,7 +162,11 @@
             <td><%= course.name %></td>
             <td><%= course.admission_month %>月</td>
             <td><%= course.duration %>ヶ月</td>
-            <td><%= course.capacity %>名</td>
+            <td>
+              <% if course.capacity.present? %>
+                <%= course.capacity %>名
+              <% end %>
+              </td>
             <td><%= course.condition %></td>
             <td>
               <%= link_to "編集", edit_admin_course_path(course.id), class: "btn btn-success" %>

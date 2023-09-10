@@ -5,6 +5,10 @@
   </div>
 
   <div class="row">
+    <%= flash[:alert] %>
+  </div>
+
+  <div class="row">
     <%= form_with model: @course, url: admin_courses_path, method: :post do |f| %>
 
       <div class="field">
@@ -12,13 +16,7 @@
         <%= f.text_field :name, autofocus: true, placeholder: "2年コース", class: "form-control" %>
       </div>
 
-      <!--<div class="field">-->
-        <%#= f.label :日本語学校 %>
-        <%#= f.collection_select :school_id, School.all, :id, :name %>
-        <%#= f.hidden_field :school_id, @shcool_id %>
         <%= f.hidden_field :school_id, value: @school_id %>
-
-      <!--</div>-->
 
       <div class="field">
         <%= f.label :入学時期 %>(月)<br />
