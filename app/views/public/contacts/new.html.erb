@@ -2,6 +2,10 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
 
+      <div class="mb-2">
+        <%= flash[:alert] %>
+      </div>
+
       <%= form_with model: @contact, url: confirm_contacts_path, local: true do |f| %>
         <div class="form-group">
           <%= f.label :name, 'お名前' %><span class="text-danger">*</span>

@@ -11,7 +11,11 @@
               <ul class="navbar-nav list-group-horizontal">
                 <% if admin_signed_in? %>
                 <% if Alert.exists?(is_done: false) %>
-                  <li><%= link_to "通報一覧", admin_alerts_path, class: "btn btn-outline-danger mr-3" %></li>
+                  <li>
+                    <%= link_to admin_alerts_path, class: "btn btn-outline-danger mr-3" do %>
+                      <i class="fa-solid fa-bell text-danger"></i> 未対応通報あり
+                    <% end %>
+                  </li>
                   <% else %>
                   <li><%= link_to "通報一覧", admin_alerts_path, class: "btn btn-outline-secondary mr-3" %></li>
                 <% end %>

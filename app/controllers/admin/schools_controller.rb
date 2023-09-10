@@ -52,9 +52,6 @@ class Admin::SchoolsController < ApplicationController
     redirect_to admin_schools_path
   end
 
-  # def close
-  # end
-
   private
 
     def school_params

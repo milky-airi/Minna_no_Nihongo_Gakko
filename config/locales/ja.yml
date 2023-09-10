@@ -110,6 +110,14 @@ ja:
         station: "最寄駅"
         prefecture: "都道府県"
         address: "都道府県以降の住所"
+    models:
+      contact: "お問い合わせ"
+    attributes:
+      contact:
+        name: "お名前"
+        email: "メールアドレス"
+        subject: "件名"
+        message: "お問い合わせ内容"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

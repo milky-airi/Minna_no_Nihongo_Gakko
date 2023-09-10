@@ -35,7 +35,11 @@
 
               <%= form_with url: search_path, method: :get, local: true, class: "float-right form-inline mt-3" do |f| %>
                 <%= f.text_field :word, placeholder: "Search", class: "form-control w-75 mr-2" %>
-                <%= f.submit "検索", class: "btn btn-outline-secondary" %>
+
+                <%= button_tag type: "submit", class: "btn" do %>
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                <% end %>
+
               <% end %>
           </div>
 
