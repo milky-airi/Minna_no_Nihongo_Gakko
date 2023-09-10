@@ -9,7 +9,8 @@
     <% end %>
   <% end %>
 <% else %>
-  <%= link_to school_favorites_path(school.id), method: :post, remote: true, data: {"turbolinks" => false}  do %>
+  <%#= link_to school_favorites_path(school.id), method: :post, remote: true, data: {"turbolinks" => false}  do %>
+  <%= link_to school_favorites_path(school.id), method: :post do %>
       <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
   <% end %>
 <% end %>
