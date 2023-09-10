@@ -108,7 +108,7 @@ class School < ApplicationRecord
   end
 
   def full_address
-    [prefecture, address].compact.join(', ')
+    [prefecture, address].compact.join(' ')
   end
 
 end
