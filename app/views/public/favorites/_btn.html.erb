@@ -1,15 +1,15 @@
 <% if user_signed_in? %>
   <% if school.favorited_by?(current_user) %>
     <%= link_to school_favorites_path(school.id), method: :delete, remote: true, data: {"turbolinks" => false}  do %>
-        <p class="text-dark"><i class="fa-solid fa-heart text-danger mr-1"></i>お気に入り解除</p>
+        <p class="text-dark"><i class="fa-solid fa-heart text-danger mr-1"></i><span class="translatable-text">お気に入り解除</span></p>
     <% end %>
   <% else %>
     <%= link_to school_favorites_path(school.id), method: :post, remote: true, data: {"turbolinks" => false}  do %>
-        <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
+        <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i><span class="translatable-text">お気に入り登録</span></p>
     <% end %>
   <% end %>
 <% else %>
   <%= link_to school_favorites_path(school.id), method: :post do %>
-      <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i>お気に入り登録</p>
+      <p class="text-dark"><i class="fa-regular fa-heart text-danger mr-1"></i><span class="translatable-text">お気に入り登録</span></p>
   <% end %>
 <% end %>

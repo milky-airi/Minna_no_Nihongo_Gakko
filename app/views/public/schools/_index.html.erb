@@ -1,5 +1,4 @@
 <% schools.each do |school| %>
-<%# school = school %>
   <div class="row mt-5">
     <div class="col-md-8 offset-md-2 bg-white p-3">
       <div class="row">
@@ -8,7 +7,7 @@
             <%= link_to school.image_from do %>
               <%= image_tag school.get_image(260,195), class: "object-fit-cover" %>
             <% end %>
-            <p>引用：<%= link_to "リンク", school.image_from %></p>
+            <p class="translatable-text">引用：<%= link_to "リンク", school.image_from %></p>
           <% else %>
             <%= link_to school_path(school) do %>
               <%= image_tag school.get_image(260,195), class: "object-fit-cover" %>
@@ -19,15 +18,15 @@
         <div class="col-md-8">
           <h5><%= link_to school.name, school_path(school.id) %></h5>
           <p class="text-secondary"><%= school.name_en %></p>
-          <i class="fa-solid fa-location-dot text-info mr-1"></i><%= school.prefecture_i18n %>/<%= school.station %>
+          <i class="fa-solid fa-location-dot text-info mr-1"></i><span class="translatable-text"><%= school.prefecture_i18n %>/<%= school.station %></span>
 
           <span id="favorite_btns_<%= school.id %>"><%= render 'public/favorites/btn.html.erb', school: school %></span>
 
           <% if school.reviews.present? %>
             <%= render "public/reviews/average_rate.html.erb", school: school %>
-            <p>口コミ：<%= school.reviews.count %>件</p>
+            <p class="translatable-text">口コミ：<%= school.reviews.count %>件</p>
           <% else %>
-            <p>口コミはまだありません</p>
+            <p class="translatable-text">口コミはまだありません</p>
           <% end %>
         </div>
       </div>

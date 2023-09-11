@@ -3,7 +3,7 @@
 
     <div class="col-md-11 offset-md-1">
       <%= flash[:alert] %>
-      <h5><%= current_user.went_school.school.name %>のレビュー編集</h5>
+      <h5 class="translatable-text"><%= current_user.went_school.school.name %>のレビュー編集</h5>
      </div>
 
     <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
@@ -13,7 +13,7 @@
 
           <div class="row">
             <div class="col-md-5 text-right">
-              <p>星評価<span class="text-danger">*</span></p>
+              <p class="translatable-text">星評価<span class="text-danger">*</span></p>
             </div>
             <div class="field col-md-7">
               <div class="form-group" id="star_integer">
@@ -42,7 +42,7 @@
 
         <div class="row">
           <div class="col-md-5 text-right">
-            <%= f.label :学校全体に対するコメント %>
+            <%= f.label :学校全体に対するコメント, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.text_area :comment_integer, class: "form-control w-75" %>
@@ -51,7 +51,7 @@
 
         <div class="row mt-3">
           <div class="col-md-5 text-right">
-            <%= f.label :授業評価 %>
+            <%= f.label :授業評価, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%=  f.select :evaluation_class, 1..5%>
@@ -60,7 +60,7 @@
 
         <div class="row">
           <div class="col-md-5 text-right">
-            <%= f.label :授業評価の理由 %>
+            <%= f.label :授業評価の理由, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.text_area :comment_class, class: "form-control w-75" %>
@@ -69,7 +69,7 @@
 
         <div class="row mt-3">
           <div class="col-md-5 text-right">
-            <%= f.label :進路評価 %>
+            <%= f.label :進路評価, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%=  f.select :evaluation_after_graduation, 1..5%>
@@ -78,7 +78,7 @@
 
         <div class="row">
           <div class="col-md-5 text-right">
-            <%= f.label :進路評価の理由 %>
+            <%= f.label :進路評価の理由, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.text_area :comment_after_graduation, class: "form-control w-75" %>
@@ -87,7 +87,7 @@
 
         <div class="row mt-3">
           <div class="col-md-5 text-right">
-            <%= f.label :立地評価 %>
+            <%= f.label :立地評価, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%=  f.select :evaluation_place, 1..5%>
@@ -96,7 +96,7 @@
 
         <div class="row">
           <div class="col-md-5 text-right">
-            <%= f.label :立地評価の理由 %>
+            <%= f.label :立地評価の理由, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.text_area :comment_place, class: "form-control w-75" %>
@@ -105,7 +105,7 @@
 
         <div class="row mt-3">
           <div class="col-md-5 text-right">
-            <%= f.label :施設・設備評価 %>
+            <%= f.label :施設・設備評価, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%=  f.select :evaluation_facility, 1..5%>
@@ -114,7 +114,7 @@
 
         <div class="row">
           <div class="col-md-5 text-right">
-            <%= f.label :施設・設備評価の理由 %>
+            <%= f.label :施設・設備評価の理由, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.text_area :comment_facility, class: "form-control w-75" %>
@@ -123,7 +123,7 @@
 
         <div class="row mt-3">
           <div class="col-md-5 text-right">
-            <%= f.label :学生評価 %>
+            <%= f.label :学生評価, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%=  f.select :evaluation_student, 1..5%>
@@ -132,7 +132,7 @@
 
         <div class="row">
           <div class="col-md-5 text-right">
-            <%= f.label :学生評価の理由 %>
+            <%= f.label :学生評価の理由, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.text_area :comment_student, class: "form-control w-75" %>
@@ -141,7 +141,7 @@
 
         <div class="row mt-3">
           <div class="col-md-5 text-right">
-            <%= f.label :教師評価 %>
+            <%= f.label :教師評価, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%=  f.select :evaluation_teacher, 1..5%>
@@ -150,7 +150,7 @@
 
         <div class="row">
           <div class="col-md-5 text-right">
-            <%= f.label :教師評価の理由 %>
+            <%= f.label :教師評価の理由, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.text_area :comment_teacher, class: "form-control w-75" %>
@@ -159,7 +159,7 @@
 
         <div class="row mt-3">
           <div class="col-md-5 text-right">
-            <%= f.label :学校生活評価 %>
+            <%= f.label :学校生活評価, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%=  f.select :evaluation_life, 1..5%>
@@ -168,7 +168,7 @@
 
         <div class="row">
           <div class="col-md-5 text-right">
-            <%= f.label :学校生活評価の理由 %>
+            <%= f.label :学校生活評価の理由, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.text_area :comment_life, class: "form-control w-75" %>
@@ -177,20 +177,20 @@
 
         <div class="row mt-3">
           <div class="col-md-5 text-right">
-            <%= f.label :公開状況 %>
+            <%= f.label :公開状況, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.radio_button :is_open, :true, checked: true %>
-            <%= f.label :is_open, "公開" %>
+            <%= f.label :is_open, "公開", class: "translatable-text" %>
             <%= f.radio_button :is_open, :false %>
-            <%= f.label :is_open, "下書き保存" %>
+            <%= f.label :is_open, "下書き保存", class: "translatable-text" %>
           </div>
         </div>
 
         <div class="row mt-4 actions">
             <div class="col-md-12 text-center">
               <%= f.submit "レビューを更新", class: "btn btn-success" %>
-              <%= link_to "レビューを削除", review_path(@review), method: :delete, data: { confirm: "レビューを削除してもよろしいですか？" }, class: "btn btn-danger" %>
+              <%= link_to "レビューを削除", review_path(@review), method: :delete, data: { confirm: "レビューを削除してもよろしいですか？" }, class: "btn btn-danger translatable-text" %>
             </div>
           </div>
         <% end %>

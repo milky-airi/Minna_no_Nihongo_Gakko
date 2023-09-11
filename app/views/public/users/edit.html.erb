@@ -3,7 +3,7 @@
 
     <div class="col-md-11 offset-md-1">
       <%= render "public/shared/error_messages", resource: current_user %>
-      <h5><%= @user.name %>さんのプロフィール編集</h5>
+      <h5 class="translatable-text"><%= @user.name %>さんのプロフィール編集</h5>
     </div>
 
     <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
@@ -12,7 +12,7 @@
 
           <div class="row">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :プロフィール画像 %>
+              <%= f.label :プロフィール画像, class: "translatable-text" %>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.file_field :profile_image, accept: "image/*" %>
@@ -21,7 +21,7 @@
 
           <div class="row mt-2">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :お名前 %><span class="text-danger">*</span>
+              <%= f.label :お名前, class: "translatable-text" %><span class="text-danger">*</span>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.text_field :name, class: "form-control" %>
@@ -30,7 +30,7 @@
 
           <div class="row mt-2">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :おなまえ %>(ひらがな)<span class="text-danger">*</span>
+              <%= f.label :おなまえ, class: "translatable-text" %><span class="translatable-text">(ひらがな)</span><span class="text-danger">*</span>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.text_field :name_kana, class: "form-control" %>
@@ -39,7 +39,7 @@
 
           <div class="row mt-2">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :メールアドレス %><span class="text-danger">*</span>
+              <%= f.label :メールアドレス, class: "translatable-text" %><span class="text-danger">*</span>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.email_field :email, class: "form-control" %>
@@ -48,7 +48,7 @@
 
           <div class="row mt-2">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :お国 %><span class="text-danger">*</span>
+              <%= f.label :お国, class: "translatable-text" %><span class="text-danger">*</span>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.country_select :country_code, class: "form-control" %>
@@ -57,7 +57,7 @@
 
           <div class="row mt-2">
             <div class="col-md-5 offset-md-1 text-right">
-              <%= f.label :お仕事 %><span class="text-danger">*</span>
+              <%= f.label :お仕事, class: "translatable-text" %><span class="text-danger">*</span>
             </div>
             <div class="field col-md-5 offset-md-1">
               <%= f.text_field :job, class: "form-control" %>

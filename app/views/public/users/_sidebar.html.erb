@@ -1,7 +1,7 @@
 
   <nav>
     <ul class="navbar-nav">
-      <p>メニュー</p>
+      <p class="translatable-text">メニュー</p>
       <li class="mt-1"><%= link_to "▶︎ マイページトップ", user_path(user.id), class: "text-dark translatable-text" %></li>
       <li class="mt-2"><%= link_to "▶︎プロフィール編集", edit_user_path(user), class: "text-dark translatable-text" %></li>
       <% if user.went_school.present? %>

@@ -3,14 +3,14 @@
 
    <div class="col-md-11 offset-md-1">
      <%= flash[:notice] %>
-     <h5>マイページトップ</h5>
+     <h5 class="translatable-text">マイページトップ</h5>
    </div>
 
     <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
       <div class="row">
 
         <div class="col-md-12">
-          <h5><%= @user.name %>さんのプロフィール</h5>
+          <h5 class="translatable-text"><%= @user.name %>さんのプロフィール</h5>
         </div>
 
         <div class="col-md-2 offset-md-1 text-center">
@@ -21,34 +21,34 @@
         <div class="col-md-8 offset-md-1">
           <table class="table table-borderless">
             <tr>
-              <td>お名前</td>
+              <td class="translatable-text">お名前</td>
               <td><%= @user.name %></td>
             </tr>
             <tr>
-              <td>お名前（かな）</td>
+              <td class="translatable-text">お名前（かな）</td>
               <td><%= @user.name_kana %></td>
             </tr>
             <tr>
-              <td>国籍</td>
+              <td class="translatable-text">国籍</td>
               <td><%= @user.country %></td>
             </tr>
             <tr>
-              <td>職業</td>
+              <td class="translatable-text">職業</td>
               <td><%= @user.job %></td>
             </tr>
             <% if @user.went_school.present? %>
             <tr>
-              <td>出身校</td>
+              <td class="translatable-text">出身校</td>
               <td><%= @user.went_school.school.name %></td>
             </tr>
             <tr>
-              <td>卒業年月</td>
+              <td class="translatable-text">卒業年月</td>
               <td><%= @user.went_school.graduate_year %>年<%= @user.went_school.graduate_month %>月</td>
             </tr>
             <% else %>
             <tr>
-              <td>出身校</td>
-              <td><%= link_to "登録する",new_went_school_path %></td>
+              <td class="translatable-text">出身校</td>
+              <td><%= link_to "登録する",new_went_school_path, class: "translatable-text" %></td>
             </tr>
             <% end %>
           </table>

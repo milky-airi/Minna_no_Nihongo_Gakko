@@ -5,9 +5,9 @@
        <%= flash[:notice] %>
        <%= flash[:alert] %>
        <% if review.user.is_deleted == true %>
-         <h5>退会済みユーザーの投稿したレビュー</h5>
+         <h5 class="translatable-text">退会済みユーザーの投稿したレビュー</h5>
        <% else %>
-         <h5><%= review.user.name %>さんの投稿したレビュー</h5>
+         <h5 class="translatable-text"><%= review.user.name %>さんの投稿したレビュー</h5>
        <% end %>
      </div>
 
@@ -17,14 +17,14 @@
         <%= link_to user_path(review.user.id) do %>
         <%= image_tag review.user.get_profile_image(70,70), class: "rounded-circle mr-3" %>
         <% end %>
-        <%= link_to review.school.name, school_path(review.school.id), class: "ml-3, text-dark" %>
-        （<%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月卒業）
+        <%= link_to review.school.name, school_path(review.school.id), class: "ml-3, text-dark translatable-text" %>
+        <span class="translatable-text">（<%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月卒業）</span>
       </div>
 
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="d-flex mt-3">
-            <h6>総合評価</h6>
+            <h6 class="translatable-text">総合評価</h6>
             <div class="ml-3"><%= render "public/reviews/static_rate", review: review %></div>
           </div>
           <h6><%= review.comment_integer %></h6>
@@ -34,7 +34,7 @@
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
-            【授業について】
+            <span class="translatable-text">【授業について】</span>
             <%= review.evaluation_class %>点/5点
           </div>
           <div><%= review.comment_class %></div>
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
-            【進路について】
+            <span class="translatable-text">【進路について】</span>
             <%= review.evaluation_after_graduation %>点/5点
           </div>
           <div><%= review.comment_after_graduation %></div>
@@ -54,7 +54,7 @@
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
-            【立地について】
+            <span class="translatable-text">【立地について】</span>
             <%= review.evaluation_place %>点/5点
           </div>
           <div><%= review.comment_place %></div>
@@ -64,7 +64,7 @@
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
-            【施設・設備について】
+            <span class="translatable-text">【施設・設備について】</span>
             <%= review.evaluation_facility %>点/5点
           </div>
           <div><%= review.comment_facility %></div>
@@ -74,7 +74,7 @@
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
-            【学生について】
+            <span class="translatable-text">【学生について】</span>
             <%= review.evaluation_student %>点/5点
           </div>
           <div><%= review.comment_student %></div>
@@ -84,7 +84,7 @@
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
-            【教師について】
+            <span class="translatable-text">【教師について】</span>
             <%= review.evaluation_teacher %>点/5点
           </div>
           <div><%= review.comment_teacher %></div>
@@ -94,7 +94,7 @@
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
-            【学校生活について】
+            <span class="translatable-text">【学校生活について】</span>
             <%= review.evaluation_life %>点/5点
           </div>
           <div><%= review.comment_life %></div>
@@ -105,11 +105,11 @@
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
-          【公開状況】
+          <span class="translatable-text">【公開状況】</span>
             <% if review.is_open %>
-              公開中
+              <span class="translatable-text">公開中</span>
             <% else %>
-              非公開
+              <span class="translatable-text">非公開</span>
             <% end %>
           </div>
         </div>
@@ -120,9 +120,9 @@
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
             <% if review.created_at == review.updated_at %>
-              <p>投稿日：<%= review.created_at.strftime('%Y/%m/%d') %></p>
+              <p class="translatable-text">投稿日：<%= review.created_at.strftime('%Y/%m/%d') %></p>
             <% else %>
-              <p>更新日：<%= review.updated_at.strftime('%Y/%m/%d') %></p>
+              <p class="translatable-text">更新日：<%= review.updated_at.strftime('%Y/%m/%d') %></p>
             <% end %>
           </div>
         </div>
@@ -131,8 +131,8 @@
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <% if review.user == current_user %>
-            <p class="mt-4"><%= link_to "編集", edit_review_path(review), class: "btn btn-success" %>
-            <%= link_to "削除", review_path(review), method: :delete, class: "btn btn-danger", data: { confirm: "レビューを削除してもよろしいですか？" } %></p>
+            <p class="mt-4"><%= link_to "編集", edit_review_path(review), class: "btn btn-success translatable-text" %>
+            <%= link_to "削除", review_path(review), method: :delete, class: "btn btn-danger translatable-text", data: { confirm: "レビューを削除してもよろしいですか？" } %></p>
           <% else %>
             <%= form_with url: new_alert_path, method: :get do |f| %>
             <%= hidden_field_tag :review_id, review.id %>
