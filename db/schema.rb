@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_10_170627) do
+ActiveRecord::Schema.define(version: 2023_09_11_004554) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(version: 2023_09_10_170627) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["school_id"], name: "index_favorites_on_school_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visiter_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "review_id"
+    t.string "action"
+    t.boolean "is_checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reviews", force: :cascade do |t|

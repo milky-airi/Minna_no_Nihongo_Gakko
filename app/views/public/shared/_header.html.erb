@@ -10,6 +10,21 @@
             <nav>
               <ul class="navbar-nav list-group-horizontal">
                 <% if user_signed_in? %>
+                    <% if unchecked_notifications.any? %>
+                       <li>
+                         <div class="alert-wrapper">
+                           <%= link_to notifications_path, class: "btn btn-outline-secondary mr-3" do %>
+                             <i class="fa-solid fa-bell"></i> 通知
+                           <% end %>
+                           <i class="fa-solid fa-circle fa-sm text-danger alert-mark"></i>
+                         </div>
+                    <% else %>
+                       <li>
+                         <%= link_to notifications_path, class: "btn btn-outline-secondary mr-3" do %>
+                           <i class="fa-solid fa-bell"></i> 通知
+                         <% end %>
+                    <% end %>
+                  </li>
                   <li>
                     <%= link_to user_path(current_user.id), class: "btn btn-success mr-3" do %>
                       <i class="fa-solid fa-user" style="color: #ffffff;"></i> マイページ

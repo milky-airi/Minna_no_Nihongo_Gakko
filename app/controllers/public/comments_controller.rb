@@ -7,6 +7,7 @@ class Public::CommentsController < ApplicationController
     comment.review_id = params[:comment][:review_id]
     if comment.save
       @review = comment.review
+      @review.create_notification_by(current_user)
     else
       flash[:alert] = comment.errors.full_messages.join(", ")
       redirect_back(fallback_location: root_path)

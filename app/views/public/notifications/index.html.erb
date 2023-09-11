@@ -1,0 +1,14 @@
+<div class="container">
+    <div class='row justify-content-center mx-auto'>
+        <div class="notification_box mt-5">
+            <h5 class="text-center"><i class="fa-solid fa-bell"></i> 通知</h5>
+            <% if @notifications.exists? %>
+            <p class="text-right"><%= link_to "通知削除",notification_path(@notifications), method: :delete, class:"btn btn-secondary" %></p>
+            <%= render @notifications %>
+            <%#= render 'public/notifications/notification.html.erb' %>
+            <% else %>
+            <p>通知はありません</p>
+            <% end %>
+　　　　</div>
+ 　　</div>
+</div>

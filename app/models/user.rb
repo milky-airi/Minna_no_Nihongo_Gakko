@@ -10,10 +10,11 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_one :went_school
   has_one :review
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visiter_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
-  # # ひらがな・カタカナの正規表現
-  # KANA_REGEX = /\A[\p{katakana}\p{hiragana}\u{30fc}]+\z/
-  # validates :name_kana, format: { with: KANA_REGEX, message: 'はひらがなかカタカナで入力してください' }
+
+
   validates :name, presence: true
   validates :country_code, presence: true
 
