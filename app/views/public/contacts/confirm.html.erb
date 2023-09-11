@@ -5,19 +5,19 @@
       <table class="table">
         <tbody>
           <tr>
-            <td class="text-right" style="width: 30%;">お名前</td>
+            <td class="text-right translatable-text" style="width: 30%;">お名前</td>
             <td><%= @contact.name %></td>
           </tr>
           <tr>
-            <td class="text-right mt-3" style="width: 30%;">メールアドレス</td>
+            <td class="text-right mt-3 translatable-text" style="width: 30%;">メールアドレス</td>
             <td><%= @contact.email %></td>
           </tr>
           <tr>
-            <td class="text-right mt-3" style="width: 30%;">件名</td>
+            <td class="text-right mt-3 translatable-text" style="width: 30%;">件名</td>
             <td><%= @contact.subject %></td>
           </tr>
           <tr>
-            <td class="text-right mt-3">メッセージ</td>
+            <td class="text-right mt-3 translatable-text">メッセージ</td>
             <td style="white-space: pre-wrap;"><%= @contact.message %></td>
           </tr>
         </tbody>
@@ -30,7 +30,11 @@
           <%= f.hidden_field :email %>
           <%= f.hidden_field :subject %>
           <%= f.hidden_field :message %>
-          <div><%= f.submit '送信', class: "btn btn-success" %></div>
+          <div>
+            <%= button_tag(type: 'submit', class: "btn btn-success translatable-text") do %>
+              送信
+            <% end %>
+          </div>
         <% end %>
         </div>
 
@@ -40,7 +44,11 @@
           <%= f.hidden_field :email %>
           <%= f.hidden_field :subject %>
           <%= f.hidden_field :message %>
-          <div><%= f.submit '入力画面に戻る', class: "btn btn-info" %></div>
+          <div>
+            <%= button_tag(type: 'submit', class: "btn btn-info translatable-text") do %>
+              入力画面に戻る
+            <% end %>
+          </div>
         <% end %>
         </div>
       </div>

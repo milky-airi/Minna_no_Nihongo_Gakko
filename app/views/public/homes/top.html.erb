@@ -149,14 +149,27 @@
     <div class="row mt-5 mb-5">
       <div class="col-md-10 offset-md-1">
         <div class="row">
-        <% @top_review_schools.each do |top_review_school| %>
-          <div class="col-md-3">
+        <%# @top_review_schools.each do |top_review_school| %>
+        <% @top_review_schools.each_with_index do |top_review_school, index| %>
+          <div class="col-md-3 text-center">
+            <%#= image_tag '1stPrize.jpg', size: "70x70", class: "mb-3 ml-5" %>
+
+            <% if index == 0 %>
+              <%= image_tag '1stPrize.jpg', size: "70x70", class: "mb-3" %>
+            <% elsif index == 1 %>
+              <%= image_tag '2ndPrize.jpg', size: "70x70", class: "mb-3" %>
+            <% elsif index == 2 %>
+              <%= image_tag '3rdPrize.jpg', size: "70x70", class: "mb-3" %>
+            <% elsif index == 3 %>
+              <div class="prize-image-blank mb-3"></div>
+            <% end %>
+
             <%= link_to school_path(top_review_school.id) do %>
               <%= image_tag top_review_school.get_image(200,150) %>
             <% end %>
             <p>
               <%= link_to top_review_school.name, school_path(top_review_school.id) %><br>
-              <%= top_review_school.name_en %>
+              <span class="text-secondary"><%= top_review_school.name_en.truncate(30) %></span>
             </p>
             <% if top_review_school.reviews.present? %>
               <%= render "public/reviews/average_rate.html.erb", school: top_review_school %>

@@ -48,7 +48,7 @@
 
   <div class="row mt-3">
     <div class="col-md-10 offset-md-1">
-      <h5><%= @school.name %>の特色</h5>
+      <h5 class="translatable-text"><%= @school.name %>の特色</h5>
       <p><%= @school.summary %></p>
     </div>
   </div>
@@ -58,8 +58,8 @@
 
     <table class="table mt-3 mb-3">
       <tr>
-        <td>【住所】</td>
-        <td><%= @school.prefecture_i18n %> <%= @school.address %></td>
+        <td class="translatable-text">【住所】</td>
+        <td class="translatable-text"><%= @school.prefecture_i18n %> <%= @school.address %></td>
       </tr>
       <tr>
         <td>【HP】</td>
@@ -105,28 +105,28 @@
         </td>
       </tr>
       <tr>
-        <td>【入学要件】</td>
+        <td class="translatable-text">【入学要件】</td>
         <td><%= @school.condition %></td>
       </tr>
       <tr>
-        <td>【学費（年間）】</td>
+        <td class="translatable-text">【学費（年間）】</td>
         <td>
           <% if @school.anual_fee.present? %>
-            <%= @school.anual_fee.to_s(:delimited) %>円
+            <span class="translatable-text"><%= @school.anual_fee.to_s(:delimited) %>円</span>
           <% end %>
         </td>
       </tr>
       <tr>
-        <td>【学生の国籍】</td>
+        <td class="translatable-text">【学生の国籍】</td>
         <td><%= @school.student_nationality_tags.map { |tag| tag.nationality }.join(", ") %></td>
       </tr>
       <tr>
-        <td>【寮の有無（寮の家賃）】</td>
+        <td class="translatable-text">【寮の有無（寮の家賃）】</td>
         <td>
           <% if @school.have_dormitory == true %>
-            あり（家賃：<%= @school.dormitory_fee.to_s(:delimited) %>円/月）
+            <span class="translatable-text">あり（家賃：<%= @school.dormitory_fee.to_s(:delimited) %>円/月）</span>
           <% else %>
-            なし
+            <span class="translatable-text">なし</span>
           <% end %>
         </td>
       </tr>
@@ -146,7 +146,7 @@
   <% if @school.courses.present? %>
     <div class="row">
       <div class="col-md-12">
-        <h5>コース情報</h5>
+        <h5 class="translatable-text">コース情報</h5>
       </div>
     </div>
 
@@ -154,18 +154,18 @@
       <div class="col-md-12">
         <table class="table table-borderless text-center">
           <tr>
-            <td>【コース名】</td>
-            <td>【入学時期】</td>
-            <td>【在学期間】</td>
-            <td>【定員】</td>
-            <td>【コース入学要件】</td>
+            <td class="translatable-text">【コース名】</td>
+            <td class="translatable-text">【入学時期】</td>
+            <td class="translatable-text">【在学期間】</td>
+            <td class="translatable-text">【定員】</td>
+            <td class="translatable-text">【コース入学要件】</td>
           </tr>
           <% @courses.each do |course| %>
           <tr>
-            <td><%= course.name %></td>
-            <td><%= course.admission_month %>月</td>
-            <td><%= course.duration %>ヶ月</td>
-            <td>
+            <td class="translatable-text"><%= course.name %></td>
+            <td class="translatable-text"><%= course.admission_month %>月</td>
+            <td class="translatable-text"><%= course.duration %>ヶ月</td>
+            <td class="translatable-text">
               <% if course.capacity.present? %>
                 <%= course.capacity %>名
               <% end %>
