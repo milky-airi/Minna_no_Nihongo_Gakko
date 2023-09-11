@@ -2,7 +2,7 @@
 
   <div class="row mx-auto">
     <div class="col-md-10 offset-md-1">
-      <h5>新規会員登録</h5>
+      <h5 class="translatable-text">新規会員登録</h5>
       <%= flash[:notice] %>
 
       <div class="bg-white p-5 mt-4">
@@ -11,7 +11,7 @@
 
         <div class="row">
           <div class="col-md-5 text-right">
-            <%= f.label :お名前 %><span class="text-danger">*</span>
+            <%= f.label :お名前, class: "translatable-text" %><span class="text-danger">*</span>
           </div>
           <div class="field col-md-7">
             <%= f.text_field :name, autofocus: true, placeholder: "お名前 / Your Name", class: "w-50 form-control" %>
@@ -20,7 +20,7 @@
 
         <div class="row mt-2">
           <div class="col-md-5 text-right">
-            <%= f.label :おなまえ %>(ひらがな)<span class="text-danger">*</span>
+            <%= f.label :おなまえ, class: "translatable-text" %><span class="translatable-text">(ひらがな)</span><span class="text-danger">*</span>
           </div>
           <div class="field col-md-7">
             <%= f.text_field :name_kana, placeholder: "おなまえ", class: "w-50 form-control" %>
@@ -29,7 +29,7 @@
 
         <div class="row mt-2">
           <div class="col-md-5 text-right">
-            <%= f.label :メールアドレス %><span class="text-danger">*</span>
+            <%= f.label :メールアドレス, class: "translatable-text" %><span class="text-danger">*</span>
           </div>
           <div class="field col-md-7">
             <%= f.email_field :email, placeholder: "sample@example.com", class: "w-50 form-control" %>
@@ -38,7 +38,7 @@
 
         <div class="row mt-2">
           <div class="col-md-5 text-right">
-            <%= f.label :お国 %><span class="text-danger">*</span>
+            <%= f.label :お国, class: "translatable-text" %><span class="text-danger">*</span>
           </div>
           <div class="field col-md-7">
             <%= f.country_select :country_code, class: "form-control" %>
@@ -47,7 +47,7 @@
 
         <div class="row mt-2">
           <div class="col-md-5 text-right">
-            <%= f.label :お仕事 %>
+            <%= f.label :お仕事, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.text_field :job, placeholder: "大学生", class: "w-50 form-control" %>
@@ -56,9 +56,9 @@
 
         <div class="row mt-2">
           <div class="col-md-5 text-right">
-            <%= f.label :パスワード %>
+            <%= f.label :パスワード, class: "translatable-text" %>
             <% if @minimum_password_length %>
-            (<%= @minimum_password_length %>文字以上)<span class="text-danger">*</span>
+            <span class="translatable-text">(<%= @minimum_password_length %>文字以上)</span><span class="text-danger">*</span>
             <% end %>
           </div>
           <div class="field col-md-7">
@@ -68,7 +68,7 @@
 
         <div class="row mt-2">
           <div class="col-md-5 text-right">
-            <%= f.label :パスワード %>(確認用)<span class="text-danger">*</span>
+            <%= f.label :パスワード, class: "translatable-text" %><span class="translatable-text">(確認用)</span><span class="text-danger">*</span>
           </div>
           <div class="field col-md-7">
             <%= f.password_field :password_confirmation, placeholder: "新しいパスワード（確認用）", class: "w-50 form-control" %>
@@ -85,7 +85,7 @@
 
   <div class="row mx-auto mt-5">
     <div class="col-md-10 offset-md-1 text-center">
-      <%= link_to "会員の方はこちら", new_user_session_path, class: "btn login-button mt-3 bg-white" %>
+      <%= link_to "会員の方はこちら", new_user_session_path, class: "btn login-button mt-3 bg-white translatable-text" %>
     </div>
   </div>
 

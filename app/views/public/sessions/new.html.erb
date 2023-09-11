@@ -2,7 +2,7 @@
   <div class="row mx-auto">
 
     <div class="col-md-5 offset-md-1">
-    <h5>ログイン</h5>
+    <h5 class="translatable-text">ログイン</h5>
       <div class="bg-white p-5 mt-4">
       <%= form_with model: @user, url: new_user_session_path, method: :post do |f|  %>
 
@@ -15,7 +15,7 @@
 
         <div class="row">
           <div class="col-md-5 text-right">
-            <%= f.label :メールアドレス %>
+            <%= f.label :メールアドレス, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
@@ -24,7 +24,7 @@
 
         <div class="row mt-2">
           <div class="col-md-5 text-right">
-            <%= f.label :パスワード %>
+            <%= f.label :パスワード, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
@@ -35,7 +35,7 @@
             <% if devise_mapping.rememberable? %>
               <div class="field col-md-7 offset-md-5">
                 <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
+                <%= f.label :remember_me, class: "translatable-text" %>
               </div>
             <% end %>
         </div>
@@ -49,12 +49,12 @@
     </div>
 
     <div class="col-md-4 offset-md-1">
-      <h5>まだ登録されていない方</h5>
+      <h5 class="translatable-text">まだ登録されていない方</h5>
       <div class="bg-white p-5 mt-4">
-        <p>まずは無料の会員登録をお願いします。</p>
-        <p>登録することで、気になる学校情報をブックマークしたり、レビューやコメントを投稿できるようになります。</p>
+        <p class="translatable-text">まずは無料の会員登録をお願いします。</p>
+        <p class="translatable-text">登録することで、気になる学校情報をブックマークしたり、レビューやコメントを投稿できるようになります。</p>
         <div class="text-center">
-          <%= link_to "会員登録する（無料）", new_user_registration_path, class: "btn text-white registration-btn" %>
+          <%= link_to "会員登録する（無料）", new_user_registration_path, class: "btn text-white registration-btn translatable-text" %>
         </div>
       </div>
     </div>
