@@ -62,5 +62,16 @@
 
       </div>
     </div>
+
+    <!-- 翻訳言語選択のドロップダウン -->
+    <select id="language-select">
+      <option value="ja">Japanese</option>
+      <option value="en">English</option>
+      <!-- 他の言語オプションも追加 -->
+    </select>
+
+    <button id="translate-page-btn">このページを翻訳する</button>
+    <%= javascript_pack_tag 'translation' %>
+
   </div>
 </header>
