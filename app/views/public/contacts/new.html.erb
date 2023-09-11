@@ -4,6 +4,7 @@
 
       <div class="mb-2 translatable-text">
         <%= flash[:alert] %>
+        <%#= render "public/shared/error_messages", resource: @contact %>
       </div>
 
       <%= form_with model: @contact, url: confirm_contacts_path, local: true do |f| %>

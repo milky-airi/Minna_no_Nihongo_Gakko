@@ -26,6 +26,7 @@ class Public::WentSchoolsController < ApplicationController
       flash[:notice] = "出身校情報を更新しました"
       if current_user.review.present?
         current_user.review.destroy
+        flash[:notice] = "出身校情報を更新し、元の出身校に関するレビューを削除しました"
       end
       redirect_to user_path(current_user)
     else

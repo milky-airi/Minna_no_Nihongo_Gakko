@@ -1,8 +1,12 @@
+<% if flash[:notice].present? %>
+  <div class="text-center">
+    <p><%= flash[:notice] %></p>
+  </div>
+<% end %>
+
 <div class="container-fluid blue-container p-5">
-  <p class="text-white text-center"><%= flash[:notice] %></p>
+
   <h5 class="text-white text-center">詳しい条件から日本語学校を探す</h5>
-
-
 
   <div class="row">
     <div class="col-md-10 offset-md-1 bg-white p-5 mt-5">
@@ -13,7 +17,7 @@
 
           <div class="field">
             <%= f.label :都道府県　, class: "mr-2" %>
-            <%= f.select :prefecture, School.prefectures.keys.map { |key| [I18n.t("enums.school.prefecture.#{key}"), key] }, { include_blank: '選択してください'} %>
+            <%= f.select :prefecture, School.prefectures.keys.map { |key| [I18n.t("enums.school.prefecture.#{key}"), key] }, { include_blank: '選択してください'}, class: "select-box form-control w-50 d-inline" %>
           </div>
 
           <div class="field">
