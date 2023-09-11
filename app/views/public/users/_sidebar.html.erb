@@ -2,24 +2,60 @@
   <nav>
     <ul class="navbar-nav">
       <p class="translatable-text">メニュー</p>
-      <li class="mt-1"><%= link_to "▶︎ マイページトップ", user_path(user.id), class: "text-dark translatable-text" %></li>
-      <li class="mt-2"><%= link_to "▶︎プロフィール編集", edit_user_path(user), class: "text-dark translatable-text" %></li>
+      <li class="mt-1">
+        <%= link_to user_path(user.id), class: "text-dark translatable-text" do %>
+          <i class="fa-solid fa-play"></i> マイページトップ
+        <% end %>
+      </li>
+      <li class="mt-2">
+        <%= link_to edit_user_path(user), class: "text-dark translatable-text" do %>
+          <i class="fa-solid fa-play"></i>︎ プロフィール編集
+        <% end %>
+      </li>
       <% if user.went_school.present? %>
-        <li class="mt-2"><%= link_to "▶︎出身校編集",edit_went_school_path(user.went_school), class: "text-dark translatable-text" %></li>
+        <li class="mt-2">
+          <%= link_to edit_went_school_path(user.went_school), class: "text-dark translatable-text" do %>
+            <i class="fa-solid fa-play"></i>︎ 出身校編集
+          <% end %>
+          </li>
       <% else %>
-        <li class="mt-2"><%= link_to "▶︎出身校登録", new_went_school_path, class: "text-dark translatable-text" %></li>
+        <li class="mt-2">
+          <%= link_to new_went_school_path, class: "text-dark translatable-text" do %>
+            <i class="fa-solid fa-play"></i>︎ 出身校登録
+          <% end %>
+        </li>
       <% end %>
-      <li class="mt-2"><%= link_to "▶︎退会手続き", confirm_quit_users_path, class: "text-dark translatable-text" %></li>
+      <li class="mt-2">
+        <%= link_to confirm_quit_users_path, class: "text-dark translatable-text" do %>
+          <i class="fa-solid fa-play"></i>︎ 退会手続き
+        <% end %>
+      </li>
 
       <% if current_user.review.present? %>
-        <li class="mt-2"><%= link_to "▶︎投稿したレビュー", individual_reviews_path(user), class: "text-dark translatable-text" %></li>
+        <li class="mt-2">
+          <%= link_to  individual_reviews_path(user), class: "text-dark translatable-text" do %>
+            <i class="fa-solid fa-play"></i>︎ 投稿したレビュー
+          <% end %>
+        </li>
       <% elsif current_user.went_school.present? %>
-        <li class="mt-2"><%= link_to "▶︎レビューを投稿", new_review_path, class: "text-dark translatable-text"  %></li>
+        <li class="mt-2">
+          <%= link_to new_review_path, class: "text-dark translatable-text" do %>
+            <i class="fa-solid fa-play"></i>︎ レビューを投稿
+          <% end %>
+        </li>
       <% elsif current_user.went_school.nil? %>
         <li class="mt-2"><%= link_to "▶︎レビュー投稿の前に出身校を登録してください", new_went_school_path, class: "text-danger translatable-text" %></li>
       <% end %>
 
-      <li class="mt-2"><%= link_to "▶︎お気に入り一覧", favorited_users_path, class: "text-dark translatable-text" %></li>
-      <li class="mt-2"><%= link_to "▶︎お問い合わせ", new_contact_path, class: "text-dark translatable-text" %></li>
+      <li class="mt-2">
+        <%= link_to favorited_users_path, class: "text-dark translatable-text" do %>
+           <i class="fa-solid fa-play"></i>︎ お気に入り一覧
+        <% end %>
+      </li>
+      <li class="mt-2">
+        <%= link_to new_contact_path, class: "text-dark translatable-text" do %>
+           <i class="fa-solid fa-play"></i>︎ お問い合わせ
+        <% end %>
+      </li>
     </ul>
   </nav>

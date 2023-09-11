@@ -5,7 +5,7 @@
 
       <div class="text-center border-bottom pb-3">
         <%= link_to user_path(review.user.id) do %>
-        <%= image_tag review.user.get_profile_image(70,70), class: "rounded-circle mr-3" %>
+          <%= image_tag review.user.get_profile_image(70,70), class: "rounded-circle mr-3" %>
         <% end %>
         <u><%= link_to review.school.name, school_path(review.school.id), class: "ml-3, text-dark" %></u>
         <span class="translatable-text">（<%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月卒業）</span>

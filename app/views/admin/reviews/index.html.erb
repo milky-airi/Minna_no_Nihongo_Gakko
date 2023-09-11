@@ -40,7 +40,6 @@
           <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
           <td>
             <%= link_to "編集", edit_admin_review_path(review.id), class: "btn btn-success" %>
-            <%= link_to "詳細", admin_review_path(review.id), class: "btn btn-info" %>
           </td>
         </tr>
         <% end %>

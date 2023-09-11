@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
       if (request.fullpath != "/users/sign_in" && \
           request.fullpath != "/users/sign_up" && \
           request.fullpath != "/users/password" && \
+          request.fullpath != "/admin/sign_in" && \
           !request.xhr?) # don't store ajax calls
         session[:previous_url] = request.fullpath
       end

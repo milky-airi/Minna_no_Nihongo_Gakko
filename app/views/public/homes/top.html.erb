@@ -131,7 +131,9 @@
       <div class="row mt-4">
         <div class="col-md-12 text-center">
         <div class="actions">
-          <%= f.submit "検索", class: "btn btn-secondary w-25" %>
+          <%= button_tag(type: 'submit', class: "btn btn-secondary w-25 translatable-text") do %>
+            検索 <i class="fa-solid fa-magnifying-glass fa-flip-horizontal text-white"></i>
+          <% end %>
         </div>
         <% end %>
         </div>
@@ -183,7 +185,7 @@
     </div>
   </div>
 
-<div class="top-blue-title p-2">
+<div class="top-blue-title p-3">
   <h5 class="text-white text-center translatable-text">最新の口コミ</h5>
 </div>
 
@@ -195,4 +197,16 @@
   </div>
 </div>
 
+<div class="top-blue-title p-2">
+  <h5 class="text-white text-center translatable-text">みんなの日本語学校とは？</h5>
+</div>
+
+<div class="container p-5">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <p class="translatable-text">みんなの日本語学校は、日本語学校選びに役立つサイトです。全国の日本語学校情報を詳しく掲載しています。
+      <br>また、卒業生や在校生がリアルな口コミ情報を投稿してくれています。ぜひ日本語学校選びにお役立てください。</p>
+    </div>
+  </div>
+</div>
 

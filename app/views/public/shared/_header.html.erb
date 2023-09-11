@@ -4,7 +4,9 @@
       <div class="col-md-12">
 
         <div class="d-flex justify-content-between align-items-center">
-          <%= link_to "みんなの日本語学校", root_path, class: "navbar-brand text-dark", 'data-turbolinks': false %>
+          <%= link_to root_path do %>
+            <%= image_tag 'logo.png', class: "navbar-brand text-dark", size: "250x60", 'data-turbolinks': false %>
+          <% end %>
 
           <div>
             <nav>
@@ -64,13 +66,13 @@
     </div>
 
     <!-- 翻訳言語選択のドロップダウン -->
-    <select id="language-select" class="mr-2 select-box">
+    <select id="language-select" class="mr-2 select-box  d-inline form-control">
       <option value="ja">日本語</option>
       <option value="en">English</option>
       <!-- 他の言語オプションも追加 -->
     </select>
 
-    <button id="translate-page-btn" class="btn btn-outline-secondary">Translation</button>
+    <button id="translate-page-btn" class="btn btn-outline-secondary">Translate</button>
     <%= javascript_pack_tag 'translation' %>
 
   </div>
