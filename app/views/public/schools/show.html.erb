@@ -7,7 +7,7 @@
         <%= link_to @school.image_from do %>
           <%= image_tag @school.get_image(300,225), class: "object-fit-cover" %>
         <% end %>
-        <p>引用：<%= link_to "リンク", @school.image_from %></p>
+        <p class="translatable-text">引用：<%= link_to "リンク", @school.image_from %></p>
       <% else %>
         <%= image_tag @school.get_image(300,225), class: "object-fit-cover" %>
       <% end %>
@@ -16,7 +16,7 @@
     <div class="col-md-7">
       <h5><%= @school.name %></h5>
       <p class="text-secondary"><%= @school.name_en %></p>
-      <i class="fa-solid fa-location-dot text-info mr-1"></i><%= @school.prefecture_i18n %>/<%= @school.station %>
+      <i class="fa-solid fa-location-dot text-info mr-1"></i><span class="translatable-text"><%= @school.prefecture_i18n %>/<%= @school.station %></span>
 
       <span id="favorite_btns_<%= @school.id %>">
         <% school = @school %>
@@ -25,9 +25,9 @@
 
       <% if @school.reviews.present? %>
         <%= render "public/reviews/average_rate.html.erb", school: @school %>
-        <p>口コミ：<%= @school.reviews.count %>件</p>
+        <p class="translatable-text">口コミ：<%= @school.reviews.count %>件</p>
       <% else %>
-        <p>口コミはまだありません</p>
+        <p class="translatable-text">口コミはまだありません</p>
       <% end %>
 
       <div>

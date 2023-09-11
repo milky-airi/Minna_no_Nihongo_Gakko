@@ -4,21 +4,21 @@
     <div class="col-md-11 offset-md-1">
        <%= flash[:notice] %>
        <%= flash[:alert] %>
-       <% if review.user.is_deleted == true %>
+       <% if review.went_school.user.is_deleted == true %>
          <h5 class="translatable-text">退会済みユーザーの投稿したレビュー</h5>
        <% else %>
-         <h5 class="translatable-text"><%= review.user.name %>さんの投稿したレビュー</h5>
+         <h5 class="translatable-text"><%= review.went_school.user.name %>さんの投稿したレビュー</h5>
        <% end %>
      </div>
 
     <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
 
       <div class="text-center border-bottom pb-3">
-        <%= link_to user_path(review.user.id) do %>
-        <%= image_tag review.user.get_profile_image(70,70), class: "rounded-circle mr-3" %>
+        <%= link_to user_path(review.went_school.user.id) do %>
+        <%= image_tag review.went_school.user.get_profile_image(70,70), class: "rounded-circle mr-3" %>
         <% end %>
         <%= link_to review.school.name, school_path(review.school.id), class: "ml-3, text-dark translatable-text" %>
-        <span class="translatable-text">（<%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月卒業）</span>
+        <span class="translatable-text">（<%= review.went_school.user.went_school.graduate_year %>年<%= review.went_school.user.went_school.graduate_month %>月卒業）</span>
       </div>
 
       <div class="row">
@@ -101,7 +101,7 @@
         </div>
       </div>
 
-      <% if user_signed_in? && current_user.id == review.user.id %>
+      <% if user_signed_in? && current_user.id == review.went_school.user.id %>
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="mt-4">
@@ -130,7 +130,7 @@
 
       <div class="row">
         <div class="col-md-10 offset-md-1">
-          <% if review.user == current_user %>
+          <% if review.went_school.user == current_user %>
             <p class="mt-4"><%= link_to "編集", edit_review_path(review), class: "btn btn-success translatable-text" %>
             <%= link_to "削除", review_path(review), method: :delete, class: "btn btn-danger translatable-text", data: { confirm: "レビューを削除してもよろしいですか？" } %></p>
           <% else %>
@@ -145,7 +145,7 @@
     </div>
 
 
-    <% if user_signed_in? && current_user.id == review.user.id %>
+    <% if user_signed_in? && current_user.id == review.went_school.user.id %>
       <div class="col-md-3 offset-md-1 bg-white p-4 mt-4">
         <%= render "public/users/sidebar.html.erb", user: current_user %>
       </div>
