@@ -3,7 +3,8 @@ class Public::PagesController < ApplicationController
 
   def translate_page
     target_language = params[:target_language]
-    texts = params[:texts]
+    # 空の文字列やnilを除く
+    texts = params[:texts].reject { |text| text.blank? }
 
     translated_texts = texts.map do |text|
       translate_text(text, target_language)

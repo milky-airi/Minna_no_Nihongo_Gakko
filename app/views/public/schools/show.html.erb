@@ -182,25 +182,25 @@
 
 <%= render "public/reviews/average_review.html.erb", school: @school %>
 
-<% if @school.reviews.present? %>
+<% if @reviews.present? %>
+  <div class="container-fluid light-blue-container p-5">
+    <div class="row">
+      <% @reviews.each do |review| %>
+      <%= render "public/reviews/short_review.html.erb", reviews: @reviews %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
 <div class="container-fluid light-blue-container p-5">
   <div class="row">
-    <% @school.reviews.each do |review| %>
-    <%= render "public/reviews/short_review.html.erb", reviews: @school.reviews %>
-    <% end %>
-  </div>
-</div>
-<% else %>
-  <div class="container-fluid light-blue-container p-5">
-  <div class="row">
-
     <div class="col-md-11 offset-md-1">
-       <h5>まだレビューがありません</h5>
+       <h5 class="translatable-text">まだレビューがありません</h5>
      </div>
-
     </div>
   </div>
 <% end %>
+
+
 
 
 
