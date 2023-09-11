@@ -6,8 +6,7 @@ class Public::ReviewsController < ApplicationController
 
   def create
     review = Review.new(review_params)
-    # review.user_id = current_user.id
-    review.went_school_id = current_user.went_school.id
+    review.user_id = current_user.id
     review.school_id = current_user.went_school.id
     if review.save
       if review.is_open
@@ -51,7 +50,7 @@ class Public::ReviewsController < ApplicationController
   end
 
   def individual
-    @review = current_user.went_school.review
+    @review = current_user.review
     @comments = @review.comments
   end
 

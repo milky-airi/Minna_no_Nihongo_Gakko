@@ -5,11 +5,11 @@ class User < ApplicationRecord
         # , :confirmable
 
 
-  has_many :reviews, dependent: :destroy
+  # has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_one :went_school
-  has_one :review
+  has_one :review, dependent: :destroy
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visiter_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
