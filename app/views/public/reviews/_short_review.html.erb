@@ -12,25 +12,25 @@
       </div>
 
       <div class="d-flex mt-3">
-        <h6>総合評価</h6>
+        <h6 class="translatable-text">総合評価</h6>
         <div class="ml-3"><%= render "public/reviews/static_rate", review: review %></div>
       </div>
       <h6><%= review.comment_integer %></h6>
 
       <div class="mt-4">
-        【授業について】
+        <span class="translatable-text">【授業について】</span>
         <%= review.evaluation_class %>点/5点
       </div>
       <div><%= review.comment_class %></div>
 
       <div class="mt-4">
-        【進路について】
+        <span class="translatable-text">【進路について】</span>
         <%= review.evaluation_after_graduation %>点/5点
       </div>
       <div><%= review.comment_after_graduation %></div>
 
       <div class="mt-4 ">
-        <u><%= link_to "続きを読む", review_path(review), class: "text-dark" %></u>
+        <u><%= link_to "続きを読む", review_path(review), class: "text-dark translatable-text" %></u>
       </div>
     </div>
   <% end %>

@@ -41,9 +41,9 @@
                     <% end %>
                   </li>
                 <% else %>
-                <li><%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mr-3" %></li>
-                <li><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-secondary mr-3" %></li>
-                <li><%= link_to "会員登録", new_user_registration_path, class: "btn mr-3 text-white registration-btn" %></li>
+                <li><%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mr-3 translatable-text" %></li>
+                <li><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-secondary mr-3 translatable-text" %></li>
+                <li><%= link_to "会員登録", new_user_registration_path, class: "btn mr-3 text-white registration-btn translatable-text" %></li>
                 <% end %>
               </ul>
             </nav>
@@ -64,13 +64,13 @@
     </div>
 
     <!-- 翻訳言語選択のドロップダウン -->
-    <select id="language-select">
-      <option value="ja">Japanese</option>
+    <select id="language-select" class="mr-2 language-select">
+      <option value="ja">日本語</option>
       <option value="en">English</option>
       <!-- 他の言語オプションも追加 -->
     </select>
 
-    <button id="translate-page-btn">このページを翻訳する</button>
+    <button id="translate-page-btn" class="btn btn-outline-secondary">Translation</button>
     <%= javascript_pack_tag 'translation' %>
 
   </div>
