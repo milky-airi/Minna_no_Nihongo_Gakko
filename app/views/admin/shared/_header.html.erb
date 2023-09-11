@@ -12,9 +12,12 @@
                 <% if admin_signed_in? %>
                 <% if Alert.exists?(is_done: false) %>
                   <li>
-                    <%= link_to admin_alerts_path, class: "btn btn-outline-danger mr-3" do %>
-                      <i class="fa-solid fa-bell text-danger"></i> 未対応通報あり
-                    <% end %>
+                    <div class="alert-wrapper">
+                       <%= link_to admin_alerts_path, class: "btn btn-outline-secondary mr-3" do %>
+                         <i class="fa-solid fa-bell"></i> 通報一覧
+                       <% end %>
+                       <i class="fa-solid fa-circle fa-sm text-danger alert-mark"></i>
+                     </div>
                   </li>
                   <% else %>
                   <li><%= link_to "通報一覧", admin_alerts_path, class: "btn btn-outline-secondary mr-3" %></li>
