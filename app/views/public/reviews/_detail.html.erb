@@ -136,8 +136,7 @@
         <div class="col-md-10 offset-md-1">
           <% if review.user == current_user %>
             <p class="mt-4">
-              <%= link_to "編集", edit_review_path(review), class: "btn btn-success translatable-text" %>
-              <%= link_to "削除", review_path(review), method: :delete, class: "btn btn-danger translatable-text", data: { confirm: "レビューを削除してもよろしいですか？" } %>
+              <%= link_to "編集", edit_review_path(review), class: "btn btn-success translatable-text w-25" %>
             </p>
           <% else %>
             <%= form_with url: new_alert_path, method: :get do |f| %>
