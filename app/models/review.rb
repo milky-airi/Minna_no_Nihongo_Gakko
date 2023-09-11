@@ -5,6 +5,7 @@ class Review < ApplicationRecord
   has_many :alerts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :nice_reviews, dependent: :destroy
 
   validates :star_integer, presence: :true
   validates :evaluation_class, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
@@ -29,6 +30,10 @@ class Review < ApplicationRecord
   end
 
     notification.save if notification.valid?
+  end
+
+  def niced_by?(user)
+	  nice_reviews.exists?(user_id: user.id)
   end
 
 

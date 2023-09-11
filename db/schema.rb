@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_11_004554) do
+ActiveRecord::Schema.define(version: 2023_09_11_155329) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -100,6 +100,15 @@ ActiveRecord::Schema.define(version: 2023_09_11_004554) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["school_id"], name: "index_favorites_on_school_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "nice_reviews", force: :cascade do |t|
+    t.integer "review_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["review_id"], name: "index_nice_reviews_on_review_id"
+    t.index ["user_id"], name: "index_nice_reviews_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -218,6 +227,8 @@ ActiveRecord::Schema.define(version: 2023_09_11_004554) do
   add_foreign_key "courses", "schools"
   add_foreign_key "favorites", "schools"
   add_foreign_key "favorites", "users"
+  add_foreign_key "nice_reviews", "reviews"
+  add_foreign_key "nice_reviews", "users"
   add_foreign_key "student_nationality_taggings", "schools"
   add_foreign_key "student_nationality_taggings", "student_nationality_tags"
   add_foreign_key "went_schools", "schools"

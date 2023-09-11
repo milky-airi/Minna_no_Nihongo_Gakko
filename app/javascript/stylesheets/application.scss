@@ -73,6 +73,24 @@ header .container {
   background-color: #3A8CD8;
 }
 
+// public/review_nice
+
+.nice-btn-wrapper {
+  position: relative;
+}
+
+.nice-btn-bg {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+
+.nice-btn-star {
+  position: absolute;
+  top: 27px;
+  left: 12px;
+}
+
 // footer
 
 footer .container-fluid {

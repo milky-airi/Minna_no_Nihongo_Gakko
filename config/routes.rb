@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       collection do
         get '/individual/:user_id', action: :individual, as: 'individual'
       end
+      resource :nice_reviews, only: [:create, :destroy]
     end
     resources :comments, only: [:create, :destroy]
     resources :schools, only: [:show] do
