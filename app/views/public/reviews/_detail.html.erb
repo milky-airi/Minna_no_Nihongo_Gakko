@@ -12,7 +12,9 @@
      </div>
 
     <div class="col-md-1 mt-5">
-      <%= render 'public/nice_reviews/nice_btn.html.erb', review: review %>
+      <span id="nice_btns_<%= review.id %>">
+        <%= render 'public/nice_reviews/nice_btn.html.erb', review: review %>
+      </span>
     </div>
 
     <!--<div class="col-md-7 offset-md-1 bg-white p-4 mt-4">-->

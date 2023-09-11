@@ -5,14 +5,14 @@ class Public::NiceReviewsController < ApplicationController
     @review = Review.find(params[:review_id])
     nice_review = current_user.nice_reviews.new(review_id: @review.id)
     nice_review.save
-    redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path)
   end
 
   def destroy
     @review = Review.find(params[:review_id])
     nice_review = NiceReview.find_by(review_id: @review.id)
     nice_review.destroy
-    redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path)
   end
 
 end
