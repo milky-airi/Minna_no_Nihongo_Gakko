@@ -1,9 +1,21 @@
 <% visiter = notification.visiter %>
 <% review = notification.review %>
 
+
+<% if notification.action == "comment" %>
 <ul class="list-unstyled">
     <li class="translatable-text">
         <%= visiter.name %>さんが
         <%= link_to "あなたの投稿したレビュー", review_path(notification.review_id) %>にコメントしました。
-        <%= " (#{time_ago_in_words(notification.created_at)}前)" %></li>
+        <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
+    </li>
 </ul>
+<% else %>
+<ul class="list-unstyled">
+    <li class="translatable-text">
+        <%= visiter.name %>さんが
+        <%= link_to "あなたの投稿したレビュー", review_path(notification.review_id) %>にいいねしました。
+        <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
+    </li>
+</ul>
+<% end %>
