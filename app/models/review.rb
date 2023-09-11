@@ -29,7 +29,6 @@ class Review < ApplicationRecord
   end
 
     notification.save if notification.valid?
-    # end
   end
 
 

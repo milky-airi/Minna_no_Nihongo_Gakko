@@ -33,6 +33,7 @@ class Public::WentSchoolsController < ApplicationController
   def destroy
     went_school = current_user.went_school
     went_school.destroy
+    current_user.review.destroy
     redirect_to user_path(current_user)
   end
 

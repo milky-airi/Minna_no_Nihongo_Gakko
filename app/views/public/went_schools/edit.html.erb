@@ -43,7 +43,7 @@
             <% end %>
           </div>
           <div class="col-md-5 offset-md-1">
-            <%= link_to "出身校削除", went_school_path(current_user.went_school.id), method: :delete, data: { confirm: "出身校情報を削除してもよろしいですか？" }, class: "btn btn-danger" %>
+            <%= link_to "出身校削除", went_school_path(current_user.went_school.id), method: :delete, data: { confirm: "出身校情報を削除してもよろしいですか？同時にレビューも削除されます。" }, class: "btn btn-danger" %>
           </div>
         </div>
       <!--</div>-->

@@ -104,7 +104,7 @@
 
           <div class="field">
             <%= f.label :都道府県　, class: "mr-2 translatable-text" %>
-            <%= f.select :prefecture, School.prefectures.keys.map { |key| [I18n.t("enums.school.prefecture.#{key}"), key] }, { include_blank: '選択してください'} %>
+            <%= f.select :prefecture, School.prefectures.keys.map { |key| [I18n.t("enums.school.prefecture.#{key}"), key] }, { include_blank: '選択してください'}, class: "select-box form-control w-50 d-inline" %>
           </div>
 
           <div class="field">
