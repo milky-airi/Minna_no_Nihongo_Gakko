@@ -56,7 +56,7 @@ class Admin::SchoolsController < ApplicationController
   private
 
     def school_params
-      params.require(:school).permit(:name, :name_kana, :name_en, :summary, :station, :address, :hp, :facebook, :twitter, :instagram, :tiktok, :youtube, :condition, :anual_fee, :have_dormitory, :dormitory_fee, :is_open, :prefecture, :image, :image_from, :building)
+      params.require(:school).permit(:name, :name_kana, :name_en, :summary, :station, :address, :hp, :facebook, :twitter, :instagram, :tiktok, :youtube, :condition, :anual_fee, :have_dormitory, :dormitory_fee, :is_open, :prefecture, :image, :image_from, :building, :capacity)
     end
 
     def tag_params

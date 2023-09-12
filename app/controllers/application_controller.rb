@@ -13,8 +13,12 @@ class ApplicationController < ActionController::Base
   end
 
   #ログイン後のリダイレクトをログイン前のページにする
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(user)
     session[:previous_url] || root_path
+  end
+
+  def after_sign_in_path_for(admin)
+    admin_root_path
   end
 
 end

@@ -44,7 +44,7 @@ class Admin::CoursesController < ApplicationController
   private
 
     def course_params
-      params.require(:course).permit(:school_id, :name, :admission_month, :duration, :capacity, :condition)
+      params.require(:course).permit(:school_id, :name, :admission_month, :duration, :condition)
     end
 
 end

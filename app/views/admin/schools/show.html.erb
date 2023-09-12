@@ -120,6 +120,10 @@
       <td><%= @school.student_nationality_tags.map { |tag| tag.nationality }.join(", ") %></td>
     </tr>
     <tr>
+      <td>【定員】</td>
+      <td><%= @school.capacity %>名</td>
+    </tr>
+    <tr>
       <td>【寮の有無（寮の家賃）】</td>
       <td>
         <% if @school.have_dormitory == true %>
@@ -156,7 +160,6 @@
             <td>【コース名】</td>
             <td>【入学時期】</td>
             <td>【在学期間】</td>
-            <td>【定員】</td>
             <td>【コース入学要件】</td>
             <td></td>
           </tr>
@@ -165,11 +168,6 @@
             <td><%= course.name %></td>
             <td><%= course.admission_month %>月</td>
             <td><%= course.duration %>ヶ月</td>
-            <td>
-              <% if course.capacity.present? %>
-                <%= course.capacity %>名
-              <% end %>
-              </td>
             <td><%= course.condition %></td>
             <td>
               <%= link_to "編集", edit_admin_course_path(course.id), class: "btn btn-success" %>
