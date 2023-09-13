@@ -12,7 +12,7 @@ class Public::AlertsController < ApplicationController
     if alert.save
       redirect_to thanks_alerts_path
     else
-      flash[:alert] = alert.errors.full_messages.join(", ")
+      flash[:alert] = "通報の作成に失敗しました"
       redirect_to review_path(params[:review_id])
     end
   end

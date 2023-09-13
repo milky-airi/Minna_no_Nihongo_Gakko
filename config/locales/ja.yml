@@ -72,35 +72,20 @@ ja:
   activerecord:
     models:
       went_school: "出身校"
-    attributes:
-      went_school:
-        graduate_year: "卒業年"
-        graduate_month: "卒業月"
-    models:
       review: "レビュー"
+      comment: "コメント"
+      alert: "通報"
+      course: "コース"
+      school: "日本語学校"
+      contact: "お問い合わせ"
     attributes:
+      contact:
+        name: "お名前"
+        email: "メールアドレス"
+        subject: "件名"
+        message: "お問い合わせ内容"
       review:
         star_integer: "星評価"
-    models:
-      comment: "コメント"
-    attributes:
-      comment:
-        comment: "コメント"
-    models:
-      alert: "通報"
-    attributes:
-      alert:
-        reason: "通報理由"
-    models:
-      course: "コース"
-    attributes:
-      course:
-        name: "コース名"
-        admission_month: "入学時期"
-        duration: "在学期間"
-    models:
-      school: "日本語学校"
-    attributes:
       school:
         name: "日本語学校名"
         name_kana: "日本語学校名(かな)"
@@ -110,14 +95,17 @@ ja:
         prefecture: "都道府県"
         address: "都道府県以降の住所"
         capacity: "定員"
-    models:
-      contact: "お問い合わせ"
-    attributes:
-      contact:
-        name: "お名前"
-        email: "メールアドレス"
-        subject: "件名"
-        message: "お問い合わせ内容"
+      course:
+        name: "コース名"
+        admission_month: "入学時期"
+        duration: "在学期間"
+      went_school:
+        graduate_year: "卒業年"
+        graduate_month: "卒業月"
+      comment:
+        comment: "コメント"
+      alert:
+        reason: "通報理由"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
