@@ -80,11 +80,10 @@ gem 'aws-sdk-translate'
 # 本番環境でMySQLを利用
 group :production do
   gem 'mysql2'
+  # 本番環境でエラーが出たため、追記
+  gem 'listen', '~> 3.3'
 end
 
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
-
-# 本番環境でエラーが出たため、追記
-# gem 'listen', '~> 3.3'
