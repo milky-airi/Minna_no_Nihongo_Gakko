@@ -1,8 +1,7 @@
 class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-        # , :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable
 
 
   has_many :comments, dependent: :destroy
@@ -17,10 +16,10 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :country_code, presence: true
 
-  # enum confirmation_status: {
-  #   confirmed: 0,
-  #   unconfirmed: 1,
-  # }
+  enum confirmation_status: {
+    confirmed: 0,
+    unconfirmed: 1,
+  }
 
   def validate_country_code
     unless Carmen::Country.coded(country_code)
