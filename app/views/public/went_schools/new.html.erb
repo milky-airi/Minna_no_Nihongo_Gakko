@@ -16,11 +16,11 @@
             <%= f.label :日本語学校, class: "translatable-text" %>
           </div>
           <div class="field col-md-5 offset-md-1">
-            <%= f.collection_select :school_id, School.all, :id, :name, class: "form-control" %>
+            <%= f.collection_select :school_id, School.all, :id, :name, {}, { class: "form-control" } %>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-2">
           <div class="col-md-5 text-right">
             <%= f.label :卒業年, class: "translatable-text" %>
           </div>
@@ -29,12 +29,12 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-2">
           <div class="col-md-5 text-right">
             <%= f.label :卒業月, class: "translatable-text" %>
           </div>
           <div class="field col-md-5 offset-md-1">
-            <%= f.select :graduate_month,  1..12, class: "form-control" %>
+            <%= f.select :graduate_month,  1..12, {}, { class: "form-control w-50" } %>
           </div>
         </div>
 

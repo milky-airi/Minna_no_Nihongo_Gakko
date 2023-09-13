@@ -4,6 +4,10 @@
     <div class="col-md-11 offset-md-1">
       <%= flash[:alert] %>
       <h5 class="translatable-text"><%= current_user.went_school.school.name %>のレビュー編集</h5>
+      <p class="translatable-text text-danger">
+        個人の特定ができる内容は記入しないでください<br>
+        事実ではない内容・誹謗中傷等は書き込まないでください
+      </p>
      </div>
 
     <div class="col-md-7 offset-md-1 bg-white p-4 mt-4">
@@ -13,7 +17,7 @@
 
           <div class="row">
             <div class="col-md-5 text-right">
-              <p class="translatable-text">星評価<span class="text-danger">*</span></p>
+              <p class="translatable-text">学校全体に対する評価<span class="text-danger">*</span></p>
             </div>
             <div class="field col-md-7">
               <div class="form-group" id="star_integer">
@@ -51,7 +55,7 @@
 
         <div class="row mt-3">
           <div class="col-md-5 text-right">
-            <%= f.label :授業評価, class: "translatable-text" %>
+            <%= f.label :授業, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
             <%=  f.select :evaluation_class, 1..5%>
