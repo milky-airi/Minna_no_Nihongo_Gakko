@@ -87,4 +87,4 @@ gem "net-pop"
 gem "net-imap"
 
 # 本番環境でエラーが出たため、追記
-gem 'listen', '~> 3.3'
+# gem 'listen', '~> 3.3'

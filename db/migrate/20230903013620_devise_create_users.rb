@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :nationality, null: false
       t.string :job
       t.integer :graduated_at
-      t.references :school, null: false, foreign_key: true
+      # t.references :school, null: false, foreign_key: true
 
     end
 

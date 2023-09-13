@@ -121,6 +121,8 @@ ActiveRecord::Schema.define(version: 2023_09_13_003312) do
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "school_id", null: false
     t.float "star_integer", null: false
     t.text "comment_integer"
     t.integer "evaluation_class", default: 3, null: false
@@ -140,8 +142,8 @@ ActiveRecord::Schema.define(version: 2023_09_13_003312) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_open", default: true, null: false
-    t.integer "school_id"
-    t.integer "user_id"
+    t.index ["school_id"], name: "index_reviews_on_school_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "schools", force: :cascade do |t|
@@ -228,6 +230,8 @@ ActiveRecord::Schema.define(version: 2023_09_13_003312) do
   add_foreign_key "favorites", "users"
   add_foreign_key "nice_reviews", "reviews"
   add_foreign_key "nice_reviews", "users"
+  add_foreign_key "reviews", "schools"
+  add_foreign_key "reviews", "users"
   add_foreign_key "student_nationality_taggings", "schools"
   add_foreign_key "student_nationality_taggings", "student_nationality_tags"
   add_foreign_key "went_schools", "schools"
