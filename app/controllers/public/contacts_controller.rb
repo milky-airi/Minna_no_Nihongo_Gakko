@@ -7,7 +7,7 @@ class Public::ContactsController < ApplicationController
   def confirm
     @contact = Contact.new(contact_params)
     if @contact.invalid?
-      flash[:alert] = @contact.errors.full_messages.join(", ")
+      flash[:alert] = @contact.errors.full_messages.join("<br>").html_safe
       @contact = Contact.new
       render :new
     end

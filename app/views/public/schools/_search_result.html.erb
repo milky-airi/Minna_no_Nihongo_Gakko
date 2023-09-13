@@ -9,6 +9,8 @@
       </div>
       <%= render "public/schools/index.html.erb", schools: schools %>
     </div>
+    <%= paginate @schools, theme: 'bootstrap-5' %>
+
     <% else %>
       <div class="col-md-12 p-5">
         <h5 class="text-center translatable-text">条件に合致する日本語学校はありませんでした。他の条件で検索してください。</h5>
