@@ -16,11 +16,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :country_code, presence: true
 
-  enum confirmation_status: {
-    confirmed: 0,
-    unconfirmed: 1,
-  }
-
   def validate_country_code
     unless Carmen::Country.coded(country_code)
       errors.add(:country_code, 'は有効な国コードではありません')
@@ -41,6 +36,7 @@ class User < ApplicationRecord
       user.country_code = "JP"
       user.job = "大学生"
       user.is_deleted = false
+      user.confirmed_at = Time.now
     end
   end
 
