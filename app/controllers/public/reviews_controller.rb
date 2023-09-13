@@ -1,15 +1,16 @@
 class Public::ReviewsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :craete, :edit, :update, :destroy, :indeividual]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :indeividual]
 
   def new
+    @review = Review.new
   end
 
   def create
-    review = Review.new(review_params)
-    review.user_id = current_user.id
-    review.school_id = current_user.went_school.id
-    if review.save
-      if review.is_open
+    @review = Review.new(review_params)
+    @review.user_id = current_user.id
+    @review.school_id = current_user.went_school.school.id
+    if @review.save
+      if @review.is_open
         flash[:notice] = "レビューを投稿しました"
         redirect_to individual_reviews_path(current_user)
       else
@@ -17,7 +18,8 @@ class Public::ReviewsController < ApplicationController
         redirect_to individual_reviews_path(current_user)
       end
     else
-      flash[:alert] = review.errors.full_messages.join(", ")
+      flash[:alert] = @review.errors.full_messages.join("<br>").html_safe
+      @review = Review.new
       render :new
     end
   end

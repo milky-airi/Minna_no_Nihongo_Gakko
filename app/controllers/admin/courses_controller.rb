@@ -13,8 +13,9 @@ class Admin::CoursesController < ApplicationController
       flash[:notice] = "コース情報を追加しました"
       redirect_to admin_school_path(course.school_id)
     else
-      flash[:alert] = course.errors.full_messages.join("<br>").html_safe
-      render :new
+      flash[:alert] = "コース情報の追加に失敗しました"
+      @schools = School.all.page(params[:page]).per(10).order(created_at: :desc)
+      redirect_to admin_schools_path
     end
   end
 
@@ -23,12 +24,12 @@ class Admin::CoursesController < ApplicationController
   end
 
   def update
-    course = Course.find(params[:id])
-    if course.update(course_params)
+    @course = Course.find(params[:id])
+    if @course.update(course_params)
       flash[:notice] = "コース情報を更新しました"
-      redirect_to admin_school_path(course.school.id)
+      redirect_to admin_school_path(@course.school.id)
     else
-      flash[:alert] = course.errors.full_messages.join("<br>").html_safe
+      flash[:alert] = @course.errors.full_messages.join("<br>").html_safe
       @course = Course.find(params[:id])
       render :edit
     end
