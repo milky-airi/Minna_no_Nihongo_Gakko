@@ -75,7 +75,8 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts.clear
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { protocol: 'https', host: 'https://a8de1e4ed11d4f4587f1f5807194ae87.vfs.cloud9.ap-northeast-1.amazonaws.com/'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
