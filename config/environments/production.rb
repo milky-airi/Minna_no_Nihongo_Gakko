@@ -118,6 +118,7 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
+  config.action_mailer.default_url_options = { host: ENV['PB_ADDRESS'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
@@ -126,6 +127,7 @@ Rails.application.configure do
     user_name: ENV['MAIL_ADDRESS'],
     password: ENV['MAIL_PASSWORD'],
     authentication: 'plain',
+    openssl_verify_mode: 'none',
     enable_starttls_auto: true
   }
 
