@@ -5,7 +5,7 @@
   </div>
 
   <div class="row">
-    <p><%= flash[:alert] %></p>
+    <%= flash[:alert].html_safe if flash[:alert] %>
   </div>
 
     <%= form_with model: @school, url: admin_school_path(@school), method: :patch do |f| %>

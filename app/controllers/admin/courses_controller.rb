@@ -13,7 +13,7 @@ class Admin::CoursesController < ApplicationController
       flash[:notice] = "コース情報を追加しました"
       redirect_to admin_school_path(course.school_id)
     else
-      flash[:alert] = course.errors.full_messages.join(", ")
+      flash[:alert] = course.errors.full_messages.join("<br>").html_safe
       render :new
     end
   end
@@ -28,7 +28,7 @@ class Admin::CoursesController < ApplicationController
       flash[:notice] = "コース情報を更新しました"
       redirect_to admin_school_path(course.school.id)
     else
-      flash[:alert] = course.errors.full_messages.join(", ")
+      flash[:alert] = course.errors.full_messages.join("<br>").html_safe
       @course = Course.find(params[:id])
       render :edit
     end

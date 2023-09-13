@@ -13,7 +13,7 @@ class Admin::SchoolsController < ApplicationController
       flash[:notice] = "学校情報を登録しました"
       redirect_to admin_schools_path
     else
-      flash[:alert] = school.errors.full_messages.join(", ")
+      flash[:alert] = school.errors.full_messages.join("<br>").html_safe
       @school = School.new(school_params)
       render :new
     end
@@ -32,7 +32,7 @@ class Admin::SchoolsController < ApplicationController
       redirect_to admin_school_path(school.id)
     else
       @school = School.find(params[:id])
-      flash[:alert] = school.errors.full_messages.join(", ")
+      flash[:alert] = school.errors.full_messages.join("<br>").html_safe
       render :edit
     end
   end

@@ -98,7 +98,6 @@ ja:
         name: "コース名"
         admission_month: "入学時期"
         duration: "在学期間"
-        capacity: "定員"
     models:
       school: "日本語学校"
     attributes:
@@ -110,6 +109,7 @@ ja:
         station: "最寄駅"
         prefecture: "都道府県"
         address: "都道府県以降の住所"
+        capacity: "定員"
     models:
       contact: "お問い合わせ"
     attributes:
