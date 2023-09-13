@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_12_154319) do
+ActiveRecord::Schema.define(version: 2023_09_13_003312) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -196,7 +196,6 @@ ActiveRecord::Schema.define(version: 2023_09_12_154319) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
-    t.string "name_kana"
     t.string "job"
     t.string "country_code", default: "JP"
     t.boolean "is_deleted", default: false, null: false

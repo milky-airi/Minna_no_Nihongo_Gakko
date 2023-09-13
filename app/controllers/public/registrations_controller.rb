@@ -7,7 +7,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   protected
 
     def configure_permitted_parameters
-      added_attrs = [:email, :name, :name_kana, :country_code, :job, :is_deleted ]
+      added_attrs = [:email, :name, :country_code, :job, :is_deleted ]
       devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     end
 
