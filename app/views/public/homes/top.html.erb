@@ -9,7 +9,7 @@
 
   <div class="row mt-5">
     <div class="col-md-6 my-auto">
-      <%= image_tag 'japan-map.png', size: "500x375" %>
+      <%= image_tag 'japan-map.png', class: "jp-image" %>
     </div>
 
     <div class="col-md-6 mb-4">
@@ -153,7 +153,7 @@
         <div class="row">
 
         <% @top_review_schools.each_with_index do |top_review_school, index| %>
-          <div class="col-md-3 text-center">
+          <div class="col-lg-3 text-center">
             <% if index == 0 %>
               <p><%= image_tag '1stPrize.jpg', size: "70x70", class: "mb-3" %></p>
             <% elsif index == 1 %>
@@ -167,10 +167,12 @@
             <%= link_to school_path(top_review_school.id) do %>
               <%= image_tag top_review_school.get_image(200,150) %>
             <% end %>
+
             <p>
               <%= link_to top_review_school.name, school_path(top_review_school.id) %><br>
               <span class="text-secondary"><%= top_review_school.name_en.truncate(30) %></span>
             </p>
+
             <% if top_review_school.reviews.present? %>
               <%= render "public/reviews/average_rate.html.erb", school: top_review_school %>
             <% else %>

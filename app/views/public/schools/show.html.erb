@@ -2,7 +2,7 @@
 
   <div class="row">
 
-    <div class="col-md-4  offset-md-1 text-center">
+    <div class="col-lg-4  offset-lg-1 text-center">
       <% if @school.image_from.present? %>
         <%= link_to @school.image_from do %>
           <%= image_tag @school.get_image(300,225), class: "object-fit-cover" %>
@@ -13,8 +13,8 @@
       <% end %>
     </div>
 
-    <div class="col-md-7">
-      <h5><%= @school.name %></h5>
+    <div class="col-lg-6 offset-lg-1 school-show-title">
+      <h5 class="school-show-title-h5"><%= @school.name %></h5>
       <p class="text-secondary"><%= @school.name_en %></p>
       <i class="fa-solid fa-location-dot text-info mr-1"></i><span class="translatable-text"><%= @school.prefecture_i18n %>/<%= @school.station %></span>
 

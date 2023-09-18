@@ -73,6 +73,16 @@ header .container {
   background-color: #3A8CD8;
 }
 
+@media screen and (max-width: 992px) {
+ .school-show-title{
+   text-align: center;
+ }
+
+ .school-show-title-h5 {
+   margin-top: 30px;
+ }
+}
+
 // public/review_nice
 
 .nice-btn-wrapper {
@@ -91,6 +101,9 @@ header .container {
   left: 12px;
 }
 
+.jp-image {
+  width: 85%;
+}
 // footer
 
 footer .container-fluid {
