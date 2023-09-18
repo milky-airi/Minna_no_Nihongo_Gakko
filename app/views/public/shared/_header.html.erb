@@ -10,44 +10,54 @@
 
           <div>
             <nav>
-              <ul class="navbar-nav list-group-horizontal">
-                <% if user_signed_in? %>
-                    <% if unchecked_notifications.any? %>
-                       <li>
-                         <div class="alert-wrapper">
+
+              <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color: #ffffff;"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarDropdown">
+                <ul class="navbar-nav list-group-horizontal">
+
+                  <% if user_signed_in? %>
+                      <% if unchecked_notifications.any? %>
+                         <li class="nav-item">
+                           <div class="alert-wrapper">
+                             <%= link_to notifications_path, class: "btn btn-outline-secondary mr-3 translatable-text" do %>
+                               <i class="fa-solid fa-bell"></i> 通知
+                             <% end %>
+                             <i class="fa-solid fa-circle fa-sm text-danger alert-mark"></i>
+                           </div>
+                      <% else %>
+                         <li class="nav-item">
                            <%= link_to notifications_path, class: "btn btn-outline-secondary mr-3 translatable-text" do %>
                              <i class="fa-solid fa-bell"></i> 通知
                            <% end %>
-                           <i class="fa-solid fa-circle fa-sm text-danger alert-mark"></i>
-                         </div>
-                    <% else %>
-                       <li>
-                         <%= link_to notifications_path, class: "btn btn-outline-secondary mr-3 translatable-text" do %>
-                           <i class="fa-solid fa-bell"></i> 通知
-                         <% end %>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to user_path(current_user.id), class: "btn btn-success mr-3 translatable-text" do %>
-                      <i class="fa-solid fa-user" style="color: #ffffff;"></i> マイページ
-                    <% end %>
+                      <% end %>
                     </li>
-                  <li>
-                    <%= link_to favorited_users_path, class: "btn btn-outline-secondary mr-3 translatable-text" do %>
-                      <i class="fa-solid fa-heart text-danger"></i> お気に入り
-                    <% end %>
+                    <li class="nav-item">
+                      <%= link_to user_path(current_user.id), class: "btn btn-success mr-3 translatable-text" do %>
+                        <i class="fa-solid fa-user" style="color: #ffffff;"></i> マイページ
+                      <% end %>
+                      </li>
+                    <li class="nav-item">
+                      <%= link_to favorited_users_path, class: "btn btn-outline-secondary mr-3 translatable-text" do %>
+                        <i class="fa-solid fa-heart text-danger"></i> お気に入り
+                      <% end %>
+                      </li>
+                    <li class="nav-item">
+                      <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary mr-3 translatable-text" do %>
+                        <i class="fa-solid fa-right-from-bracket"></i> ログアウト
+                      <% end %>
                     </li>
-                  <li>
-                    <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary mr-3 translatable-text" do %>
-                      <i class="fa-solid fa-right-from-bracket"></i> ログアウト
-                    <% end %>
-                  </li>
-                <% else %>
-                <li><%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mr-3 translatable-text" %></li>
-                <li><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-secondary mr-3 translatable-text" %></li>
-                <li><%= link_to "会員登録", new_user_registration_path, class: "btn mr-3 text-white registration-btn translatable-text" %></li>
-                <% end %>
-              </ul>
+
+
+                  <% else %>
+                  <li class="nav-item"><%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary mr-3 translatable-text" %></li>
+                  <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-secondary mr-3 translatable-text" %></li>
+                  <li class="nav-item"><%= link_to "会員登録", new_user_registration_path, class: "btn mr-3 text-white registration-btn translatable-text" %></li>
+                  <% end %>
+                </ul>
+              </div>
             </nav>
 
               <%= form_with url: search_path, method: :get, local: true, class: "float-right form-inline mt-3" do |f| %>
