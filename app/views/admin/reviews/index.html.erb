@@ -24,7 +24,7 @@
         </tr>
         <% @reviews.each do |review| %>
         <tr>
-          <td><%= link_to review.id, admin_review_path(review.id) %></td>
+          <td><%= review.id %></td>
           <td><%= link_to review.school.name, admin_school_path(review.school.id) %></td>
           <td><%= link_to review.user.name, admin_user_path(review.user.id) %></td>
           <td><%= render "public/reviews/static_rate", review: review %></td>
@@ -40,6 +40,7 @@
           <td><%= review.created_at.strftime('%Y/%m/%d') %></td>
           <td>
             <%= link_to "編集", edit_admin_review_path(review.id), class: "btn btn-success" %>
+            <%= link_to "詳細", admin_review_path(review.id), class: "btn btn-info" %>
           </td>
         </tr>
         <% end %>

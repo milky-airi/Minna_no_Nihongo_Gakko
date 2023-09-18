@@ -78,7 +78,6 @@
         <%= f.label :都道府県 %><span class="text-danger">*</span>
       </div>
       <div class="col-md-5 offset-md-1">
-        <!--<%#= f.select :prefecture, School.prefectures.keys.map { |key| [I18n.t("enums.school.prefecture.#{key}"), key] }, {} %>-->
         <%= f.select :prefecture, School.prefectures.keys.map { |key| [I18n.t("enums.school.prefecture.#{key}"), key] }, { include_blank: '選択してください'}, class: "select-box form-control w-50 d-inline" %>
       </div>
     </div>

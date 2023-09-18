@@ -20,7 +20,7 @@
         <% @users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= link_to user.name, admin_user_path(user.id) %></td>
+          <td><%= user.name %></td>
           <td>
             <% if user.is_deleted == true %>
               退会済み
