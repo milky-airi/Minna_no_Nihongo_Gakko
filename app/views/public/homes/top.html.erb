@@ -151,17 +151,15 @@
     <div class="row mt-5 mb-5">
       <div class="col-md-10 offset-md-1">
         <div class="row">
-        <%# @top_review_schools.each do |top_review_school| %>
+
         <% @top_review_schools.each_with_index do |top_review_school, index| %>
           <div class="col-md-3 text-center">
-            <%#= image_tag '1stPrize.jpg', size: "70x70", class: "mb-3 ml-5" %>
-
             <% if index == 0 %>
-              <%= image_tag '1stPrize.jpg', size: "70x70", class: "mb-3" %>
+              <p><%= image_tag '1stPrize.jpg', size: "70x70", class: "mb-3" %></p>
             <% elsif index == 1 %>
-              <%= image_tag '2ndPrize.jpg', size: "70x70", class: "mb-3" %>
+              <p><%= image_tag '2ndPrize.jpg', size: "70x70", class: "mb-3" %></p>
             <% elsif index == 2 %>
-              <%= image_tag '3rdPrize.jpg', size: "70x70", class: "mb-3" %>
+              <p><%= image_tag '3rdPrize.jpg', size: "70x70", class: "mb-3" %></p>
             <% elsif index == 3 %>
               <div class="prize-image-blank mb-3"></div>
             <% end %>
@@ -180,6 +178,7 @@
             <% end %>
           </div>
         <% end %>
+
         </div>
       </div>
     </div>
@@ -193,9 +192,10 @@
 <div class="container-fluid light-blue-container p-5">
   <div class="row">
       <%= render "public/reviews/short_review.html.erb", reviews: @reviews %>
-    </div>
   </div>
 </div>
+
+<!--</div>-->
 
 <div class="top-blue-title p-2">
   <h5 class="text-white text-center translatable-text">みんなの日本語学校とは？</h5>
