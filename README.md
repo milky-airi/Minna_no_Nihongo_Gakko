@@ -20,7 +20,11 @@
 - 日本語学校へ留学生を斡旋する会社・学校の方が、留学希望者に各日本語学校の紹介をする時。
 ​
 ## 設計書
-後ほど作成予定
+- 実装機能リスト　https://docs.google.com/spreadsheets/d/1naf7dJFBf0EEOBGPnItrmfdkCJDtWabxL95D52IDePQ/edit?usp=sharing
+- ER図　https://drive.google.com/file/d/1k15nuIoo68OjHmOB0QeA7l5lJMCoKcBj/view?usp=sharing
+- テーブル定義図　https://docs.google.com/spreadsheets/d/1sVKBbUgIuqGVwhpRxuPKZjVNQKMOMgse29xFYd0jays/edit?usp=sharing
+- UIフロー図（管理者）　https://drive.google.com/file/d/1WjLyUlGWzWRDUG_xDjzzHUlfZWLvsI2G/view?usp=sharing
+- UIフロー図（会員）　https://drive.google.com/file/d/1dg4wFWdvd6lWRzJ92jhkdrKT7P0VCRJs/view?usp=sharing
 ​
 ## 開発環境
 - OS：Linux(CentOS)
