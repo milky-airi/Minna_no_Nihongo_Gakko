@@ -58,6 +58,28 @@ header .container {
   .navbar-toggler {
     display: block;
   }
+
+  .flex-for-more-md{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .horizontal-for-more-than-md{
+    display: flex;           /* Flexboxを有効にしてアイテムを水平にする */
+    flex-direction: column;
+    padding-left: 0;
+  }
+
+  .horizontal-for-more-than-md > .nav-item {
+    display: flex;           /* アイテムを水平にする */
+    flex: 1 1 auto;          /* アイテムを均等に広げる */
+    margin-right: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  .search-box {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 769px) {
