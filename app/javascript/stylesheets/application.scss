@@ -8,6 +8,8 @@
   font-family: 'Kiwi Maru', serif;
 }
 
+// - - - - - - - - - - - - - - - - - - -
+
 // header
 
 header {
@@ -41,6 +43,7 @@ header .container {
   width: 15%;
 }
 
+// - - - - - - - - - - - - - - - - - - -
 // ハンバーガーメニュー
 .navbar-toggler {
   background-color: #3A8CD8;
@@ -88,6 +91,7 @@ header .container {
   }
 }
 
+// - - - - - - - - - - - - - - - - - - -
 // public/homes/top
 .top-blue-title {
   background-color: #3A8CD8;
@@ -97,6 +101,7 @@ header .container {
   height: 70px;
 }
 
+// - - - - - - - - - - - - - - - - - - -
 // public/session/new
 
 .light-blue-container {
@@ -108,12 +113,14 @@ header .container {
   color: #3A8CD8;
 }
 
-// // public/reviews/individual
+// - - - - - - - - - - - - - - - - - - -
+// public/reviews/individual
 
 .review-comment-input {
   width: 400px;
 }
 
+// - - - - - - - - - - - - - - - - - - -
 // public/schools/show
 
 .blue-container {
@@ -130,6 +137,7 @@ header .container {
  }
 }
 
+// - - - - - - - - - - - - - - - - - - -
 // public/review_nice
 
 .nice-btn-wrapper {
@@ -151,6 +159,8 @@ header .container {
 .jp-image {
   width: 85%;
 }
+
+// - - - - - - - - - - - - - - - - - - -
 // footer
 
 footer .container-fluid {
