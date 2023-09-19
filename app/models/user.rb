@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
-         :rememberable, :validatable, :confirmable
+         :rememberable, :validatable, :confirmable, :recoverable
 
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy

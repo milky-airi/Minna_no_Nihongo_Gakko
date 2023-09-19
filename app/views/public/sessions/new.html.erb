@@ -41,9 +41,13 @@
         </div>
 
         <div class="actions text-center mt-3">
-          <%= f.submit "ログイン", class: "btn login-button" %>
+            <%= button_tag(type: 'submit', class: "btn login-button translatable-text") do %>
+              ログイン
+            <% end %>
+          <% end %>
+
+          <%= link_to "パスワードをお忘れの方はこちら", new_user_password_path, class: "btn btn-secondary translatable-text" %>
         </div>
-      <% end %>
       </div>
 
     </div>
