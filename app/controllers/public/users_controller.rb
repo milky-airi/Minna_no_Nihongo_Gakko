@@ -24,8 +24,12 @@ class Public::UsersController < ApplicationController
   end
 
   def quit
-    current_user.update(is_deleted: true)
+    # 再登録できるよう、ユーザーのメールアドレスを一意なものに変更
+    current_user.skip_reconfirmation!
+    unique_email = "deleted_" + Time.now.to_i.to_s + current_user.email
+    current_user.update(email: unique_email, is_deleted: true)
     reset_session
+    flash[:notice] = "退会処理が完了しました"
     redirect_to root_path
   end
 
