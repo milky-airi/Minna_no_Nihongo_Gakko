@@ -4,7 +4,6 @@
       <%= image_tag comment.user.get_profile_image(80, 80), class: "rounded-circle mr-3" %>
     </div>
     <div>
-
       <% if comment.user.is_deleted == true %>
         <span class="translatable-text">退会済みユーザー</span>
       <% else %>
