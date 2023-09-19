@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     get 'prefecture_search/prefecture_search'
   end
 
-  # devise_for :users,skip: [:passwords], controllers: {
   devise_for :users, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions',
