@@ -10,13 +10,13 @@
             <p class="translatable-text">引用：<%= link_to "リンク", school.image_from %></p>
           <% else %>
             <%= link_to school_path(school) do %>
-              <%= image_tag school.get_image(260,195), class: "object-fit-cover" %>
+              <%= image_tag school.get_image(260,195), class: "object-fit-cover", 'data-turbolinks': false %>
             <% end %>
           <% end %>
         </div>
 
         <div class="col-md-8">
-          <h5><%= link_to school.name, school_path(school.id) %></h5>
+          <h5><%= link_to school.name, school_path(school.id), 'data-turbolinks': false %></h5>
           <p class="text-secondary"><%= school.name_en %></p>
           <i class="fa-solid fa-location-dot text-info mr-1"></i><span class="translatable-text"><%= school.prefecture_i18n %>/<%= school.station %></span>
 

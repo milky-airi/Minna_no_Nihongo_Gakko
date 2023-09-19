@@ -13,7 +13,7 @@
           <% end %>
         <% end %>
 
-        <u><%= link_to review.school.name, school_path(review.school.id), class: "ml-3, text-dark" %></u>
+        <u><%= link_to review.school.name, school_path(review.school.id), class: "ml-3, text-dark", 'data-turbolinks': false%></u>
         <span class="translatable-text">（<%= review.user.went_school.graduate_year %>年<%= review.user.went_school.graduate_month %>月卒業）</span>
       </div>
 
