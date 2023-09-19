@@ -18,7 +18,9 @@
           <td><%= school.id %></td>
           <td><%= link_to school.name, admin_school_path(school.id) %></td>
           <td><%= school.prefecture_i18n %></td>
-          <td><%= school.summary.truncate(20) %></td>
+          <td>
+            <%= school.summary.truncate(20) if school.summary.present? %>
+          </td>
         <td><%= school.reviews.count %></td>
         <td>
           <% if school.is_open == true %>
