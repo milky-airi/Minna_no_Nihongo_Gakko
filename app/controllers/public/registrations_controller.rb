@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :ensure_normal_user, only: [:destroy]

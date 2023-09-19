@@ -2,8 +2,6 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable, :confirmable
-        # :recoverable,
-
 
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -40,7 +38,6 @@ class User < ApplicationRecord
       user.confirmed_at = Time.now
     end
   end
-
 
   def get_profile_image(width, height)
   	unless profile_image.attached?
