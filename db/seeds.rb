@@ -14,10 +14,9 @@ Admin.create!(
 )
 
 # テストデータの挿入
-
+require "csv"
 
 # - - - - - - - - - - 日本語学校情報 - - - - - - - - - -
-require "csv"
 
 CSV.foreach('db/csv/schools.csv', headers: true) do |row|
   School.create!(
@@ -48,8 +47,6 @@ end
 
 # - - - - - - - - - - コース情報 - - - - - - - - - -
 
-require "csv"
-
 CSV.foreach('db/csv/courses.csv', headers: true) do |row|
   Course.create!(
     school_id: row['school_id'],
@@ -61,8 +58,6 @@ end
 
 # - - - - - - - - - - 学生の国籍タグ - - - - - - - - - -
 
-require "csv"
-
 CSV.foreach('db/csv/student_nationality_tags.csv', headers: true) do |row|
   StudentNationalityTag.create!(
     id: row['id'],
@@ -71,8 +66,6 @@ CSV.foreach('db/csv/student_nationality_tags.csv', headers: true) do |row|
 end
 
 # - - - - - - - - - - 学生の国籍タグづけ - - - - - - - - - -
-
-require "csv"
 
 CSV.foreach('db/csv/student_nationality_taggings.csv', headers: true) do |row|
   StudentNationalityTagging.create!(
@@ -122,8 +115,6 @@ jonh_went_school = WentSchool.find_or_create_by!(user_id: 2) do |went_school|
 end
 
 # - - - - - - - - - - レビュー情報 - - - - - - - - - -
-
-require "csv"
 
 CSV.foreach('db/csv/reviews.csv', headers: true) do |row|
   Review.create!(
