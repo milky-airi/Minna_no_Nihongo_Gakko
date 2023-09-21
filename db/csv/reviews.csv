@@ -1,0 +1,3 @@
+user_id,school_id,star_integer,comment_integer,evaluation_class,comment_class,evaluation_after_graduation,comment_after_graduation,evaluation_place,comment_place,evaluation_facility,comment_facility,evaluation_student,comment_student,evaluation_teacher,comment_teacher,evaluation_life,comment_life,is_open
+1,1,5,雰囲気が良くて、とても素敵な学校です！,3,授業は難しいですが、ためになります,4,卒業後、行きたかった専門学校へ行くことができました,2,場所はあまり便利ではありませんでした,3,設備は普通でした,5,学生はみんないい人ばかりでした,5,先生は厳しいですが、とても親切でした,4,時々行事があって、日本人と会話する機会がありました,TRUE
+2,2,4,留学生は色々な国から来ていました。たくさん友人ができて嬉しいです！,4,授業は少し難しいですが、面白いです。宿題が多いです。,3,卒業した後で、アメリカへ帰って日系の会社で働いています。,2,田舎なので、少し不便です。,4,学校は新しいので、設備がきれいです。,5,学生は色々な国から来ていました。,5,先生はとても親切です。相談をしたら、いつもよく聞いてくれました。,3,,TRUE

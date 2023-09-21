@@ -128,7 +128,13 @@
         <td class="translatable-text">【寮の有無（寮の家賃）】</td>
         <td>
           <% if @school.have_dormitory == true %>
-            <span class="translatable-text">あり（家賃：<%= @school.dormitory_fee.to_s(:delimited) %>円/月）</span>
+            <span class="translatable-text">あり
+            <% if @school.dormitory_fee.present?  %>
+              （家賃：<%= @school.dormitory_fee.to_s(:delimited) %>円/月）
+            <% else %>
+              （家賃：要問い合わせ）
+            <% end %>
+            </span>
           <% else %>
             <span class="translatable-text">なし</span>
           <% end %>
@@ -146,7 +152,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container mb-5">
   <% if @school.courses.present? %>
     <div class="row">
       <div class="col-md-12">
@@ -156,7 +162,7 @@
 
     <div class="row mt-4">
       <div class="col-md-12">
-        <table class="table table-borderless text-center">
+        <table class="table text-center">
           <tr>
             <td class="translatable-text">【コース名】</td>
             <td class="translatable-text">【入学時期】</td>

@@ -15,6 +15,8 @@ Admin.create!(
 
 # テストデータの挿入
 
+
+# - - - - - - - - - - 日本語学校情報 - - - - - - - - - -
 require "csv"
 
 CSV.foreach('db/csv/schools.csv', headers: true) do |row|
@@ -41,6 +43,87 @@ CSV.foreach('db/csv/schools.csv', headers: true) do |row|
     is_open: row['is_open'],
     image_from: row['image_from'],
     capacity: row['capacity']
+  )
+end
+
+# - - - - - - - - - - コース情報 - - - - - - - - - -
+
+require "csv"
+
+CSV.foreach('db/csv/courses.csv', headers: true) do |row|
+  Course.create!(
+    school_id: row['school_id'],
+    name: row['name'],
+    admission_month: row['admission_month'],
+    duration: row['duration']
+  )
+end
+
+# - - - - - - - - - - ユーザー情報 - - - - - - - - - -
+
+hanako = User.find_or_create_by!(email: "hanako@example.com") do |user|
+  user.id = 1
+  user.name = "田中花子"
+  user.country_code = "JP"
+  user.job = "大学生"
+  user.password = "Tanakahanako"
+  user.is_deleted = false
+  user.confirmed_at = Time.now
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/hanako.jpg"), filename:"hanako.jpg")
+end
+
+jonh = User.find_or_create_by!(email: "jonh@example.com") do |user|
+  user.id = 2
+  user.name = "Jonh Smith"
+  user.country_code = "US"
+  user.job = "会社員"
+  user.password = "Jonhsmith"
+  user.is_deleted = false
+  user.confirmed_at = Time.now
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/jonh.jpg"), filename:"jonh.jpg")
+end
+
+# - - - - - - - - - - 出身校情報 - - - - - - - - - -
+
+hanako_went_school = WentSchool.find_or_create_by!(user_id: 1) do |went_school|
+  went_school.school_id = 1
+  went_school.user_id = 1
+  went_school.graduate_year = 2022
+  went_school.graduate_month = 3
+end
+
+jonh_went_school = WentSchool.find_or_create_by!(user_id: 2) do |went_school|
+  went_school.school_id = 2
+  went_school.user_id = 2
+  went_school.graduate_year = 2023
+  went_school.graduate_month = 3
+end
+
+# - - - - - - - - - - レビュー情報 - - - - - - - - - -
+
+require "csv"
+
+CSV.foreach('db/csv/reviews.csv', headers: true) do |row|
+  Review.create!(
+    user_id: row['user_id'],
+    school_id: row['school_id'],
+    star_integer: row['star_integer'],
+    comment_integer: row['comment_integer'],
+    evaluation_class: row['evaluation_class'],
+    comment_class: row['comment_class'],
+    evaluation_after_graduation: row['evaluation_after_graduation'],
+    comment_after_graduation: row['comment_after_graduation'],
+    evaluation_place: row['evaluation_place'],
+    comment_place: row['comment_place'],
+    evaluation_facility: row['evaluation_facility'],
+    comment_facility: row['comment_facility'],
+    evaluation_student: row['evaluation_student'],
+    comment_student: row['comment_student'],
+    evaluation_teacher: row['evaluation_teacher'],
+    comment_teacher: row['comment_teacher'],
+    evaluation_life: row['evaluation_life'],
+    comment_life: row['comment_life'],
+    is_open: row['is_open']
   )
 end
 
