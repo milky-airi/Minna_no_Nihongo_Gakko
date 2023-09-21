@@ -8,7 +8,10 @@
       </div>
       <%= render "public/schools/index.html.erb", schools: schools %>
     </div>
-    <%= paginate @schools, theme: 'bootstrap-5' %>
+
+    <div class="mx-auto mb-4">
+      <%= paginate @schools, theme: 'bootstrap-5' %>
+    </div>
 
     <% else %>
       <div class="col-md-12 p-5">

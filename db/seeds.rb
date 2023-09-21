@@ -59,6 +59,28 @@ CSV.foreach('db/csv/courses.csv', headers: true) do |row|
   )
 end
 
+# - - - - - - - - - - 学生の国籍タグ - - - - - - - - - -
+
+require "csv"
+
+CSV.foreach('db/csv/student_nationality_tags.csv', headers: true) do |row|
+  StudentNationalityTag.create!(
+    id: row['id'],
+    nationality: row['nationality']
+  )
+end
+
+# - - - - - - - - - - 学生の国籍タグづけ - - - - - - - - - -
+
+require "csv"
+
+CSV.foreach('db/csv/student_nationality_taggings.csv', headers: true) do |row|
+  StudentNationalityTagging.create!(
+    school_id: row['school_id'],
+    student_nationality_tag_id: row['student_nationality_tag_id']
+  )
+end
+
 # - - - - - - - - - - ユーザー情報 - - - - - - - - - -
 
 hanako = User.find_or_create_by!(email: "hanako@example.com") do |user|
