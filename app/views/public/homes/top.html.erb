@@ -65,7 +65,7 @@
 
       <div class="mt-2">
         <span class="translatable-text">【中国・四国】</span><br>
-        <%= link_to "鳥取県", prefecture_search_path(prefecture: "Tottori"), class: "text-dark mr-1 translatable-text"  %>
+        <%= link_to "鳥取県", prefecture_search_path(prefecture: "Tootori"), class: "text-dark mr-1 translatable-text"  %>
         <%= link_to "島根県", prefecture_search_path(prefecture: "Shimane"), class: "text-dark mr-1 translatable-text"  %>
         <%= link_to "岡山県", prefecture_search_path(prefecture: "Okayama"), class: "text-dark mr-1 translatable-text"  %>
         <%= link_to "広島県", prefecture_search_path(prefecture: "Hiroshima"), class: "text-dark mr-1 translatable-text"  %>
@@ -170,7 +170,7 @@
 
             <p>
               <%= link_to top_review_school.name, school_path(top_review_school.id), 'data-turbolinks': false %><br>
-              <span class="text-secondary"><%= top_review_school.name_en.truncate(30) %></span>
+              <span class="text-secondary"><%= top_review_school.name_en.truncate(20) %></span>
             </p>
 
             <% if top_review_school.reviews.present? %>

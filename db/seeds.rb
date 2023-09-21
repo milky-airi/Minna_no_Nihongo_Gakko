@@ -13,67 +13,35 @@ Admin.create!(
   password: ENV['ADMIN_PASSWORD']
 )
 
-hanako = User.find_or_create_by!(email: "hanako@example.com") do |user|
-  user.id = 1
-  user.name = "田中花子"
-  user.country_code = "JP"
-  user.job = "大学生"
-  user.password = "Tanakahanako"
-  user.is_deleted = false
-  user.confirmed_at = Time.now
-  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/hanako.jpg"), filename:"hanako.jpg")
-end
+# テストデータの挿入
 
-asahikawa = School.find_or_create_by!(name: "旭川福祉専門学校") do |school|
-  school.id = 1
-  school.name = "旭川福祉専門学校"
-  school.name_kana = "あさひかわふくしせんもんがっこう"
-  school.name_en = "Asahikawa Welfare College"
-  school.station = "千代ヶ丘駅"
-  school.prefecture = "Hokkaido"
-  school.address = "上川郡東川町進化台"
-  school.hp = "https://www.hokko.ac.jp/kyokufuku/"
-  school.twitter = "https://twitter.com/fukusen_renger"
-  school.instagram = "https://www.instagram.com/fukusenkoho/"
-  school.anual_fee = 600000
-  school.is_open = true
-  school.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/SchoolImage.jpg"), filename:"SchoolImage.jpg")
-end
+require "csv"
 
-asahikawa_course = Course.find_or_create_by!(name: "1年6か月課程") do |course|
-  course.school_id = 1
-  course.name = "1年6か月課程"
-  course.admission_month = 4
-  course.duration = 18
-end
-
-hanako_went_school = WentSchool.find_or_create_by!(user_id: 1) do |went_school|
-  went_school.school_id = 1
-  went_school.user_id = 1
-  went_school.graduate_year = 2022
-  went_school.graduate_month = 3
-end
-
-hanako_review = Review.find_or_create_by!(user_id: 1) do |review|
-  review.user_id = 1
-  review.school_id = 1
-  review.star_integer = 5
-  review.comment_integer = "雰囲気が良くて、とても素敵な学校です！"
-  review.evaluation_class = 3
-  review.comment_class = "授業は難しいですが、ためになります"
-  review.evaluation_after_graduation = 4
-  review.comment_after_graduation = "卒業後、行きたかった専門学校へ行くことができました"
-  review.evaluation_place = 2
-  review.comment_place = "場所はあまり便利ではありませんでした"
-  review.evaluation_facility = 3
-  review.comment_facility = "設備は普通でした"
-  review.evaluation_student = 5
-  review.comment_student = "学生はみんないい人ばかりでした"
-  review.evaluation_teacher = 5
-  review.comment_teacher = "先生は厳しいですが、とても親切でした"
-  review.evaluation_life = 4
-  review.comment_life = "時々行事があって、日本人と会話する機会がありました"
-  review.is_open = true
+CSV.foreach('db/csv/schools.csv', headers: true) do |row|
+  School.create!(
+    id: row['id'],
+    name: row['name'],
+    name_kana: row['name_kana'],
+    name_en: row['name_en'],
+    summary: row['summary'],
+    station: row['station'],
+    prefecture: row['prefecture'],
+    address: row['address'],
+    building: row['building'],
+    hp: row['hp'],
+    facebook: row['facebook'],
+    twitter: row['twitter'],
+    instagram: row['instagram'],
+    tiktok: row['tiktok'],
+    youtube: row['youtube'],
+    condition: row['condition'],
+    anual_fee: row['anual_fee'],
+    have_dormitory: row['have_dormitory'],
+    dormitory_fee: row['dormitory_fee'],
+    is_open: row['is_open'],
+    image_from: row['image_from'],
+    capacity: row['capacity']
+  )
 end
 
 puts "seedの実行が完了しました"
