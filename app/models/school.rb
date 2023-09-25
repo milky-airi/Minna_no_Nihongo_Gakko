@@ -66,12 +66,25 @@ class School < ApplicationRecord
     reviews.exists?(user_id: user.id)
   end
 
-  def self.look_for(word)
-    School.where("name LIKE ? OR name_kana LIKE ? OR name_en LIKE ?", "%#{word}%", "%#{word}%", "%#{word}%").where(is_open: true)
+  # def self.look_for(word)
+  #     School.where("name LIKE ? OR name_kana LIKE ? OR name_en LIKE ?", "%#{word}%", "%#{word}%", "%#{word}%").where(is_open: true)
+  # end
+
+  def self.look_for(word, is_admin = false)
+    if is_admin
+      School.where("name LIKE ? OR name_kana LIKE ? OR name_en LIKE ?", "%#{word}%", "%#{word}%", "%#{word}%")
+    else
+      School.where("name LIKE ? OR name_kana LIKE ? OR name_en LIKE ?", "%#{word}%", "%#{word}%", "%#{word}%").where(is_open: true)
+    end
   end
 
-  def self.look_detail_for(prefecture, nationalities, anual_fee_greater_than_or_equal, anual_fee_less_than, word)
-    schools = School.all.where(is_open: true)
+  def self.look_detail_for(prefecture, nationalities, anual_fee_greater_than_or_equal, anual_fee_less_than, word, is_admin = false)
+
+    if is_admin
+      schools = School.all
+    else
+      schools = School.all.where(is_open: true)
+    end
 
     if prefecture.present?
       schools = schools.where(prefecture: prefecture)
