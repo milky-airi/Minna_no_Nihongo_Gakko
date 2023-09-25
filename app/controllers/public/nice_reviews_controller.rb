@@ -10,7 +10,7 @@ class Public::NiceReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:review_id])
-    nice_review = NiceReview.find_by(review_id: @review.id)
+    nice_review = NiceReview.find_by(review_id: @review.id, user_id: current_user.id)
     nice_review.destroy
   end
 
