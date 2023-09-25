@@ -67,11 +67,12 @@ class School < ApplicationRecord
   end
 
   def self.look_for(word)
-    School.where("name LIKE ? OR name_kana LIKE ? OR name_en LIKE ?", "%#{word}%", "%#{word}%", "%#{word}%")
+    School.where("name LIKE ? OR name_kana LIKE ? OR name_en LIKE ?", "%#{word}%", "%#{word}%", "%#{word}%").where(is_open: true)
   end
 
   def self.look_detail_for(prefecture, nationalities, anual_fee_greater_than_or_equal, anual_fee_less_than, word)
-    schools = School.all
+    schools = School.all.where(is_open: true)
+
     if prefecture.present?
       schools = schools.where(prefecture: prefecture)
     end
@@ -89,14 +90,13 @@ class School < ApplicationRecord
     end
 
     if word.present?
-      # schools = School.where("name LIKE ?", "%#{word}%") + School.where("name_kana LIKE ?", "%#{word}%") + School.where("name_en LIKE ?", "%#{word}%")
       schools = schools.where("name LIKE ?", "%#{word}%").or(schools.where("name_kana LIKE ?", "%#{word}%")).or(schools.where("name_en LIKE ?", "%#{word}%"))
     end
     return schools
   end
 
   def self.look_prefecture_for(prefecture)
-    where(prefecture: prefecture)
+    where(prefecture: prefecture, is_open: true)
   end
 
   def get_image(width, height)
