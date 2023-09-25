@@ -1,7 +1,13 @@
 <% review.comments.each do |comment| %>
   <div class="d-flex bg-white mt-4 p-4">
     <div class="mr-2">
-      <%= image_tag comment.user.get_profile_image(80, 80), class: "rounded-circle mr-3" %>
+      <% if comment.user.is_deleted == true %>
+        <%= image_tag 'UserDeleted.jpg', size: "70x70", class: "rounded-circle mr-3" %>
+      <% else %>
+        <%= link_to user_path(comment.user.id) do %>
+          <%= image_tag comment.user.get_profile_image(70,70), class: "rounded-circle mr-3" %>
+        <% end %>
+      <% end %>
     </div>
     <div>
       <% if comment.user.is_deleted == true %>
