@@ -5,6 +5,7 @@ class Public::CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     comment.user_id = current_user.id
     comment.review_id = params[:comment][:review_id]
+    comment.score = Language.get_data(comment_params[:comment])
     if comment.save
       @review = comment.review
       @review.create_notification_by(current_user)

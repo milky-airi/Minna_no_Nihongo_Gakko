@@ -18,6 +18,9 @@
       <span class="text-secondary"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
       <div class="translatable-text"><%= comment.comment %></div>
       <% if user_signed_in? && comment.user_id == current_user.id %>
+        <% if comment.score < -0.8 %>
+          <p class="translatable-text mt-2"><small class="text-secondary">※非常にネガティブなコメントです。トラブル回避のため、不要な場合は削除することを推奨します※</small></p>
+        <% end %>
         <%= link_to "削除", comment_path(comment.id), method: :delete, data: { confirm: "コメントを削除してもよろしいですか？" }, class: "text-secondary translatable-text", remote: true, data: {"turbolinks" => false} %>
       <% end %>
     </div>
