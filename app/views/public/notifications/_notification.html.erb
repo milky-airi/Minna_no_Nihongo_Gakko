@@ -5,6 +5,7 @@
 <% if notification.action == "comment" %>
 <ul class="list-unstyled">
     <li class="translatable-text">
+        <i class="fa-solid fa-comment text-success"></i>
         <%= visiter.name %>さんが
         <%= link_to "あなたの投稿したレビュー", review_path(notification.review_id) %>にコメントしました。
         <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
@@ -13,6 +14,7 @@
 <% else %>
 <ul class="list-unstyled">
     <li class="translatable-text">
+        <i class="fa-solid fa-star text-warning"></i>
         <%= visiter.name %>さんが
         <%= link_to "あなたの投稿したレビュー", review_path(notification.review_id) %>にいいねしました。
         <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
