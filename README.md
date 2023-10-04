@@ -27,7 +27,7 @@
 - UIフロー図（会員）　https://drive.google.com/file/d/1dg4wFWdvd6lWRzJ92jhkdrKT7P0VCRJs/view?usp=sharing
 ​
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Amazon Linux 2
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
