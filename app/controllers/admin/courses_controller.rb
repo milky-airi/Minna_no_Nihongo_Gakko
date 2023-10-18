@@ -13,9 +13,9 @@ class Admin::CoursesController < ApplicationController
       flash[:notice] = "コース情報を追加しました"
       redirect_to admin_school_path(course.school_id)
     else
-      flash[:alert] = "コース情報の追加に失敗しました"
+      flash[:notice] = "コース情報の追加に失敗しました"
       @schools = School.all.page(params[:page]).per(10).order(created_at: :desc)
-      redirect_to admin_schools_path
+      redirect_to admin_school_path(course.school_id)
     end
   end
 
