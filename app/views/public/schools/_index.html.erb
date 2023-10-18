@@ -22,9 +22,12 @@
 
           <span id="favorite_btns_<%= school.id %>"><%= render 'public/favorites/btn.html.erb', school: school %></span>
 
-          <% if school.reviews.present? %>
-            <%= render "public/reviews/average_rate.html.erb", school: school %>
-            <p class="translatable-text">口コミ：<%= school.reviews.count %>件</p>
+          <%# if school.reviews.present? %>
+            <%#= render "public/reviews/average_rate.html.erb", school: school %>
+            <!--<p class="translatable-text">口コミ：<%= school.reviews.count %>件</p>-->
+           <% if school.open_reviews.present? %>
+             <%= render "public/reviews/average_rate.html.erb", school: school %>
+             <p class="translatable-text">口コミ：<%= school.open_reviews.count %>件</p>
           <% else %>
             <p class="translatable-text">口コミはまだありません</p>
           <% end %>

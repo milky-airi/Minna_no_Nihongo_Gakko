@@ -4,6 +4,7 @@ class School < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :open_reviews, ->{ where(reviews:{is_open: true})}, class_name: 'Review'
   has_many :courses, dependent: :destroy
   has_many :student_nationality_taggings, dependent: :destroy
   has_many :student_nationality_tags, through: :student_nationality_taggings

@@ -9,7 +9,8 @@
           starOn: "<%= asset_path('star-on.png') %>",
           starOff: "<%= asset_path('star-off.png') %>",
           starHalf: "<%= asset_path('star-half.png') %>",
-          score: <%= school.reviews.average(:star_integer).to_f.round(1) %>,
+          // score: <%#= school.reviews.average(:star_integer).to_f.round(1) %>,
+          score: <%= school.open_reviews.average(:star_integer).to_f.round(1) %>,
           readOnly: true,
         };
         raty(elem, opt);

@@ -25,7 +25,8 @@
 
       <% if @school.reviews.present? %>
         <%= render "public/reviews/average_rate.html.erb", school: @school %>
-        <p class="translatable-text">口コミ：<%= @school.reviews.count %>件</p>
+        <!--<p class="translatable-text">口コミ：<%#= @school.reviews.count %>件</p>-->
+        <p class="translatable-text">口コミ：<%= @school.open_reviews.count %>件</p>
       <% else %>
         <p class="translatable-text">口コミはまだありません</p>
       <% end %>
