@@ -191,10 +191,14 @@
             <%= f.label :公開状況, class: "translatable-text" %>
           </div>
           <div class="field col-md-7">
+            <%#= f.radio_button :is_open, :true, checked: true %>
+            <%#= f.label :is_open, "公開", class: "translatable-text" %>
+            <%#= f.radio_button :is_open, :false %>
+            <%#= f.label :is_open, "下書き保存", class: "translatable-text" %>
             <%= f.radio_button :is_open, :true, checked: true %>
-            <%= f.label :is_open, "公開", class: "translatable-text" %>
+            <%= f.label :is_open, "公開", value: true, class: "translatable-text" %>
             <%= f.radio_button :is_open, :false %>
-            <%= f.label :is_open, "下書き保存", class: "translatable-text" %>
+            <%= f.label :is_open, "下書き保存", value: false, class: "translatable-text" %>
           </div>
         </div>
 
